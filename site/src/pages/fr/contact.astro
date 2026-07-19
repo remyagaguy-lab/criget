@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
 
 // TODO: Connecter ce formulaire à un Cloudflare Worker + Turnstile au prochain prompt.
 // Le Worker doit :
@@ -142,15 +143,15 @@ import Layout from '../../layouts/Layout.astro';
             <!-- Submit -->
             <button type="submit" class="btn-submit" id="submit-btn">
               Envoyer le message
-              <span class="btn-icon" aria-hidden="true">→</span>
+              <span class="btn-icon" aria-hidden="true"><Icon name="arrow-right" /></span>
             </button>
 
             <!-- Messages de retour -->
             <div id="form-success" class="form-feedback form-feedback--success" hidden role="alert">
-              ✅ Votre message a bien été envoyé. Nous vous répondrons sous 48 heures ouvrées.
+              <Icon name="check-circle" class="icon-inline" /> Votre message a bien été envoyé. Nous vous répondrons sous 48 heures ouvrées.
             </div>
             <div id="form-error" class="form-feedback form-feedback--error" hidden role="alert">
-              ❌ Une erreur est survenue. Veuillez réessayer ou nous contacter directement par e-mail.
+              <Icon name="x-circle" class="icon-inline" /> Une erreur est survenue. Veuillez réessayer ou nous contacter directement par e-mail.
             </div>
           </form>
         </div>
@@ -160,21 +161,21 @@ import Layout from '../../layouts/Layout.astro';
           <h2>Coordonnées</h2>
           <address class="coordonnees">
             <div class="coord-item">
-              <span class="coord-icon" aria-hidden="true">📍</span>
+              <span class="coord-icon" aria-hidden="true"><Icon name="map-pin" /></span>
               <div>
                 <strong>Adresse</strong>
                 <p>Lomé, Togo<br />[À COMPLÉTER — adresse exacte]</p>
               </div>
             </div>
             <div class="coord-item">
-              <span class="coord-icon" aria-hidden="true">📧</span>
+              <span class="coord-icon" aria-hidden="true"><Icon name="mail" /></span>
               <div>
                 <strong>E-mail</strong>
                 <p><a href="mailto:contact@criget-cs.com">contact@criget-cs.com</a></p>
               </div>
             </div>
             <div class="coord-item">
-              <span class="coord-icon" aria-hidden="true">📞</span>
+              <span class="coord-icon" aria-hidden="true"><Icon name="phone" /></span>
               <div>
                 <strong>Téléphone</strong>
                 <p>[À COMPLÉTER]</p>
@@ -188,7 +189,7 @@ import Layout from '../../layouts/Layout.astro';
             <p><strong>Forme juridique :</strong> SARL de droit privé togolaise</p>
             <p><strong>N° RCCM :</strong> [À COMPLÉTER]</p>
             <p><strong>Siège social :</strong> Lomé, Togo</p>
-            <p><a href="/fr/mentions-legales">→ Mentions légales complètes</a></p>
+            <p><a href="/fr/mentions-legales"><Icon name="arrow-right" class="icon-inline" /> Mentions légales complètes</a></p>
           </div>
 
           <div class="das-links">
@@ -355,7 +356,7 @@ import Layout from '../../layouts/Layout.astro';
     }
 
     submitBtn.disabled = true;
-    submitBtn.innerHTML = 'Envoi en cours... <span aria-hidden="true">⏳</span>';
+    submitBtn.innerHTML = 'Envoi en cours...';
     successMsg.hidden = true;
     errorMsg.hidden = true;
 
@@ -415,7 +416,7 @@ import Layout from '../../layouts/Layout.astro';
       errorMsg.hidden = false;
     } finally {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = 'Envoyer le message <span class="btn-icon" aria-hidden="true">→</span>';
+      submitBtn.innerHTML = 'Envoyer le message <span class="btn-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>';
     }
   });
 </script>

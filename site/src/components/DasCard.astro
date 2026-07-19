@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 interface Props {
   title: string;
   description: string;
@@ -8,7 +9,7 @@ interface Props {
 const { title, description, icon, href } = Astro.props;
 ---
 <a href={href} class="das-card" aria-label={`Découvrir ${title}`}>
-  {icon && <div class="das-icon" aria-hidden="true">{icon}</div>}
+  {icon && <div class="das-icon" aria-hidden="true"><Icon name={icon} /></div>}
   <h3 class="das-title">{title}</h3>
   <p class="das-desc">{description}</p>
   <span class="das-link">En savoir plus</span>

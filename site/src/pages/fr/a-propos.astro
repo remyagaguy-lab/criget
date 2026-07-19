@@ -1,12 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Button from '../../components/Button.astro';
+import Icon from '../../components/Icon.astro';
 
 const valeurs = [
-  { icone: "🎯", titre: "Rigueur scientifique", description: "Chaque étude, chaque analyse, chaque formation repose sur une méthodologie éprouvée et documentée. Nous citons nos sources, nous validons nos résultats, nous acceptons le débat académique." },
-  { icone: "🌍", titre: "Ancrage territorial", description: "Nous sommes togolais, nous connaissons le terrain africain. Notre expertise n'est pas importée : elle est construite ici, en prise directe avec les réalités locales, climatiques et institutionnelles." },
-  { icone: "🤝", titre: "Partenariat durable", description: "Nous ne cherchons pas à vendre une prestation ponctuelle. Nous cherchons à devenir le partenaire de long terme de nos clients, à travers la confiance construite sur chaque projet livré." },
-  { icone: "📈", titre: "Impact mesurable", description: "Nous nous engageons sur des résultats concrets et vérifiables. Chaque mission définit des indicateurs de succès clairs, et nous les suivons jusqu'à la clôture du projet." }
+  { titre: "Rigueur", description: "Nos études sont basées sur des données vérifiées et une méthodologie scientifique irréprochable.", icone: "target" },
+  { titre: "Impact local", description: "Nous pensons nos solutions pour qu'elles soient pérennes et adaptées aux réalités du terrain.", icone: "globe" },
+  { titre: "Partage", description: "Le transfert de compétences vers les acteurs locaux est au cœur de chaque mission.", icone: "users" },
+  { titre: "Excellence", description: "Nous visons les standards internationaux dans tous nos livrables.", icone: "trending-up" }
 ];
 
 const equipe = [
@@ -77,9 +78,9 @@ const equipe = [
           Développer des solutions idoines et adaptées pour le Togo et les pays d'Afrique dans les domaines de la gouvernance de l'environnement et des ressources naturelles, l'aménagement du territoire, et l'innovation en milieu rural.
         </blockquote>
         <div class="domaines-grid">
-          <div class="domaine-item"><span class="domaine-icon" aria-hidden="true">🌿</span>Gouvernance de l'environnement et des ressources naturelles</div>
-          <div class="domaine-item"><span class="domaine-icon" aria-hidden="true">🗺️</span>Aménagement du territoire</div>
-          <div class="domaine-item"><span class="domaine-icon" aria-hidden="true">💡</span>Innovation en milieu rural</div>
+          <div class="domaine-item"><Icon name="leaf" class="domaine-icon" aria-hidden="true" />Gouvernance de l'environnement et des ressources naturelles</div>
+          <div class="domaine-item"><Icon name="map" class="domaine-icon" aria-hidden="true" />Aménagement du territoire</div>
+          <div class="domaine-item"><Icon name="lightbulb" class="domaine-icon" aria-hidden="true" />Innovation en milieu rural</div>
         </div>
       </div>
     </section>
@@ -91,7 +92,7 @@ const equipe = [
         <div class="valeurs-grid">
           {valeurs.map(v => (
             <div class="valeur-card">
-              <div class="valeur-icon" aria-hidden="true">{v.icone}</div>
+              <div class="valeur-icon" aria-hidden="true"><Icon name={v.icone} /></div>
               <h3>{v.titre}</h3>
               <p>{v.description}</p>
             </div>
@@ -109,7 +110,7 @@ const equipe = [
           {equipe.map(m => (
             <article class="membre-card">
               <div class="membre-photo" aria-hidden="true">
-                {m.photo ? <img src={m.photo} alt={`Photo de ${m.prenom} ${m.nom}`} /> : <div class="photo-placeholder">👤</div>}
+                {m.photo ? <img src={m.photo} alt={`Photo de ${m.prenom} ${m.nom}`} /> : <div class="photo-placeholder"><Icon name="user" /></div>}
               </div>
               <h3 class="membre-nom">{m.prenom} {m.nom}</h3>
               <p class="membre-role">{m.role}</p>
