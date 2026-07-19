@@ -43,7 +43,7 @@ import Icon from '../../components/Icon.astro';
                 autocomplete="name"
                 aria-required="true"
                 aria-describedby="nom-error"
-                placeholder="Marie Dupont"
+                placeholder="Ex&nbsp;: Marie Dupont…"
               />
               <span class="field-error" id="nom-error" role="alert" hidden>Veuillez indiquer votre nom complet.</span>
             </div>
@@ -60,7 +60,7 @@ import Icon from '../../components/Icon.astro';
                 autocomplete="organization"
                 aria-required="true"
                 aria-describedby="organisation-error"
-                placeholder="Ministère de l'Environnement"
+                placeholder="Ex&nbsp;: Ministère de l'Environnement…"
               />
               <span class="field-error" id="organisation-error" role="alert" hidden>Veuillez indiquer votre organisation.</span>
             </div>
@@ -77,7 +77,7 @@ import Icon from '../../components/Icon.astro';
                 autocomplete="email"
                 aria-required="true"
                 aria-describedby="email-error"
-                placeholder="m.dupont@organisation.tg"
+                placeholder="Ex&nbsp;: m.dupont@organisation.tg…"
               />
               <span class="field-error" id="email-error" role="alert" hidden>Veuillez indiquer une adresse e-mail valide.</span>
             </div>
@@ -107,7 +107,7 @@ import Icon from '../../components/Icon.astro';
                 rows="6"
                 aria-required="true"
                 aria-describedby="message-error"
-                placeholder="Décrivez votre projet ou votre besoin en quelques lignes..."
+                placeholder="Décrivez votre projet ou votre besoin en quelques lignes…"
               ></textarea>
               <span class="field-error" id="message-error" role="alert" hidden>Veuillez rédiger votre message.</span>
             </div>
@@ -185,15 +185,15 @@ import Icon from '../../components/Icon.astro';
 
           <div class="mentions-mini">
             <h3>Informations légales</h3>
-            <p><strong>Dénomination :</strong> CRIGET-CS</p>
-            <p><strong>Forme juridique :</strong> SARL de droit privé togolaise</p>
-            <p><strong>N° RCCM :</strong> [À COMPLÉTER]</p>
-            <p><strong>Siège social :</strong> Lomé, Togo</p>
+            <p><strong>Dénomination&nbsp;:</strong> CRIGET-CS</p>
+            <p><strong>Forme juridique&nbsp;:</strong> SARL de droit privé togolaise</p>
+            <p><strong>N° RCCM&nbsp;:</strong> [À COMPLÉTER]</p>
+            <p><strong>Siège social&nbsp;:</strong> Lomé, Togo</p>
             <p><a href="/fr/mentions-legales"><Icon name="arrow-right" class="icon-inline" /> Mentions légales complètes</a></p>
           </div>
 
           <div class="das-links">
-            <h3>Vous ne savez pas à quel domaine s'adresser ?</h3>
+            <h3>Vous ne savez pas à quel domaine s'adresser&nbsp;?</h3>
             <ul>
               <li><a href="/fr/expertises/ingenierie">DAS 1 — Ingénierie-Conseil</a></li>
               <li><a href="/fr/expertises/geomatique">DAS 2 — Géomatique</a></li>
@@ -356,7 +356,7 @@ import Icon from '../../components/Icon.astro';
     }
 
     submitBtn.disabled = true;
-    submitBtn.innerHTML = 'Envoi en cours...';
+    submitBtn.innerHTML = 'Envoi en cours…';
     successMsg.hidden = true;
     errorMsg.hidden = true;
 

@@ -17,8 +17,11 @@ const { title } = Astro.props;
     <title>{title} | CRIGET-CS</title>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Passer au contenu principal</a>
     <Header />
-    <slot />
+    <div id="main-content" tabindex="-1">
+      <slot />
+    </div>
     <Footer />
   </body>
 </html>

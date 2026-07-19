@@ -25,14 +25,17 @@ const { title, description, icon, href } = Astro.props;
     color: inherit;
     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
     border: 1px solid var(--color-neutral-light);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), outline 0.2s;
     height: 100%;
   }
-  .das-card:hover, .das-card:focus {
+  .das-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  }
+  .das-card:focus-visible {
+    outline: 3px solid var(--color-brand-deep-green);
+    outline-offset: 4px;
     transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-    outline: 2px solid var(--color-brand-deep-green);
-    outline-offset: 2px;
   }
   .das-icon {
     font-size: 2rem;

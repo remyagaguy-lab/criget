@@ -19,8 +19,17 @@
   --color-accent-warm-hover: #d97706;
 
   /* Typography */
-  --font-family-heading: 'Outfit', system-ui, sans-serif; /* Sans-serif géométrique */
-  --font-family-body: 'Inter', system-ui, sans-serif; /* Humaniste très lisible */
+  --font-family-heading: 'Outfit', system-ui, sans-serif;
+  --font-family-body: 'Inter', system-ui, sans-serif;
+  
+  /* Fluid Typography Scale (Exaggerated Minimalism) */
+  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 1.05rem + 0.38vw, 1.25rem);
+  --font-size-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --font-size-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+  --font-size-3xl: clamp(2rem, 1.7rem + 1.5vw, 2.75rem);
+  --font-size-4xl: clamp(2.5rem, 2rem + 2.5vw, 3.5rem);
+  --font-size-hero: clamp(3rem, 2.5rem + 4vw, 5rem);
 
   /* Spacing (Generous negative space) */
   --spacing-1: 0.25rem;
@@ -40,12 +49,15 @@
   --radius-full: 9999px;
 }
 
-/* Base styles for demo */
+/* Base styles */
 body {
   font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
   color: var(--color-neutral-charcoal);
   background-color: var(--color-neutral-white);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -53,6 +65,56 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-brand-deep-green);
   line-height: 1.2;
   margin-bottom: var(--spacing-3);
+  text-wrap: balance; /* Empêche les mots orphelins (widows) */
+  letter-spacing: -0.02em;
+}
+
+/* Global Focus Styles (Accessibilité) */
+*:focus-visible {
+  outline: 2px solid var(--color-accent-warm);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.4);
+  border-color: var(--color-accent-warm) !important;
+}
+
+/* Utility Animations */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skip link (Accessibilité) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-accent-warm);
+  color: white;
+  padding: 8px;
+  z-index: 1000;
+  transition: top 0.2s;
+  text-decoration: none;
+  font-weight: bold;
+}
+.skip-link:focus {
+  top: 0;
 }
 
 .button-cta {
