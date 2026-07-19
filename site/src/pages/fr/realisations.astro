@@ -1,0 +1,246 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/Button.astro';
+
+const realisations = [
+  {
+    id: 1,
+    das: "das1",
+    dasLabel: "DAS 1 — Ingénierie-Conseil",
+    titre: "[EXEMPLE — à remplacer par une vraie réalisation]",
+    client: "État / Ministère de l'Environnement",
+    pays: "Togo",
+    annee: "2024",
+    contexte: "Réalisation d'une étude d'impact environnemental et social (EIES) complète pour un projet d'infrastructure routière en zone semi-aride. Mission conduite en conformité avec les exigences d'un bailleur international.",
+    resultats: "Rapport EIES validé par le bailleur. Plan de gestion environnemental et social (PGES) adopté par le commanditaire.",
+    tags: ["EIES", "Infrastructure", "Bailleur international"]
+  },
+  {
+    id: 2,
+    das: "das2",
+    dasLabel: "DAS 2 — Géomatique",
+    titre: "[EXEMPLE — à remplacer par une vraie réalisation]",
+    client: "Collectivité territoriale",
+    pays: "Togo",
+    annee: "2023",
+    contexte: "Conception d'un SIG territorial complet pour le suivi de l'occupation des sols et de l'évolution du couvert forestier sur une zone de 50 000 ha. Utilisation de données Sentinel-2 et de levés drone.",
+    resultats: "Cartographie multi-date de l'évolution du couvert forestier. Base de données géospatiale opérationnelle mise à disposition de la collectivité.",
+    tags: ["SIG", "Drone", "Télédétection", "Forêt"]
+  },
+  {
+    id: 3,
+    das: "das3",
+    dasLabel: "DAS 3 — R&D Appliqué",
+    titre: "[EXEMPLE — à remplacer par une vraie réalisation]",
+    client: "Fondation / Bailleur recherche",
+    pays: "Afrique de l'Ouest",
+    annee: "2022–2024",
+    contexte: "Projet de recherche de 24 mois financé par grant international portant sur la modélisation des trajectoires d'adaptation au changement climatique en Afrique de l'Ouest. Conduit en partenariat avec une université régionale.",
+    resultats: "2 articles publiés dans des revues à comité de lecture. Modèle de prévision transféré à 3 organisations partenaires. Soutenance de 1 thèse de master encadrée.",
+    tags: ["Changement climatique", "Modélisation", "Publication", "Partenariat universitaire"]
+  },
+  {
+    id: 4,
+    das: "das4",
+    dasLabel: "DAS 4 — Formation",
+    titre: "[EXEMPLE — à remplacer par une vraie réalisation]",
+    client: "ONG internationale",
+    pays: "Togo / Bénin",
+    annee: "2023",
+    contexte: "Programme de renforcement de capacités de 5 jours en SIG (QGIS) pour 25 agents terrain d'une ONG internationale opérant au Togo et au Bénin. Formation en présentiel avec exercices sur données locales.",
+    resultats: "100 % des participants certifiés. Mise en place autonome d'un SIG de suivi de projets terrain par l'organisation commanditaire dans les 3 mois suivants.",
+    tags: ["Formation", "SIG", "Renforcement de capacités", "ONG"]
+  }
+];
+---
+
+<Layout title="Réalisations & Références">
+  <main>
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="/fr">Accueil</a> › <span>Réalisations</span></div>
+        <h1>Réalisations & Références</h1>
+        <p class="lead">La preuve de notre expertise à travers des projets concrets. Filtrez par domaine d'activité pour trouver les réalisations les plus pertinentes pour votre projet.</p>
+      </div>
+    </section>
+
+    <!-- FILTRE DAS -->
+    <section class="section-filter">
+      <div class="container">
+        <div class="filter-bar" role="group" aria-label="Filtrer par domaine d'activité">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">Tous les projets</button>
+          <button class="filter-btn" data-filter="das1" aria-pressed="false">DAS 1 — Ingénierie</button>
+          <button class="filter-btn" data-filter="das2" aria-pressed="false">DAS 2 — Géomatique</button>
+          <button class="filter-btn" data-filter="das3" aria-pressed="false">DAS 3 — R&D</button>
+          <button class="filter-btn" data-filter="das4" aria-pressed="false">DAS 4 — Formation</button>
+        </div>
+
+        <div class="placeholder-notice" role="alert">
+          ⚠️ <strong>Note de travail :</strong> Les fiches ci-dessous sont des exemples placeholder. Elles seront remplacées par de vraies réalisations lors de la fourniture des données client (voir section 13 du cahier des charges).
+        </div>
+
+        <div class="real-grid" id="realisations-grid">
+          {realisations.map(r => (
+            <article class={`real-card`} data-das={r.das} data-id={r.id}>
+              <div class="card-header">
+                <span class="das-badge-small">{r.dasLabel}</span>
+                <span class="card-year">{r.annee}</span>
+              </div>
+              <h2 class="card-title">{r.titre}</h2>
+              <div class="card-meta">
+                <span class="meta-item">📍 {r.pays}</span>
+                <span class="meta-item">🏢 {r.client}</span>
+              </div>
+              <p class="card-context">{r.contexte}</p>
+              <div class="card-resultats">
+                <strong>Résultats :</strong>
+                <p>{r.resultats}</p>
+              </div>
+              <div class="card-tags">
+                {r.tags.map(tag => <span class="tag">{tag}</span>)}
+              </div>
+              <a href={`/fr/expertises/${r.das === 'das1' ? 'ingenierie' : r.das === 'das2' ? 'geomatique' : r.das === 'das3' ? 'recherche' : 'formation'}`} class="card-cta">
+                Voir le domaine d'expertise →
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div id="no-results" class="no-results" hidden>
+          <p>Aucune réalisation dans cette catégorie pour le moment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-cta">
+      <div class="container cta-inner">
+        <h2>Votre projet n'est pas représenté ?</h2>
+        <p>Nos domaines d'activité couvrent un spectre large. Contactez-nous pour discuter de votre besoin spécifique.</p>
+        <Button href="/fr/contact" variant="primary">Nous contacter</Button>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-4); }
+
+  .page-hero {
+    background: linear-gradient(135deg, var(--color-brand-deep-green) 0%, #0d6e59 100%);
+    color: white; padding: var(--spacing-12) 0 var(--spacing-8);
+  }
+  .breadcrumb { font-size: 0.875rem; margin-bottom: var(--spacing-4); }
+  .breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+  .breadcrumb a:hover { color: white; }
+  .breadcrumb span { color: rgba(255,255,255,0.5); }
+  .page-hero h1 { color: white; font-size: 2.75rem; margin-bottom: var(--spacing-4); }
+  .lead { font-size: 1.15rem; color: rgba(255,255,255,0.85); max-width: 700px; }
+
+  .section-filter { padding: var(--spacing-8) 0 var(--spacing-12); }
+
+  .filter-bar {
+    display: flex; gap: var(--spacing-2); flex-wrap: wrap;
+    margin-bottom: var(--spacing-6);
+  }
+  .filter-btn {
+    padding: var(--spacing-2) var(--spacing-4);
+    border: 2px solid var(--color-neutral-light);
+    border-radius: var(--radius-full);
+    background: white; cursor: pointer;
+    font-family: var(--font-family-heading); font-weight: 600; font-size: 0.9rem;
+    color: var(--color-neutral-charcoal-light);
+    transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--color-brand-deep-green);
+    border-color: var(--color-brand-deep-green);
+    color: white;
+  }
+  .filter-btn[aria-pressed="true"] {
+    background: var(--color-brand-deep-green);
+    border-color: var(--color-brand-deep-green);
+    color: white;
+  }
+
+  .placeholder-notice {
+    background: #fff8e1; border: 1px solid #f59e0b; border-radius: var(--radius-md);
+    padding: var(--spacing-3) var(--spacing-4);
+    margin-bottom: var(--spacing-6); font-size: 0.9rem;
+  }
+
+  .real-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-6);
+  }
+  .real-card {
+    background: white; border-radius: var(--radius-lg);
+    padding: var(--spacing-5); border: 1px solid var(--color-neutral-light);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column; gap: var(--spacing-3);
+  }
+  .real-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+  .real-card[hidden] { display: none; }
+
+  .card-header { display: flex; justify-content: space-between; align-items: center; }
+  .das-badge-small {
+    font-size: 0.75rem; font-weight: 700; font-family: var(--font-family-heading);
+    background: var(--color-brand-deep-green); color: white;
+    padding: 2px 10px; border-radius: var(--radius-full);
+  }
+  .card-year { font-size: 0.875rem; color: var(--color-neutral-gray); font-weight: 600; }
+
+  .card-title { font-size: 1rem; color: var(--color-brand-ochre); font-style: italic; }
+  .card-meta { display: flex; gap: var(--spacing-4); flex-wrap: wrap; }
+  .meta-item { font-size: 0.875rem; color: var(--color-neutral-charcoal-light); }
+  .card-context { font-size: 0.95rem; color: var(--color-neutral-charcoal); }
+  .card-resultats { background: var(--color-neutral-light); border-radius: var(--radius-md); padding: var(--spacing-3); font-size: 0.9rem; }
+  .card-resultats strong { color: var(--color-brand-deep-green); display: block; margin-bottom: var(--spacing-1); }
+  .card-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-2); }
+  .tag { background: rgba(76,185,68,0.1); border: 1px solid var(--color-brand-green); color: #1a6b16; padding: 2px 10px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 500; }
+  .card-cta { color: var(--color-brand-blue); font-weight: 600; font-size: 0.9rem; text-decoration: none; margin-top: auto; }
+  .card-cta:hover { text-decoration: underline; }
+
+  .no-results { text-align: center; padding: var(--spacing-8); color: var(--color-neutral-charcoal-light); }
+
+  .section-cta { padding: var(--spacing-12) 0; }
+  .cta-inner { max-width: 600px; margin: 0 auto; text-align: center; background: white; border: 2px solid var(--color-brand-deep-green); border-radius: var(--radius-lg); padding: var(--spacing-8); }
+  .cta-inner h2 { margin-bottom: var(--spacing-4); }
+  .cta-inner p { color: var(--color-neutral-charcoal-light); margin-bottom: var(--spacing-6); }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.875rem; }
+    .page-hero { padding: var(--spacing-8) 0; }
+    .filter-btn { font-size: 0.8rem; padding: var(--spacing-1) var(--spacing-3); }
+  }
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.real-card');
+  const noResults = document.getElementById('no-results');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      let visible = 0;
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.das === filter;
+        card.hidden = !match;
+        if (match) visible++;
+      });
+
+      if (noResults) noResults.hidden = visible > 0;
+    });
+  });
+</script>

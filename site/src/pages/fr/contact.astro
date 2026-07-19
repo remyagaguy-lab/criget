@@ -1,0 +1,368 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// TODO: Connecter ce formulaire à un Cloudflare Worker + Turnstile au prochain prompt.
+// Le Worker doit :
+//   1. Valider le token Turnstile via l'API Cloudflare
+//   2. Envoyer l'e-mail via Resend (ou service transactionnel équivalent)
+//   3. Retourner une réponse JSON { success: true } ou { error: string }
+// Voir section 8 & 9 du cahier des charges.
+---
+
+<Layout title="Contact">
+  <main>
+
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="/fr">Accueil</a> › <span>Contact</span></div>
+        <h1>Nous contacter</h1>
+        <p class="lead">Une question, un projet, une demande de devis ? Notre équipe vous répond sous 48 heures ouvrées.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT LAYOUT -->
+    <section class="section-contact">
+      <div class="container contact-grid">
+
+        <!-- FORMULAIRE -->
+        <div class="form-side">
+          <h2>Envoyez-nous un message</h2>
+
+          <form id="contact-form" novalidate aria-label="Formulaire de contact CRIGET-CS">
+            <!-- Nom -->
+            <div class="field-group">
+              <label for="nom" class="field-label">Nom complet <span aria-hidden="true" class="required">*</span></label>
+              <input
+                type="text"
+                id="nom"
+                name="nom"
+                class="field-input"
+                required
+                autocomplete="name"
+                aria-required="true"
+                aria-describedby="nom-error"
+                placeholder="Marie Dupont"
+              />
+              <span class="field-error" id="nom-error" role="alert" hidden>Veuillez indiquer votre nom complet.</span>
+            </div>
+
+            <!-- Organisation -->
+            <div class="field-group">
+              <label for="organisation" class="field-label">Organisation / Structure <span aria-hidden="true" class="required">*</span></label>
+              <input
+                type="text"
+                id="organisation"
+                name="organisation"
+                class="field-input"
+                required
+                autocomplete="organization"
+                aria-required="true"
+                aria-describedby="organisation-error"
+                placeholder="Ministère de l'Environnement"
+              />
+              <span class="field-error" id="organisation-error" role="alert" hidden>Veuillez indiquer votre organisation.</span>
+            </div>
+
+            <!-- Email -->
+            <div class="field-group">
+              <label for="email" class="field-label">Adresse e-mail <span aria-hidden="true" class="required">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="field-input"
+                required
+                autocomplete="email"
+                aria-required="true"
+                aria-describedby="email-error"
+                placeholder="m.dupont@organisation.tg"
+              />
+              <span class="field-error" id="email-error" role="alert" hidden>Veuillez indiquer une adresse e-mail valide.</span>
+            </div>
+
+            <!-- DAS concerné -->
+            <div class="field-group">
+              <label for="das" class="field-label">Domaine d'activité concerné</label>
+              <select id="das" name="das" class="field-input field-select" aria-describedby="das-hint">
+                <option value="">— Sélectionnez un domaine (optionnel) —</option>
+                <option value="das1">DAS 1 — Ingénierie-Conseil en Environnement et Territoire</option>
+                <option value="das2">DAS 2 — Géomatique & Intelligence Territoriale</option>
+                <option value="das3">DAS 3 — Recherche & Développement Appliqué</option>
+                <option value="das4">DAS 4 — Formation & Transfert de Connaissances</option>
+                <option value="autre">Autre / Je ne sais pas encore</option>
+              </select>
+              <span class="field-hint" id="das-hint">Sélectionner un domaine nous permet d'orienter votre demande vers l'expert approprié.</span>
+            </div>
+
+            <!-- Message -->
+            <div class="field-group">
+              <label for="message" class="field-label">Votre message <span aria-hidden="true" class="required">*</span></label>
+              <textarea
+                id="message"
+                name="message"
+                class="field-input field-textarea"
+                required
+                rows="6"
+                aria-required="true"
+                aria-describedby="message-error"
+                placeholder="Décrivez votre projet ou votre besoin en quelques lignes..."
+              ></textarea>
+              <span class="field-error" id="message-error" role="alert" hidden>Veuillez rédiger votre message.</span>
+            </div>
+
+            <!-- Consentement RGPD -->
+            <div class="field-group field-group--checkbox">
+              <input
+                type="checkbox"
+                id="consentement"
+                name="consentement"
+                class="field-checkbox"
+                required
+                aria-required="true"
+                aria-describedby="consentement-error"
+              />
+              <label for="consentement" class="field-label-checkbox">
+                J'accepte que CRIGET-CS conserve les données de ce formulaire pendant <strong>12 mois</strong> dans le seul but de traiter ma demande de contact. Ces données ne seront pas transmises à des tiers. Conformément au RGPD, je dispose d'un droit d'accès, de rectification et de suppression de mes données en contactant <a href="mailto:contact@criget-cs.com">contact@criget-cs.com</a>. <span aria-hidden="true" class="required">*</span>
+              </label>
+              <span class="field-error" id="consentement-error" role="alert" hidden>Vous devez accepter la politique de traitement des données pour envoyer ce formulaire.</span>
+            </div>
+
+            <!-- TODO: Ajouter le widget Cloudflare Turnstile ici -->
+            <div class="turnstile-placeholder">
+              <span>🔒 Vérification anti-spam Cloudflare Turnstile</span>
+              <code class="todo-badge">TODO — à connecter au prochain prompt</code>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn-submit" id="submit-btn">
+              Envoyer le message
+              <span class="btn-icon" aria-hidden="true">→</span>
+            </button>
+
+            <!-- Messages de retour -->
+            <div id="form-success" class="form-feedback form-feedback--success" hidden role="alert">
+              ✅ Votre message a bien été envoyé. Nous vous répondrons sous 48 heures ouvrées.
+            </div>
+            <div id="form-error" class="form-feedback form-feedback--error" hidden role="alert">
+              ❌ Une erreur est survenue. Veuillez réessayer ou nous contacter directement par e-mail.
+            </div>
+          </form>
+        </div>
+
+        <!-- COORDONNÉES -->
+        <aside class="info-side">
+          <h2>Coordonnées</h2>
+          <address class="coordonnees">
+            <div class="coord-item">
+              <span class="coord-icon" aria-hidden="true">📍</span>
+              <div>
+                <strong>Adresse</strong>
+                <p>Lomé, Togo<br />[À COMPLÉTER — adresse exacte]</p>
+              </div>
+            </div>
+            <div class="coord-item">
+              <span class="coord-icon" aria-hidden="true">📧</span>
+              <div>
+                <strong>E-mail</strong>
+                <p><a href="mailto:contact@criget-cs.com">contact@criget-cs.com</a></p>
+              </div>
+            </div>
+            <div class="coord-item">
+              <span class="coord-icon" aria-hidden="true">📞</span>
+              <div>
+                <strong>Téléphone</strong>
+                <p>[À COMPLÉTER]</p>
+              </div>
+            </div>
+          </address>
+
+          <div class="mentions-mini">
+            <h3>Informations légales</h3>
+            <p><strong>Dénomination :</strong> CRIGET-CS</p>
+            <p><strong>Forme juridique :</strong> SARL de droit privé togolaise</p>
+            <p><strong>N° RCCM :</strong> [À COMPLÉTER]</p>
+            <p><strong>Siège social :</strong> Lomé, Togo</p>
+            <p><a href="/fr/mentions-legales">→ Mentions légales complètes</a></p>
+          </div>
+
+          <div class="das-links">
+            <h3>Vous ne savez pas à quel domaine s'adresser ?</h3>
+            <ul>
+              <li><a href="/fr/expertises/ingenierie">DAS 1 — Ingénierie-Conseil</a></li>
+              <li><a href="/fr/expertises/geomatique">DAS 2 — Géomatique</a></li>
+              <li><a href="/fr/expertises/recherche">DAS 3 — R&D Appliqué</a></li>
+              <li><a href="/fr/expertises/formation">DAS 4 — Formation</a></li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-4); }
+  h2 { color: var(--color-brand-deep-green); font-size: 1.75rem; margin-bottom: var(--spacing-6); }
+  h3 { color: var(--color-brand-deep-green); font-size: 1.1rem; margin-bottom: var(--spacing-3); }
+
+  .page-hero { background: linear-gradient(135deg, var(--color-brand-deep-green) 0%, #0d6e59 100%); color: white; padding: var(--spacing-12) 0 var(--spacing-8); }
+  .breadcrumb { font-size: 0.875rem; margin-bottom: var(--spacing-4); }
+  .breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+  .breadcrumb span { color: rgba(255,255,255,0.5); }
+  .page-hero h1 { color: white; font-size: 2.75rem; margin-bottom: var(--spacing-4); }
+  .lead { font-size: 1.15rem; color: rgba(255,255,255,0.85); max-width: 600px; }
+
+  .section-contact { padding: var(--spacing-12) 0; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 380px; gap: var(--spacing-8); align-items: start; }
+
+  /* Form */
+  .form-side {}
+  .field-group { margin-bottom: var(--spacing-5); }
+  .field-label { display: block; font-weight: 600; font-size: 0.95rem; margin-bottom: var(--spacing-2); color: var(--color-neutral-charcoal); }
+  .field-label-checkbox { font-size: 0.875rem; color: var(--color-neutral-charcoal-light); line-height: 1.5; cursor: pointer; }
+  .field-label-checkbox a { color: var(--color-brand-blue); }
+  .required { color: #dc2626; margin-left: 2px; }
+  .field-input {
+    width: 100%; padding: var(--spacing-3);
+    border: 2px solid var(--color-neutral-light);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-body); font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: white;
+  }
+  .field-input:focus {
+    outline: none; border-color: var(--color-brand-deep-green);
+    box-shadow: 0 0 0 3px rgba(11,83,69,0.15);
+  }
+  .field-input.is-invalid { border-color: #dc2626; }
+  .field-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231f2937' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 40px; }
+  .field-textarea { resize: vertical; min-height: 140px; }
+  .field-error { display: block; color: #dc2626; font-size: 0.875rem; margin-top: var(--spacing-1); }
+  .field-hint { display: block; color: var(--color-neutral-gray); font-size: 0.875rem; margin-top: var(--spacing-1); }
+  .field-group--checkbox { display: flex; gap: var(--spacing-3); align-items: flex-start; }
+  .field-checkbox { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--color-brand-deep-green); }
+
+  .turnstile-placeholder {
+    border: 2px dashed var(--color-neutral-gray);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-4);
+    text-align: center; color: var(--color-neutral-gray);
+    margin-bottom: var(--spacing-5);
+    display: flex; flex-direction: column; align-items: center; gap: var(--spacing-2);
+  }
+  .todo-badge { background: #fef3c7; color: #92400e; padding: 4px 10px; border-radius: var(--radius-sm); font-size: 0.8rem; }
+
+  .btn-submit {
+    width: 100%; padding: var(--spacing-3) var(--spacing-6);
+    background: var(--color-accent-warm); color: white;
+    border: none; border-radius: var(--radius-md);
+    font-family: var(--font-family-heading); font-weight: 700; font-size: 1.1rem;
+    cursor: pointer; transition: background 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: var(--spacing-3);
+  }
+  .btn-submit:hover { background: var(--color-accent-warm-hover); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-icon { transition: transform 0.2s; }
+  .btn-submit:hover .btn-icon { transform: translateX(4px); }
+
+  .form-feedback { padding: var(--spacing-4); border-radius: var(--radius-md); margin-top: var(--spacing-4); font-weight: 500; }
+  .form-feedback--success { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+  .form-feedback--error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
+  /* Info Side */
+  .info-side { position: sticky; top: 100px; }
+  .coordonnees { font-style: normal; display: flex; flex-direction: column; gap: var(--spacing-4); margin-bottom: var(--spacing-6); }
+  .coord-item { display: flex; gap: var(--spacing-3); align-items: flex-start; }
+  .coord-icon { font-size: 1.25rem; flex-shrink: 0; }
+  .coord-item strong { display: block; font-size: 0.875rem; color: var(--color-brand-deep-green); margin-bottom: 2px; }
+  .coord-item p { margin: 0; font-size: 0.95rem; color: var(--color-neutral-charcoal); }
+  .coord-item a { color: var(--color-brand-blue); }
+
+  .mentions-mini { background: var(--color-neutral-light); border-radius: var(--radius-md); padding: var(--spacing-4); margin-bottom: var(--spacing-6); font-size: 0.875rem; }
+  .mentions-mini p { margin-bottom: var(--spacing-1); color: var(--color-neutral-charcoal-light); }
+  .mentions-mini a { color: var(--color-brand-blue); }
+
+  .das-links ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--spacing-2); }
+  .das-links a { color: var(--color-brand-blue); text-decoration: none; font-size: 0.9rem; }
+  .das-links a:hover { text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .info-side { position: static; }
+    .page-hero h1 { font-size: 1.875rem; }
+    .page-hero { padding: var(--spacing-8) 0; }
+    .section-contact { padding: var(--spacing-8) 0; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const successMsg = document.getElementById('form-success') as HTMLElement;
+  const errorMsg = document.getElementById('form-error') as HTMLElement;
+
+  function validateField(input: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement): boolean {
+    const errorEl = document.getElementById(input.id + '-error');
+    if (input.required && !input.value.trim()) {
+      input.classList.add('is-invalid');
+      input.setAttribute('aria-invalid', 'true');
+      if (errorEl) errorEl.hidden = false;
+      return false;
+    }
+    if (input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+      input.classList.add('is-invalid');
+      input.setAttribute('aria-invalid', 'true');
+      if (errorEl) errorEl.hidden = false;
+      return false;
+    }
+    if (input.type === 'checkbox' && !(input as HTMLInputElement).checked && input.required) {
+      input.classList.add('is-invalid');
+      input.setAttribute('aria-invalid', 'true');
+      if (errorEl) errorEl.hidden = false;
+      return false;
+    }
+    input.classList.remove('is-invalid');
+    input.setAttribute('aria-invalid', 'false');
+    if (errorEl) errorEl.hidden = true;
+    return true;
+  }
+
+  // Live validation on blur
+  form?.querySelectorAll('input, textarea, select').forEach(el => {
+    el.addEventListener('blur', () => validateField(el as HTMLInputElement));
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Validate all fields
+    const fields = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('input[required], textarea[required]');
+    let valid = true;
+    fields.forEach(f => { if (!validateField(f)) valid = false; });
+
+    if (!valid) {
+      const firstInvalid = form.querySelector('.is-invalid') as HTMLElement;
+      firstInvalid?.focus();
+      return;
+    }
+
+    // TODO: Remplacer ce bloc par l'appel réel au Cloudflare Worker
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi en cours...';
+
+    try {
+      // Simulation — à remplacer par fetch('/api/contact', { method: 'POST', body: ... })
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      successMsg.hidden = false;
+      form.reset();
+    } catch {
+      errorMsg.hidden = false;
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Envoyer le message <span class="btn-icon" aria-hidden="true">→</span>';
+    }
+  });
+</script>

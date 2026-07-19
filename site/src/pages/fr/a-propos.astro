@@ -1,0 +1,218 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/Button.astro';
+
+const valeurs = [
+  { icone: "🎯", titre: "Rigueur scientifique", description: "Chaque étude, chaque analyse, chaque formation repose sur une méthodologie éprouvée et documentée. Nous citons nos sources, nous validons nos résultats, nous acceptons le débat académique." },
+  { icone: "🌍", titre: "Ancrage territorial", description: "Nous sommes togolais, nous connaissons le terrain africain. Notre expertise n'est pas importée : elle est construite ici, en prise directe avec les réalités locales, climatiques et institutionnelles." },
+  { icone: "🤝", titre: "Partenariat durable", description: "Nous ne cherchons pas à vendre une prestation ponctuelle. Nous cherchons à devenir le partenaire de long terme de nos clients, à travers la confiance construite sur chaque projet livré." },
+  { icone: "📈", titre: "Impact mesurable", description: "Nous nous engageons sur des résultats concrets et vérifiables. Chaque mission définit des indicateurs de succès clairs, et nous les suivons jusqu'à la clôture du projet." }
+];
+
+const equipe = [
+  { prenom: "Équipe", nom: "CRIGET-CS", role: "Experts fondateurs", bio: "[À COMPLÉTER — présentation de l'équipe fondatrice et des expertises clés]", photo: null },
+  { prenom: "[Nom]", nom: "[Prénom]", role: "Expert DAS 1 — Ingénierie-Conseil", bio: "[À COMPLÉTER — biographie et domaines d'expertise]", photo: null },
+  { prenom: "[Nom]", nom: "[Prénom]", role: "Expert DAS 2 — Géomatique", bio: "[À COMPLÉTER — biographie et domaines d'expertise]", photo: null },
+];
+---
+
+<Layout title="À propos — Équipe">
+  <main>
+
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="/fr">Accueil</a> › <span>À propos</span></div>
+        <h1>À propos de CRIGET-CS</h1>
+        <p class="lead">Un cabinet togolais fondé par de jeunes experts engagés, au service du développement durable en Afrique.</p>
+      </div>
+    </section>
+
+    <!-- IDENTITÉ -->
+    <section class="section-identite">
+      <div class="container two-col">
+        <div>
+          <h2>Qui sommes-nous ?</h2>
+          <p><strong>CRIGET-CS</strong> — Centre de Recherche et Ingénieries en Gestion de l'Environnement et du Territoire — est une Société Anonyme à Responsabilité Limitée (SARL) de droit privé togolaise, créée en <strong>octobre 2016</strong>.</p>
+          <p>Fondé par une équipe de jeunes experts togolais cumulant chacun plus de 10 années d'expérience dans la gestion de l'environnement et de l'aménagement du territoire, CRIGET-CS est aujourd'hui structuré autour de <strong>4 Domaines d'Activités Stratégiques</strong> complémentaires.</p>
+          <p>Notre slogan résume notre engagement : <em>« Votre partenaire fiable pour le développement durable. »</em></p>
+          <div class="identite-facts">
+            <div class="fact"><span class="fact-num">2016</span><span class="fact-label">Année de création</span></div>
+            <div class="fact"><span class="fact-num">4</span><span class="fact-label">Domaines d'activités</span></div>
+            <div class="fact"><span class="fact-num">SARL</span><span class="fact-label">Statut juridique</span></div>
+          </div>
+        </div>
+        <div class="histoire-timeline">
+          <h3>Historique</h3>
+          <div class="timeline-item">
+            <span class="timeline-year">2016</span>
+            <div class="timeline-content">
+              <strong>Fondation</strong>
+              <p>Création du cabinet par une équipe d'experts togolais à Lomé. Lancement des premières missions en Ingénierie-Conseil.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">[À compléter]</span>
+            <div class="timeline-content">
+              <strong>[Étape à compléter]</strong>
+              <p>[Décrire une étape clé de l'histoire du cabinet — expansion, partenariat, premier grand projet...]</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">Aujourd'hui</span>
+            <div class="timeline-content">
+              <strong>Cabinet structuré, 4 DAS actifs</strong>
+              <p>CRIGET-CS intervient sur l'ensemble des problématiques d'environnement, de géomatique, de recherche et de formation à l'échelle de l'Afrique de l'Ouest.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="section-mission">
+      <div class="container">
+        <h2>Notre mission</h2>
+        <blockquote class="mission-quote">
+          Développer des solutions idoines et adaptées pour le Togo et les pays d'Afrique dans les domaines de la gouvernance de l'environnement et des ressources naturelles, l'aménagement du territoire, et l'innovation en milieu rural.
+        </blockquote>
+        <div class="domaines-grid">
+          <div class="domaine-item"><span class="domaine-icon" aria-hidden="true">🌿</span>Gouvernance de l'environnement et des ressources naturelles</div>
+          <div class="domaine-item"><span class="domaine-icon" aria-hidden="true">🗺️</span>Aménagement du territoire</div>
+          <div class="domaine-item"><span class="domaine-icon" aria-hidden="true">💡</span>Innovation en milieu rural</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALEURS -->
+    <section class="section-valeurs">
+      <div class="container">
+        <h2>Nos valeurs</h2>
+        <div class="valeurs-grid">
+          {valeurs.map(v => (
+            <div class="valeur-card">
+              <div class="valeur-icon" aria-hidden="true">{v.icone}</div>
+              <h3>{v.titre}</h3>
+              <p>{v.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ÉQUIPE -->
+    <section class="section-equipe">
+      <div class="container">
+        <h2>Notre équipe</h2>
+        <p class="section-intro">[À COMPLÉTER — les biographies et photos de l'équipe seront ajoutées dès réception des informations du client.]</p>
+        <div class="equipe-grid">
+          {equipe.map(m => (
+            <article class="membre-card">
+              <div class="membre-photo" aria-hidden="true">
+                {m.photo ? <img src={m.photo} alt={`Photo de ${m.prenom} ${m.nom}`} /> : <div class="photo-placeholder">👤</div>}
+              </div>
+              <h3 class="membre-nom">{m.prenom} {m.nom}</h3>
+              <p class="membre-role">{m.role}</p>
+              <p class="membre-bio">{m.bio}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CIBLES -->
+    <section class="section-cibles">
+      <div class="container">
+        <h2>Nous accompagnons</h2>
+        <div class="cibles-grid">
+          <div class="cible-card"><strong>Secteur Public</strong><p>États, services techniques et collectivités locales</p></div>
+          <div class="cible-card"><strong>Secteur Privé</strong><p>Entreprises publiques et privées</p></div>
+          <div class="cible-card"><strong>Société Civile</strong><p>ONG et associations de développement</p></div>
+          <div class="cible-card"><strong>International</strong><p>Partenaires techniques et financiers, institutions internationales</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-cta">
+      <div class="container cta-inner">
+        <h2>Envie de collaborer avec nous ?</h2>
+        <p>Découvrez nos domaines d'expertise ou contactez-nous directement pour discuter de votre projet.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <Button href="/fr/contact" variant="primary">Nous contacter</Button>
+          <Button href="/fr/realisations" variant="secondary">Voir nos réalisations</Button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-4); }
+  h2 { color: var(--color-brand-deep-green); font-size: 1.75rem; margin-bottom: var(--spacing-6); }
+  h3 { color: var(--color-brand-deep-green); }
+  p { margin-bottom: var(--spacing-3); }
+
+  .page-hero { background: linear-gradient(135deg, var(--color-brand-deep-green) 0%, #0d6e59 100%); color: white; padding: var(--spacing-12) 0 var(--spacing-8); }
+  .breadcrumb { font-size: 0.875rem; margin-bottom: var(--spacing-4); }
+  .breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+  .breadcrumb span { color: rgba(255,255,255,0.5); }
+  .page-hero h1 { color: white; font-size: 2.75rem; margin-bottom: var(--spacing-4); }
+  .lead { font-size: 1.15rem; color: rgba(255,255,255,0.85); max-width: 700px; }
+
+  .section-identite { padding: var(--spacing-12) 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-8); align-items: start; }
+  .identite-facts { display: flex; gap: var(--spacing-6); margin-top: var(--spacing-6); flex-wrap: wrap; }
+  .fact { display: flex; flex-direction: column; }
+  .fact-num { font-size: 2rem; font-weight: 700; font-family: var(--font-family-heading); color: var(--color-brand-deep-green); }
+  .fact-label { font-size: 0.875rem; color: var(--color-neutral-gray); }
+
+  .histoire-timeline { padding-left: var(--spacing-4); border-left: 3px solid var(--color-brand-green); }
+  .histoire-timeline h3 { margin-bottom: var(--spacing-4); }
+  .timeline-item { position: relative; padding-left: var(--spacing-4); margin-bottom: var(--spacing-5); }
+  .timeline-year { display: inline-block; font-family: var(--font-family-heading); font-weight: 700; font-size: 0.875rem; background: var(--color-brand-deep-green); color: white; padding: 2px 10px; border-radius: var(--radius-full); margin-bottom: var(--spacing-2); }
+  .timeline-content p { font-size: 0.9rem; color: var(--color-neutral-charcoal-light); margin: 0; }
+
+  .section-mission { background: var(--color-neutral-light); padding: var(--spacing-12) 0; }
+  .mission-quote { border-left: 4px solid var(--color-brand-green); padding: var(--spacing-4) var(--spacing-6); background: white; border-radius: 0 var(--radius-md) var(--radius-md) 0; font-size: 1.15rem; font-style: italic; color: var(--color-neutral-charcoal); margin-bottom: var(--spacing-6); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+  .domaines-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-4); }
+  .domaine-item { display: flex; gap: var(--spacing-3); align-items: center; background: white; padding: var(--spacing-4); border-radius: var(--radius-md); font-weight: 500; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+  .domaine-icon { font-size: 1.5rem; }
+
+  .section-valeurs { padding: var(--spacing-12) 0; }
+  .valeurs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-6); }
+  .valeur-card { background: white; border-radius: var(--radius-lg); padding: var(--spacing-5); border: 1px solid var(--color-neutral-light); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+  .valeur-icon { font-size: 2rem; margin-bottom: var(--spacing-3); }
+  .valeur-card h3 { font-size: 1.1rem; margin-bottom: var(--spacing-2); }
+  .valeur-card p { font-size: 0.95rem; color: var(--color-neutral-charcoal-light); margin: 0; }
+
+  .section-equipe { background: var(--color-neutral-light); padding: var(--spacing-12) 0; }
+  .section-intro { color: var(--color-neutral-charcoal-light); font-style: italic; margin-bottom: var(--spacing-6); }
+  .equipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-6); }
+  .membre-card { background: white; border-radius: var(--radius-lg); padding: var(--spacing-5); text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+  .membre-photo { margin: 0 auto var(--spacing-4); width: 80px; height: 80px; border-radius: 50%; overflow: hidden; background: var(--color-neutral-light); display: flex; align-items: center; justify-content: center; }
+  .membre-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .photo-placeholder { font-size: 2.5rem; }
+  .membre-nom { font-size: 1.1rem; margin-bottom: 4px; }
+  .membre-role { color: var(--color-brand-green); font-size: 0.875rem; font-weight: 600; margin-bottom: var(--spacing-3); }
+  .membre-bio { font-size: 0.9rem; color: var(--color-neutral-charcoal-light); font-style: italic; }
+
+  .section-cibles { padding: var(--spacing-12) 0; }
+  .cibles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--spacing-4); }
+  .cible-card { background: white; border-radius: var(--radius-md); padding: var(--spacing-4); border-top: 4px solid var(--color-brand-deep-green); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+  .cible-card strong { color: var(--color-brand-deep-green); display: block; margin-bottom: var(--spacing-2); }
+  .cible-card p { font-size: 0.9rem; color: var(--color-neutral-charcoal-light); margin: 0; }
+
+  .section-cta { padding: var(--spacing-12) 0; }
+  .cta-inner { max-width: 600px; margin: 0 auto; text-align: center; background: white; border: 2px solid var(--color-brand-deep-green); border-radius: var(--radius-lg); padding: var(--spacing-8); }
+  .cta-inner h2 { margin-bottom: var(--spacing-4); }
+  .cta-inner p { color: var(--color-neutral-charcoal-light); margin-bottom: var(--spacing-6); }
+
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 1.875rem; }
+    .page-hero { padding: var(--spacing-8) 0; }
+    .two-col { grid-template-columns: 1fr; }
+    .section-identite, .section-mission, .section-valeurs, .section-equipe, .section-cibles, .section-cta { padding: var(--spacing-8) 0; }
+  }
+</style>
