@@ -218,8 +218,8 @@ const realisations = [
 </style>
 
 <script>
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.real-card');
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.real-card');
   const noResults = document.getElementById('no-results');
 
   filterBtns.forEach(btn => {
