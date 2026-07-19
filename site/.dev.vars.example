@@ -1,0 +1,12 @@
+# Variables d'environnement locales pour le développement
+# NE JAMAIS COMMITTER CE FICHIER — il est dans .gitignore
+#
+# Récupérez ces valeurs dans :
+#   - Cloudflare Dashboard > Turnstile > votre site > Secret Key
+#   - https://resend.com > API Keys
+#   - Vos propres adresses e-mail vérifiées dans Resend
+
+TURNSTILE_SECRET_KEY=votre_cle_secrete_turnstile_ici
+RESEND_API_KEY=re_votre_cle_api_resend_ici
+CONTACT_EMAIL_TO=contact@criget-cs.com
+CONTACT_EMAIL_FROM=noreply@criget-cs.com

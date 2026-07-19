@@ -128,11 +128,16 @@ import Layout from '../../layouts/Layout.astro';
               <span class="field-error" id="consentement-error" role="alert" hidden>Vous devez accepter la politique de traitement des données pour envoyer ce formulaire.</span>
             </div>
 
-            <!-- TODO: Ajouter le widget Cloudflare Turnstile ici -->
-            <div class="turnstile-placeholder">
-              <span>🔒 Vérification anti-spam Cloudflare Turnstile</span>
-              <code class="todo-badge">TODO — à connecter au prochain prompt</code>
-            </div>
+            <!-- Widget Cloudflare Turnstile -->
+            <!-- La SITE_KEY est publique : elle peut figurer dans le code source -->
+            <!-- La SECRET_KEY (vérification serveur) est UNIQUEMENT dans les variables d'environnement Cloudflare -->
+            <div
+              class="cf-turnstile"
+              data-sitekey="0x4AAAAAAA_VOTRE_SITE_KEY_ICI"
+              data-theme="light"
+              data-language="fr"
+              aria-label="Vérification anti-spam"
+            ></div>
 
             <!-- Submit -->
             <button type="submit" class="btn-submit" id="submit-btn">
@@ -338,7 +343,7 @@ import Layout from '../../layouts/Layout.astro';
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Validate all fields
+    // 1. Validation côté client (pré-filtre UX, le Worker revalide côté serveur)
     const fields = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('input[required], textarea[required]');
     let valid = true;
     fields.forEach(f => { if (!validateField(f)) valid = false; });
@@ -349,16 +354,64 @@ import Layout from '../../layouts/Layout.astro';
       return;
     }
 
-    // TODO: Remplacer ce bloc par l'appel réel au Cloudflare Worker
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Envoi en cours...';
+    submitBtn.innerHTML = 'Envoi en cours... <span aria-hidden="true">⏳</span>';
+    successMsg.hidden = true;
+    errorMsg.hidden = true;
 
     try {
-      // Simulation — à remplacer par fetch('/api/contact', { method: 'POST', body: ... })
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      successMsg.hidden = false;
-      form.reset();
-    } catch {
+      // 2. Récupérer le token Turnstile (injecté par le widget cf-turnstile)
+      const turnstileInput = form.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]');
+      const turnstileToken = turnstileInput?.value ?? '';
+
+      // 3. Construire le payload JSON
+      const formData = new FormData(form);
+      const payload = {
+        nom: formData.get('nom') as string,
+        organisation: formData.get('organisation') as string,
+        email: formData.get('email') as string,
+        das: formData.get('das') as string,
+        message: formData.get('message') as string,
+        consentement: form.querySelector<HTMLInputElement>('#consentement')?.checked ?? false,
+        'cf-turnstile-response': turnstileToken,
+      };
+
+      // 4. Appel au Cloudflare Worker (Pages Function)
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json() as {
+        success: boolean;
+        message?: string;
+        error?: string;
+        errors?: Record<string, string>;
+      };
+
+      if (result.success) {
+        successMsg.hidden = false;
+        form.reset();
+        // Reset Turnstile widget si disponible
+        if (typeof (window as unknown as Record<string, unknown>).turnstile !== 'undefined') {
+          ((window as unknown as Record<string, unknown>).turnstile as { reset: () => void }).reset();
+        }
+      } else if (response.status === 422 && result.errors) {
+        // Erreurs de validation serveur : les afficher sur les champs
+        Object.entries(result.errors).forEach(([field, msg]) => {
+          const input = form.querySelector<HTMLElement>(`#${field}`);
+          const errorEl = document.getElementById(`${field}-error`);
+          if (input) { input.classList.add('is-invalid'); input.setAttribute('aria-invalid', 'true'); }
+          if (errorEl) { errorEl.textContent = msg; errorEl.hidden = false; }
+        });
+      } else {
+        errorMsg.textContent = result.error ?? 'Une erreur est survenue. Veuillez réessayer.';
+        errorMsg.hidden = false;
+      }
+    } catch (err) {
+      console.error('Contact form error:', err);
+      errorMsg.textContent = 'Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.';
       errorMsg.hidden = false;
     } finally {
       submitBtn.disabled = false;
@@ -366,3 +419,6 @@ import Layout from '../../layouts/Layout.astro';
     }
   });
 </script>
+
+<!-- Cloudflare Turnstile Widget Script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>

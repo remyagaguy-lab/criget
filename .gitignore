@@ -5,10 +5,11 @@ site/node_modules/
 site/dist/
 site/.astro/
 
-# Environnement local
+# Environnement local — JAMAIS committer ces fichiers
 site/.env
 site/.env.local
 site/.env.*.local
+site/.dev.vars
 
 # OS
 .DS_Store
