@@ -5,7 +5,9 @@ const currentYear = new Date().getFullYear();
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="/images/logo.png" alt="CRIGET-CS Logo" class="footer-logo" />
+        <a href="/fr" class="footer-logo-link" aria-label="Accueil CRIGET-CS">
+          <img src="/images/logo.png" alt="CRIGET-CS Logo" class="footer-logo" />
+        </a>
         <p class="footer-desc">Votre partenaire fiable pour le développement durable en Afrique.</p>
       </div>
       
@@ -13,22 +15,25 @@ const currentYear = new Date().getFullYear();
         <h2 class="footer-title">Nous contacter</h2>
         <address class="contact-info">
           <p>Lomé, Togo</p>
-          <p><a href="mailto:contact@criget-cs.com">contact@criget-cs.com</a></p>
+          <p><a href="mailto:contact@criget-cs.com" class="footer-link">contact@criget-cs.com</a></p>
         </address>
       </div>
 
-      <div class="footer-links">
+      <div class="footer-links-col">
         <h2 class="footer-title">Informations</h2>
-        <ul>
-          <li><a href="/fr/mentions-legales">Mentions légales</a></li>
-          <li><a href="/fr/politique-confidentialite">Politique de confidentialité</a></li>
-          <li><a href="/fr/a-propos">À propos</a></li>
+        <ul class="footer-links">
+          <li><a href="/fr/mentions-legales" class="footer-link">Mentions légales</a></li>
+          <li><a href="/fr/politique-confidentialite" class="footer-link">Politique de confidentialité</a></li>
+          <li><a href="/fr/a-propos" class="footer-link">À propos</a></li>
         </ul>
       </div>
     </div>
     
     <div class="footer-bottom">
       <p>&copy; {currentYear} CRIGET-CS. Tous droits réservés.</p>
+      <div class="footer-bottom-links">
+        <a href="/fr/contact" class="footer-link">Nous contacter</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -37,7 +42,8 @@ const currentYear = new Date().getFullYear();
   .site-footer {
     background-color: var(--color-neutral-charcoal);
     color: var(--color-neutral-light);
-    padding: var(--spacing-8) 0 var(--spacing-4) 0;
+    padding: var(--spacing-12) 0 var(--spacing-4) 0;
+    font-family: var(--font-family-body);
   }
   .container {
     max-width: 1200px;
@@ -47,62 +53,116 @@ const currentYear = new Date().getFullYear();
   .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--spacing-6);
-    margin-bottom: var(--spacing-8);
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-12);
+  }
+  
+  /* Brand */
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+    padding-right: var(--spacing-8);
+  }
+  .footer-logo-link {
+    display: inline-block;
+    transition: opacity 0.2s;
+  }
+  .footer-logo-link:hover {
+    opacity: 0.8;
   }
   .footer-logo {
-    height: 40px;
-    margin-bottom: var(--spacing-4);
+    height: 48px;
+    width: auto;
     filter: brightness(0) invert(1);
+    object-fit: contain;
   }
   .footer-desc {
     color: var(--color-neutral-gray);
-    max-width: 300px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0;
   }
+
+  /* Titles */
   .footer-title {
     color: var(--color-neutral-white);
-    font-size: 1.1rem;
-    margin-bottom: var(--spacing-4);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    margin-bottom: var(--spacing-5);
     font-family: var(--font-family-heading);
   }
+
+  /* Contact & Links */
   .contact-info {
     font-style: normal;
     color: var(--color-neutral-gray);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
   }
-  .contact-info a {
-    color: var(--color-neutral-light);
-    text-decoration: underline;
+  .contact-info p {
+    margin: 0;
   }
-  .footer-links ul {
+  .footer-links {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
   }
-  .footer-links li {
-    margin-bottom: var(--spacing-2);
-  }
-  .footer-links a {
+  .footer-link {
     color: var(--color-neutral-gray);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
   }
-  .footer-links a:hover, .footer-links a:focus {
-    color: var(--color-neutral-white);
-    text-decoration: underline;
+  .footer-link:hover, .footer-link:focus-visible {
+    color: var(--color-accent-warm);
+    transform: translateX(4px);
   }
+
+  /* Bottom */
   .footer-bottom {
-    border-top: 1px solid var(--color-neutral-charcoal-light);
-    padding-top: var(--spacing-4);
-    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: var(--spacing-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: var(--color-neutral-gray);
     font-size: 0.875rem;
   }
+  .footer-bottom p {
+    margin: 0;
+  }
+  .footer-bottom-links {
+    display: flex;
+    gap: var(--spacing-4);
+  }
 
-  /* Mobile Responsive */
+  /* Responsive */
   @media (max-width: 768px) {
+    .site-footer {
+      padding: var(--spacing-8) 0 var(--spacing-4) 0;
+    }
     .footer-grid {
       grid-template-columns: 1fr;
-      gap: var(--spacing-6);
+      gap: var(--spacing-8);
+      margin-bottom: var(--spacing-8);
+    }
+    .footer-brand {
+      padding-right: 0;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: var(--spacing-4);
+      text-align: center;
+      justify-content: center;
     }
   }
 </style>
