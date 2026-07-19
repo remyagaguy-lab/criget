@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Accueil | CRIGET-CS</title>
+<link rel="stylesheet" href="./src/styles/tokens.css">
+<style>
+/* Components CSS */
+.btn { display: inline-block; padding: var(--spacing-2) var(--spacing-4); border-radius: var(--radius-md); font-family: var(--font-family-heading); font-weight: 600; text-decoration: none; text-align: center; cursor: pointer; transition: background-color 0.2s, color 0.2s; border: none; }
+.btn-primary { background-color: var(--color-accent-warm); color: var(--color-neutral-white); }
+.btn-primary:hover { background-color: var(--color-accent-warm-hover); }
+.btn-secondary { background-color: transparent; color: var(--color-brand-deep-green); border: 2px solid var(--color-brand-deep-green); }
+.btn-secondary:hover { background-color: var(--color-brand-deep-green); color: var(--color-neutral-white); }
+.das-card { display: block; background-color: var(--color-neutral-white); border-radius: var(--radius-lg); padding: var(--spacing-4); text-decoration: none; color: inherit; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--color-neutral-light); transition: transform 0.2s, box-shadow 0.2s; height: 100%; }
+.das-card:hover, .das-card:focus { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); outline: 2px solid var(--color-brand-deep-green); outline-offset: 2px; }
+.das-icon { font-size: 2rem; margin-bottom: var(--spacing-3); color: var(--color-brand-green); }
+.das-title { color: var(--color-brand-deep-green); margin-bottom: var(--spacing-2); font-size: 1.25rem; }
+.das-desc { color: var(--color-neutral-charcoal-light); margin-bottom: var(--spacing-4); font-size: 0.95rem; }
+.das-link { font-weight: 600; color: var(--color-brand-blue); }
+.das-card:hover .das-link { text-decoration: underline; }
+.site-header { background-color: var(--color-neutral-white); border-bottom: 1px solid var(--color-neutral-light); position: sticky; top: 0; z-index: 50; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-4); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+.logo-img { height: 50px; width: auto; }
+.main-nav { display: flex; align-items: center; gap: var(--spacing-6); }
+.nav-list { display: flex; list-style: none; gap: var(--spacing-4); margin: 0; padding: 0; align-items: center; }
+.nav-link { color: var(--color-neutral-charcoal); text-decoration: none; font-weight: 500; font-family: var(--font-family-heading); padding: var(--spacing-2); transition: color 0.2s; background: none; border: none; cursor: pointer; font-size: 1rem; display: flex; align-items: center; gap: 4px; }
+.nav-link:hover, .nav-link:focus { color: var(--color-brand-deep-green); }
+.has-dropdown { position: relative; }
+.dropdown-menu { position: absolute; top: 100%; left: 0; background: var(--color-neutral-white); border: 1px solid var(--color-neutral-light); border-radius: var(--radius-md); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); list-style: none; padding: var(--spacing-2) 0; margin: 0; min-width: 250px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.2s; }
+.has-dropdown:hover .dropdown-menu, .dropdown-toggle[aria-expanded="true"] + .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-link { display: block; padding: var(--spacing-2) var(--spacing-4); color: var(--color-neutral-charcoal); text-decoration: none; font-size: 0.95rem; }
+.dropdown-link:hover, .dropdown-link:focus { background-color: var(--color-neutral-light); color: var(--color-brand-deep-green); }
+.mobile-toggle { display: none; background: none; border: none; color: var(--color-neutral-charcoal); cursor: pointer; padding: var(--spacing-2); }
+@media (max-width: 768px) {
+  .mobile-toggle { display: block; }
+  .main-nav { display: none; position: absolute; top: 80px; left: 0; right: 0; background: var(--color-neutral-white); flex-direction: column; padding: var(--spacing-4); border-bottom: 1px solid var(--color-neutral-light); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+  .main-nav.is-open { display: flex; }
+  .nav-list { flex-direction: column; width: 100%; align-items: flex-start; gap: 0; }
+  .has-dropdown { width: 100%; }
+  .dropdown-menu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; border-left: 2px solid var(--color-neutral-light); margin-left: var(--spacing-2); border-radius: 0; display: none; }
+  .dropdown-toggle[aria-expanded="true"] + .dropdown-menu { display: block; }
+  .header-cta { margin-top: var(--spacing-4); width: 100%; }
+  .header-cta .btn { width: 100%; }
+}
+.site-footer { background-color: var(--color-neutral-charcoal); color: var(--color-neutral-light); padding: var(--spacing-8) 0 var(--spacing-4) 0; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--spacing-6); margin-bottom: var(--spacing-8); }
+.footer-logo { height: 40px; margin-bottom: var(--spacing-4); filter: brightness(0) invert(1); }
+.footer-desc { color: var(--color-neutral-gray); max-width: 300px; }
+.footer-title { color: var(--color-neutral-white); font-size: 1.1rem; margin-bottom: var(--spacing-4); font-family: var(--font-family-heading); }
+.contact-info { font-style: normal; color: var(--color-neutral-gray); }
+.contact-info a { color: var(--color-neutral-light); text-decoration: underline; }
+.footer-links ul { list-style: none; padding: 0; margin: 0; }
+.footer-links li { margin-bottom: var(--spacing-2); }
+.footer-links a { color: var(--color-neutral-gray); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover, .footer-links a:focus { color: var(--color-neutral-white); text-decoration: underline; }
+.footer-bottom { border-top: 1px solid var(--color-neutral-charcoal-light); padding-top: var(--spacing-4); text-align: center; color: var(--color-neutral-gray); font-size: 0.875rem; }
+@media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: var(--spacing-6); } }
+
+/* Page Specific CSS */
+.section-title { text-align: center; font-size: 2rem; margin-bottom: var(--spacing-6); }
+.hero-section { padding: var(--spacing-12) 0; text-align: center; background-color: var(--color-neutral-light); }
+.hero-inner { max-width: 800px; margin: 0 auto;}
+.hero-title { font-size: 3rem; margin-bottom: var(--spacing-4); color: var(--color-brand-deep-green); }
+.hero-mission { font-size: 1.25rem; color: var(--color-neutral-charcoal-light); margin-bottom: var(--spacing-6); }
+.hero-cta { display: flex; gap: var(--spacing-4); justify-content: center; flex-wrap: wrap; }
+.trust-band { background-color: var(--color-brand-deep-green); color: var(--color-neutral-white); padding: var(--spacing-6) 0; }
+.trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-4); text-align: center; }
+.trust-item { display: flex; flex-direction: column; gap: var(--spacing-2); }
+.trust-number { font-size: 2rem; font-weight: 700; font-family: var(--font-family-heading); color: var(--color-accent-warm); }
+.trust-label { font-size: 0.95rem; color: var(--color-neutral-light); }
+.das-section { padding: var(--spacing-12) 0; }
+.das-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-6); }
+.news-section { padding: var(--spacing-12) 0; background-color: var(--color-neutral-light); }
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-6); }
+.news-card { background: var(--color-neutral-white); padding: var(--spacing-4); border-radius: var(--radius-lg); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+.news-date { font-size: 0.875rem; color: var(--color-brand-green); margin-bottom: var(--spacing-2); font-weight: 600; }
+.news-title { font-size: 1.25rem; margin-bottom: var(--spacing-2); }
+.news-excerpt { color: var(--color-neutral-charcoal-light); margin-bottom: var(--spacing-4); font-size: 0.95rem; }
+.news-link { color: var(--color-brand-blue); font-weight: 600; }
+.contact-block { padding: var(--spacing-12) 0; text-align: center; }
+.contact-inner { max-width: 600px; margin: 0 auto; background: var(--color-neutral-white); border: 2px solid var(--color-brand-deep-green); border-radius: var(--radius-lg); padding: var(--spacing-8); }
+.contact-inner h2 { margin-bottom: var(--spacing-4); }
+.contact-inner p { margin-bottom: var(--spacing-6); color: var(--color-neutral-charcoal-light); }
+@media (max-width: 768px) {
+  .hero-title { font-size: 2rem; }
+  .hero-section { padding: var(--spacing-8) 0; }
+  .das-section, .news-section, .contact-block { padding: var(--spacing-8) 0; }
+}
+</style>
+</head>
+<body style="margin: 0;">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/fr" class="logo-link" aria-label="Accueil CRIGET-CS">
+      <img src="/public/images/logo.png" alt="CRIGET-CS Logo" class="logo-img" />
+    </a>
+    <button class="mobile-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+    <nav id="main-nav" class="main-nav">
+      <ul class="nav-list">
+        <li><a href="/fr" class="nav-link">Accueil</a></li>
+        <li class="has-dropdown">
+          <button class="nav-link dropdown-toggle" aria-expanded="false">
+            Nos expertises
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 4px"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="/fr/expertises/ingenierie" class="dropdown-link">DAS 1 — Ingénierie-Conseil</a></li>
+            <li><a href="/fr/expertises/geomatique" class="dropdown-link">DAS 2 — Géomatique</a></li>
+            <li><a href="/fr/expertises/recherche" class="dropdown-link">DAS 3 — R&D Appliqué</a></li>
+            <li><a href="/fr/expertises/formation" class="dropdown-link">DAS 4 — Formation</a></li>
+          </ul>
+        </li>
+        <li><a href="/fr/realisations" class="nav-link">Réalisations</a></li>
+        <li><a href="/fr/actualites" class="nav-link">Actualités</a></li>
+        <li><a href="/fr/a-propos" class="nav-link">À propos</a></li>
+      </ul>
+      <div class="header-cta">
+        <a href="/fr/contact" class="btn btn-primary">Nous contacter</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container hero-inner">
+      <h1 class="hero-title">Votre partenaire fiable pour le développement durable.</h1>
+      <p class="hero-mission">Développer des solutions idoines et adaptées pour le Togo et les pays d'Afrique dans les domaines de la gouvernance de l'environnement, l'aménagement du territoire, et l'innovation en milieu rural.</p>
+      <div class="hero-cta">
+        <a href="/fr/expertises/ingenierie" class="btn btn-primary">Découvrir nos expertises</a>
+        <a href="/fr/contact" class="btn btn-secondary">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAND -->
+  <section class="trust-band">
+    <div class="container trust-grid">
+      <div class="trust-item">
+        <span class="trust-number">2016</span>
+        <span class="trust-label">Année de création</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-number">[À COMPLÉTER]</span>
+        <span class="trust-label">Zones d'intervention</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-number">[À COMPLÉTER]</span>
+        <span class="trust-label">Projets réalisés</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-number">[À COMPLÉTER]</span>
+        <span class="trust-label">Partenaires actifs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAS SECTION -->
+  <section class="das-section">
+    <div class="container">
+      <h2 class="section-title">Nos Domaines d'Activités Stratégiques</h2>
+      <div class="das-grid">
+        <a href="/fr/expertises/ingenierie" class="das-card" aria-label="Découvrir DAS 1">
+          <div class="das-icon" aria-hidden="true">🌱</div>
+          <h3 class="das-title">DAS 1 — Ingénierie-Conseil</h3>
+          <p class="das-desc">Des études qui tiennent la route sur le terrain et devant les bailleurs.</p>
+          <span class="das-link">En savoir plus</span>
+        </a>
+        <a href="/fr/expertises/geomatique" class="das-card" aria-label="Découvrir DAS 2">
+          <div class="das-icon" aria-hidden="true">🗺️</div>
+          <h3 class="das-title">DAS 2 — Géomatique</h3>
+          <p class="das-desc">La donnée géospatiale au service de vos décisions territoriales.</p>
+          <span class="das-link">En savoir plus</span>
+        </a>
+        <a href="/fr/expertises/recherche" class="das-card" aria-label="Découvrir DAS 3">
+          <div class="das-icon" aria-hidden="true">📊</div>
+          <h3 class="das-title">DAS 3 — R&D Appliqué</h3>
+          <p class="das-desc">Une recherche appliquée, publiée, qui nourrit l'action.</p>
+          <span class="das-link">En savoir plus</span>
+        </a>
+        <a href="/fr/expertises/formation" class="das-card" aria-label="Découvrir DAS 4">
+          <div class="das-icon" aria-hidden="true">👥</div>
+          <h3 class="das-title">DAS 4 — Formation</h3>
+          <p class="das-desc">Transférer nos compétences pour multiplier l'impact.</p>
+          <span class="das-link">En savoir plus</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTUALITES -->
+  <section class="news-section">
+    <div class="container">
+      <h2 class="section-title">Dernières Actualités</h2>
+      <div class="news-grid">
+        <article class="news-card">
+          <div class="news-date">12 Juillet 2026</div>
+          <h3 class="news-title">Lancement de notre nouveau projet au nord du Togo</h3>
+          <p class="news-excerpt">Une initiative majeure pour la gouvernance environnementale impliquant plusieurs partenaires locaux...</p>
+          <a href="#" class="news-link">Lire la suite</a>
+        </article>
+        <article class="news-card">
+          <div class="news-date">05 Juin 2026</div>
+          <h3 class="news-title">Publication : Modélisation des données spatiales</h3>
+          <p class="news-excerpt">Notre équipe R&D publie ses derniers résultats sur l'utilisation des drones en agriculture urbaine...</p>
+          <a href="#" class="news-link">Lire la suite</a>
+        </article>
+        <article class="news-card">
+          <div class="news-date">22 Mai 2026</div>
+          <h3 class="news-title">Nouvelle formation certifiante en SIG</h3>
+          <p class="news-excerpt">Ouverture des inscriptions pour notre prochaine session de formation dédiée aux systèmes d'information géographique.</p>
+          <a href="#" class="news-link">Lire la suite</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-block">
+    <div class="container contact-inner">
+      <h2>Prêt à discuter de votre projet ?</h2>
+      <p>Notre équipe est à votre disposition pour vous accompagner de la conception à la réalisation.</p>
+      <a href="/fr/contact" class="btn btn-primary">Nous contacter</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/public/images/logo.png" alt="CRIGET-CS Logo" class="footer-logo" />
+        <p class="footer-desc">Votre partenaire fiable pour le développement durable en Afrique.</p>
+      </div>
+      <div class="footer-contact">
+        <h2 class="footer-title">Nous contacter</h2>
+        <address class="contact-info">
+          <p>Lomé, Togo</p>
+          <p><a href="mailto:contact@criget-cs.com">contact@criget-cs.com</a></p>
+        </address>
+      </div>
+      <div class="footer-links">
+        <h2 class="footer-title">Informations</h2>
+        <ul>
+          <li><a href="/fr/mentions-legales">Mentions légales</a></li>
+          <li><a href="/fr/politique-confidentialite">Politique de confidentialité</a></li>
+          <li><a href="/fr/a-propos">À propos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CRIGET-CS. Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const mainNav = document.getElementById('main-nav');
+    if (mobileToggle && mainNav) {
+      mobileToggle.addEventListener('click', () => {
+        const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+        mobileToggle.setAttribute('aria-expanded', String(!isExpanded));
+        mainNav.classList.toggle('is-open');
+      });
+    }
+  });
+</script>
+</body>
+</html>

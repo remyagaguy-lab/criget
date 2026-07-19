@@ -1,0 +1,45 @@
+---
+import DasLayout from '../../../layouts/DasLayout.astro';
+
+const das = {
+  numero: "DAS 1",
+  titre: "Ingénierie-Conseil en Environnement et Territoire",
+  slogan: "Des études qui tiennent la route sur le terrain et devant les bailleurs.",
+  objectif: "Convaincre les décideurs publics et les bailleurs de notre rigueur méthodologique et de notre expertise terrain éprouvée depuis 2016.",
+  description: "Ce DAS constitue le cœur de métier de CRIGET-CS. Il regroupe toutes nos activités d'études environnementales, de foresterie, de réponse au changement climatique et de planification territoriale. Nos études partagent la même chaîne de valeur : diagnostic terrain rigoureux → rapport d'étude documenté → recommandations applicables. Nous intervenons auprès des mêmes clients institutionnels (États, collectivités, partenaires techniques et financiers) avec les mêmes standards de qualité.",
+  activites: [
+    "Études d'impact environnemental et social (EIES)",
+    "Foresterie et programmes REDD+ (Réduction des Émissions liées à la Déforestation et la Dégradation)",
+    "Évaluations climatiques et plans d'adaptation au changement climatique",
+    "Planification territoriale et aménagement du territoire",
+    "Audits environnementaux et conformité réglementaire",
+    "Suivi-évaluation de projets environnementaux"
+  ],
+  methodologie: [
+    "Diagnostic de terrain : collecte de données, observations directes et entretiens avec les parties prenantes",
+    "Analyse et traitement des données avec les outils géomatiques et statistiques appropriés",
+    "Rédaction du rapport d'étude selon les standards des bailleurs (Banque Mondiale, AFD, PNUD...)",
+    "Restitution et validation avec le commanditaire",
+    "Suivi post-mission selon accord contractuel"
+  ],
+  clientsTypes: [
+    "États et services techniques nationaux",
+    "Collectivités locales et communes",
+    "Partenaires Techniques et Financiers (PTF)",
+    "Banques de développement (BM, AFD, BAD...)",
+    "ONG et associations de développement",
+    "Entreprises privées soumises à réglementation environnementale"
+  ],
+  ctaLabel: "Discuter d'un projet",
+  ctaHref: "/fr/contact",
+  secondCta: { label: "Voir nos réalisations", href: "/fr/realisations" },
+  couleurAccent: "#0b5345",
+  icone: "🌱",
+  realisations: [
+    { titre: "[À COMPLÉTER] — Étude d'impact environnemental", contexte: "Réalisation d'une EIES complète pour un projet d'infrastructure en milieu rural togolais. Livraison conforme aux exigences du bailleur international concerné." },
+    { titre: "[À COMPLÉTER] — Plan d'adaptation climatique", contexte: "Élaboration d'un plan d'adaptation au changement climatique pour une collectivité de la zone guinéenne du Togo." },
+    { titre: "[À COMPLÉTER] — Programme REDD+", contexte: "Appui à la mise en œuvre d'un programme de réduction de la déforestation dans le cadre d'un financement international." }
+  ]
+};
+---
+<DasLayout das={das} />

@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  href: string;
+}
+const { title, description, icon, href } = Astro.props;
+---
+<a href={href} class="das-card" aria-label={`Découvrir ${title}`}>
+  {icon && <div class="das-icon" aria-hidden="true">{icon}</div>}
+  <h3 class="das-title">{title}</h3>
+  <p class="das-desc">{description}</p>
+  <span class="das-link">En savoir plus</span>
+</a>
+
+<style>
+  .das-card {
+    display: block;
+    background-color: var(--color-neutral-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-4);
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border: 1px solid var(--color-neutral-light);
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
+  }
+  .das-card:hover, .das-card:focus {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    outline: 2px solid var(--color-brand-deep-green);
+    outline-offset: 2px;
+  }
+  .das-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-3);
+    color: var(--color-brand-green);
+  }
+  .das-title {
+    color: var(--color-brand-deep-green);
+    margin-bottom: var(--spacing-2);
+    font-size: 1.25rem;
+  }
+  .das-desc {
+    color: var(--color-neutral-charcoal-light);
+    margin-bottom: var(--spacing-4);
+    font-size: 0.95rem;
+  }
+  .das-link {
+    font-weight: 600;
+    color: var(--color-brand-blue);
+  }
+  .das-card:hover .das-link {
+    text-decoration: underline;
+  }
+</style>

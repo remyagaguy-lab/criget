@@ -1,0 +1,71 @@
+/* src/styles/tokens.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap');
+
+:root {
+  /* Colors from CRIGET logo */
+  --color-brand-deep-green: #0b5345;
+  --color-brand-green: #4cb944;
+  --color-brand-blue: #3454d1;
+  --color-brand-ochre: #5b3000;
+
+  /* Art Direction Additional Colors (Section 6) */
+  --color-neutral-charcoal: #1f2937; /* Anthracite institutionnel */
+  --color-neutral-charcoal-light: #374151;
+  --color-neutral-gray: #9ca3af;
+  --color-neutral-light: #f3f4f6;
+  --color-neutral-white: #ffffff;
+  
+  --color-accent-warm: #f59e0b; /* Touche d'accent chaleureuse (jaune/orange) pour CTA */
+  --color-accent-warm-hover: #d97706;
+
+  /* Typography */
+  --font-family-heading: 'Outfit', system-ui, sans-serif; /* Sans-serif géométrique */
+  --font-family-body: 'Inter', system-ui, sans-serif; /* Humaniste très lisible */
+
+  /* Spacing (Generous negative space) */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 1rem;
+  --spacing-4: 1.5rem;
+  --spacing-5: 2rem;
+  --spacing-6: 3rem;
+  --spacing-8: 4rem;
+  --spacing-12: 6rem;
+  --spacing-16: 8rem;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+}
+
+/* Base styles for demo */
+body {
+  font-family: var(--font-family-body);
+  color: var(--color-neutral-charcoal);
+  background-color: var(--color-neutral-white);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  color: var(--color-brand-deep-green);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-3);
+}
+
+.button-cta {
+  background-color: var(--color-accent-warm);
+  color: var(--color-neutral-white);
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: background-color 0.2s;
+}
+
+.button-cta:hover {
+  background-color: var(--color-accent-warm-hover);
+}

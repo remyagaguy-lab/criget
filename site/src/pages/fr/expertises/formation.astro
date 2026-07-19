@@ -1,0 +1,45 @@
+---
+import DasLayout from '../../../layouts/DasLayout.astro';
+
+const das = {
+  numero: "DAS 4",
+  titre: "Formation & Transfert de Connaissances",
+  slogan: "Transférer nos compétences pour multiplier l'impact.",
+  objectif: "Convertir les ONG, les agents de l'État, les étudiants et les équipes terrain en participants à nos formations certifiantes et en demandeurs de formations sur mesure.",
+  description: "Le DAS Formation joue un rôle stratégique transversal au sein de CRIGET-CS : il mobilise les experts de nos trois autres DAS comme formateurs, créant ainsi une synergie forte et peu coûteuse à activer. Contrairement à nos autres domaines, la Formation s'adresse à une clientèle qui achète des compétences, et non des études. Son modèle économique repose sur la facturation à la journée-formation ou au forfait. Nous proposons des formations en présentiel et à distance, adaptées aussi bien aux équipes terrain qu'aux cadres souhaitant monter en compétences.",
+  activites: [
+    "Formations en gestion de l'environnement et des ressources naturelles",
+    "Formations certifiantes en Systèmes d'Information Géographique (SIG) et géomatique",
+    "Ateliers de renforcement de capacités pour équipes ONG et agents de l'État",
+    "Formations sur le changement climatique et les mécanismes de financement carbone",
+    "Formations en rédaction de rapports d'études et gestion de projets de développement",
+    "Programmes de formation sur mesure, adaptés aux besoins spécifiques de chaque organisation"
+  ],
+  methodologie: [
+    "Analyse des besoins de formation et définition des objectifs pédagogiques",
+    "Conception du contenu de formation (modules, cas pratiques, exercices terrain)",
+    "Déploiement en présentiel, à distance ou en format hybride selon le contexte",
+    "Évaluation des compétences acquises en fin de formation",
+    "Délivrance de certificats de participation et suivi post-formation"
+  ],
+  clientsTypes: [
+    "Agents de l'État et services techniques nationaux",
+    "Collectivités locales cherchant à renforcer leurs équipes",
+    "ONG et associations de développement",
+    "Étudiants en fin de cursus (master, ingénierie...)",
+    "Entreprises souhaitant former leurs équipes environnement",
+    "Organisations internationales ayant des besoins de renforcement de capacités"
+  ],
+  ctaLabel: "Demander une formation sur mesure",
+  ctaHref: "/fr/contact",
+  secondCta: { label: "Consulter le catalogue", href: "/fr/realisations" },
+  couleurAccent: "#4cb944",
+  icone: "👥",
+  realisations: [
+    { titre: "[À COMPLÉTER] — Formation SIG pour agents de l'État", contexte: "Session de formation de 5 jours en SIG (QGIS) dispensée à une vingtaine d'agents d'un service technique national, avec exercices pratiques sur des données locales." },
+    { titre: "[À COMPLÉTER] — Atelier pour ONG — Changement climatique", contexte: "Formation sur mesure de 3 jours destinée aux équipes terrain d'une ONG internationale, portant sur les mécanismes d'adaptation au changement climatique et la collecte de données." },
+    { titre: "[À COMPLÉTER] — Programme de renforcement de capacités", contexte: "Programme multi-modules de 12 semaines mêlant présentiel et e-learning pour une organisation régionale, couvrant la gestion environnementale et la rédaction de rapports." }
+  ]
+};
+---
+<DasLayout das={das} />

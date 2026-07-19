@@ -1,0 +1,263 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/Button.astro';
+import DasCard from '../../components/DasCard.astro';
+---
+
+<Layout title="Accueil">
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container hero-inner">
+        <h1 class="hero-title">Votre partenaire fiable pour le développement durable.</h1>
+        <p class="hero-mission">Développer des solutions idoines et adaptées pour le Togo et les pays d'Afrique dans les domaines de la gouvernance de l'environnement, l'aménagement du territoire, et l'innovation en milieu rural.</p>
+        <div class="hero-cta">
+          <Button href="/fr/expertises/ingenierie" variant="primary">Découvrir nos expertises</Button>
+          <Button href="/fr/contact" variant="secondary">Nous contacter</Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST BAND (BANDEAU DE CONFIANCE) -->
+    <section class="trust-band">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <span class="trust-number">2016</span>
+          <span class="trust-label">Année de création</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-number">[À COMPLÉTER]</span>
+          <span class="trust-label">Zones d'intervention</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-number">[À COMPLÉTER]</span>
+          <span class="trust-label">Projets réalisés</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-number">[À COMPLÉTER]</span>
+          <span class="trust-label">Partenaires actifs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAS SECTION -->
+    <section class="das-section">
+      <div class="container">
+        <h2 class="section-title">Nos Domaines d'Activités Stratégiques</h2>
+        <div class="das-grid">
+          <DasCard 
+            title="DAS 1 — Ingénierie-Conseil" 
+            description="Des études qui tiennent la route sur le terrain et devant les bailleurs." 
+            icon="🌱" 
+            href="/fr/expertises/ingenierie" 
+          />
+          <DasCard 
+            title="DAS 2 — Géomatique" 
+            description="La donnée géospatiale au service de vos décisions territoriales." 
+            icon="🗺️" 
+            href="/fr/expertises/geomatique" 
+          />
+          <DasCard 
+            title="DAS 3 — R&D Appliqué" 
+            description="Une recherche appliquée, publiée, qui nourrit l'action." 
+            icon="📊" 
+            href="/fr/expertises/recherche" 
+          />
+          <DasCard 
+            title="DAS 4 — Formation" 
+            description="Transférer nos compétences pour multiplier l'impact." 
+            icon="👥" 
+            href="/fr/expertises/formation" 
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTUALITES (FAKE) -->
+    <section class="news-section">
+      <div class="container">
+        <h2 class="section-title">Dernières Actualités</h2>
+        <div class="news-grid">
+          <!-- Carte 1 -->
+          <article class="news-card">
+            <div class="news-date">12 Juillet 2026</div>
+            <h3 class="news-title">Lancement de notre nouveau projet au nord du Togo</h3>
+            <p class="news-excerpt">Une initiative majeure pour la gouvernance environnementale impliquant plusieurs partenaires locaux...</p>
+            <a href="#" class="news-link">Lire la suite</a>
+          </article>
+          <!-- Carte 2 -->
+          <article class="news-card">
+            <div class="news-date">05 Juin 2026</div>
+            <h3 class="news-title">Publication : Modélisation des données spatiales</h3>
+            <p class="news-excerpt">Notre équipe R&D publie ses derniers résultats sur l'utilisation des drones en agriculture urbaine...</p>
+            <a href="#" class="news-link">Lire la suite</a>
+          </article>
+          <!-- Carte 3 -->
+          <article class="news-card">
+            <div class="news-date">22 Mai 2026</div>
+            <h3 class="news-title">Nouvelle formation certifiante en SIG</h3>
+            <p class="news-excerpt">Ouverture des inscriptions pour notre prochaine session de formation dédiée aux systèmes d'information géographique.</p>
+            <a href="#" class="news-link">Lire la suite</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT BLOCK -->
+    <section class="contact-block">
+      <div class="container contact-inner">
+        <h2>Prêt à discuter de votre projet ?</h2>
+        <p>Notre équipe est à votre disposition pour vous accompagner de la conception à la réalisation.</p>
+        <Button href="/fr/contact" variant="primary">Nous contacter</Button>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+  }
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: var(--spacing-6);
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    padding: var(--spacing-12) 0;
+    text-align: center;
+    background-color: var(--color-neutral-light);
+  }
+  .hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .hero-title {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-4);
+    color: var(--color-brand-deep-green);
+  }
+  .hero-mission {
+    font-size: 1.25rem;
+    color: var(--color-neutral-charcoal-light);
+    margin-bottom: var(--spacing-6);
+  }
+  .hero-cta {
+    display: flex;
+    gap: var(--spacing-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Trust Band */
+  .trust-band {
+    background-color: var(--color-brand-deep-green);
+    color: var(--color-neutral-white);
+    padding: var(--spacing-6) 0;
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-4);
+    text-align: center;
+  }
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+  .trust-number {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-family-heading);
+    color: var(--color-accent-warm);
+  }
+  .trust-label {
+    font-size: 0.95rem;
+    color: var(--color-neutral-light);
+  }
+
+  /* DAS Section */
+  .das-section {
+    padding: var(--spacing-12) 0;
+  }
+  .das-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-6);
+  }
+
+  /* News Section */
+  .news-section {
+    padding: var(--spacing-12) 0;
+    background-color: var(--color-neutral-light);
+  }
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-6);
+  }
+  .news-card {
+    background: var(--color-neutral-white);
+    padding: var(--spacing-4);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  }
+  .news-date {
+    font-size: 0.875rem;
+    color: var(--color-brand-green);
+    margin-bottom: var(--spacing-2);
+    font-weight: 600;
+  }
+  .news-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-2);
+  }
+  .news-excerpt {
+    color: var(--color-neutral-charcoal-light);
+    margin-bottom: var(--spacing-4);
+    font-size: 0.95rem;
+  }
+  .news-link {
+    color: var(--color-brand-blue);
+    font-weight: 600;
+  }
+
+  /* Contact Block */
+  .contact-block {
+    padding: var(--spacing-12) 0;
+    text-align: center;
+  }
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--color-neutral-white);
+    border: 2px solid var(--color-brand-deep-green);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-8);
+  }
+  .contact-inner h2 {
+    margin-bottom: var(--spacing-4);
+  }
+  .contact-inner p {
+    margin-bottom: var(--spacing-6);
+    color: var(--color-neutral-charcoal-light);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    .hero-section {
+      padding: var(--spacing-8) 0;
+    }
+    .das-section, .news-section, .contact-block {
+      padding: var(--spacing-8) 0;
+    }
+  }
+</style>

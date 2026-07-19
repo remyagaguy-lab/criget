@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Test DAS — CRIGET-CS</title>
+<link rel="stylesheet" href="./src/styles/tokens.css">
+<style>
+/* Reset & Base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-family-body); color: var(--color-neutral-charcoal); background: white; line-height: 1.6; }
+h1,h2,h3,h4 { font-family: var(--font-family-heading); line-height: 1.2; }
+h2 { color: var(--color-brand-deep-green); font-size: 1.75rem; margin-bottom: var(--spacing-6); }
+h3 { color: var(--color-brand-deep-green); font-size: 1.1rem; margin-bottom: var(--spacing-2); }
+p { margin-bottom: var(--spacing-3); }
+
+/* Header */
+.site-header { background: white; border-bottom: 1px solid var(--color-neutral-light); position: sticky; top: 0; z-index: 50; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-4); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+.logo-img { height: 50px; width: auto; }
+.main-nav { display: flex; align-items: center; gap: var(--spacing-6); }
+.nav-list { display: flex; list-style: none; gap: var(--spacing-4); margin: 0; padding: 0; align-items: center; }
+.nav-link { color: var(--color-neutral-charcoal); text-decoration: none; font-weight: 500; font-family: var(--font-family-heading); padding: var(--spacing-2); transition: color 0.2s; background: none; border: none; cursor: pointer; font-size: 1rem; }
+.nav-link:hover { color: var(--color-brand-deep-green); }
+.has-dropdown { position: relative; }
+.dropdown-menu { position: absolute; top: 100%; left: 0; background: white; border: 1px solid var(--color-neutral-light); border-radius: var(--radius-md); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); list-style: none; padding: var(--spacing-2) 0; margin: 0; min-width: 250px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.2s; }
+.has-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-link { display: block; padding: var(--spacing-2) var(--spacing-4); color: var(--color-neutral-charcoal); text-decoration: none; font-size: 0.95rem; }
+.dropdown-link:hover { background: var(--color-neutral-light); color: var(--color-brand-deep-green); }
+.btn { display: inline-block; padding: var(--spacing-2) var(--spacing-4); border-radius: var(--radius-md); font-family: var(--font-family-heading); font-weight: 600; text-decoration: none; cursor: pointer; border: none; }
+.btn-primary { background: var(--color-accent-warm); color: white; }
+.btn-primary:hover { background: var(--color-accent-warm-hover); }
+.btn-secondary { background: transparent; color: var(--color-brand-deep-green); border: 2px solid var(--color-brand-deep-green); }
+.mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: var(--spacing-2); }
+
+/* DAS PAGES */
+.das-page { display: none; }
+.das-page.active { display: block; }
+
+/* DAS Hero */
+.das-hero { background: linear-gradient(135deg, var(--color-brand-deep-green) 0%, #0d6e59 100%); color: white; padding: var(--spacing-12) 0 var(--spacing-8); }
+.das-breadcrumb { font-size: 0.875rem; margin-bottom: var(--spacing-4); display: flex; gap: var(--spacing-2); align-items: center; }
+.das-breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+.das-breadcrumb a:hover { color: white; }
+.das-breadcrumb span.sep { color: rgba(255,255,255,0.4); }
+.das-badge { display: inline-block; background: var(--color-accent-warm); color: white; font-family: var(--font-family-heading); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; padding: 4px 12px; border-radius: var(--radius-full); text-transform: uppercase; margin-bottom: var(--spacing-4); }
+.das-hero-title { font-size: 2.75rem; color: white; margin-bottom: var(--spacing-3); max-width: 700px; }
+.das-hero-slogan { font-size: 1.25rem; color: rgba(255,255,255,0.85); margin-bottom: var(--spacing-6); max-width: 600px; }
+.das-hero-cta { display: flex; gap: var(--spacing-4); flex-wrap: wrap; }
+
+/* Objectif */
+.section-objectif { padding: var(--spacing-12) 0; }
+.two-col { display: grid; grid-template-columns: 1fr auto; gap: var(--spacing-8); align-items: center; }
+.lead { font-size: 1.15rem; color: var(--color-brand-deep-green); font-weight: 600; margin-bottom: var(--spacing-4); }
+.das-icon-large { font-size: 6rem; opacity: 0.15; }
+
+/* Activités */
+.section-alt { background: var(--color-neutral-light); padding: var(--spacing-12) 0; }
+.activites-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-4); }
+.activite-item { display: flex; gap: var(--spacing-3); align-items: flex-start; background: white; padding: var(--spacing-4); border-radius: var(--radius-md); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.activite-bullet { color: var(--color-brand-green); font-weight: 700; font-size: 1.2rem; flex-shrink: 0; }
+
+/* Méthodologie */
+.section-methodo { padding: var(--spacing-12) 0; }
+.methodo-steps { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--spacing-4); }
+.methodo-step { display: flex; gap: var(--spacing-4); align-items: center; }
+.step-number { background: var(--color-brand-deep-green); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-family-heading); font-weight: 700; flex-shrink: 0; }
+
+/* Réalisations */
+.real-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-6); }
+.real-card { background: white; border-radius: var(--radius-lg); padding: var(--spacing-4); border-left: 4px solid var(--color-brand-green); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.real-context { color: var(--color-neutral-charcoal-light); font-size: 0.95rem; margin-top: var(--spacing-2); }
+
+/* Clients */
+.section-clients { padding: var(--spacing-12) 0; }
+.clients-grid { display: flex; flex-wrap: wrap; gap: var(--spacing-3); margin-top: var(--spacing-4); }
+.client-tag { background: var(--color-neutral-light); border: 1px solid var(--color-neutral-gray); padding: var(--spacing-2) var(--spacing-4); border-radius: var(--radius-full); font-size: 0.9rem; font-weight: 500; }
+
+/* CTA Final */
+.section-cta-final { padding: var(--spacing-12) 0; }
+.cta-inner { text-align: center; max-width: 600px; margin: 0 auto; background: white; border: 2px solid var(--color-brand-deep-green); border-radius: var(--radius-lg); padding: var(--spacing-8); }
+.cta-inner h2 { margin-bottom: var(--spacing-4); }
+.cta-inner p { color: var(--color-neutral-charcoal-light); margin-bottom: var(--spacing-6); }
+
+/* Tab Navigation */
+.tab-nav { background: white; border-bottom: 2px solid var(--color-neutral-light); padding: 0 var(--spacing-4); }
+.tab-nav-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 0; }
+.tab-btn { padding: var(--spacing-4) var(--spacing-4); border: none; background: none; cursor: pointer; font-family: var(--font-family-heading); font-weight: 600; font-size: 0.9rem; color: var(--color-neutral-charcoal-light); border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn:hover { color: var(--color-brand-deep-green); }
+.tab-btn.active { color: var(--color-brand-deep-green); border-bottom-color: var(--color-brand-deep-green); }
+
+/* Footer */
+.site-footer { background: var(--color-neutral-charcoal); color: var(--color-neutral-light); padding: var(--spacing-8) 0 var(--spacing-4); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--spacing-6); margin-bottom: var(--spacing-8); }
+.footer-logo { height: 40px; margin-bottom: var(--spacing-4); filter: brightness(0) invert(1); }
+.footer-desc { color: var(--color-neutral-gray); max-width: 300px; }
+.footer-title { color: white; font-size: 1.1rem; margin-bottom: var(--spacing-4); font-family: var(--font-family-heading); }
+.footer-links ul { list-style: none; }
+.footer-links li { margin-bottom: var(--spacing-2); }
+.footer-links a { color: var(--color-neutral-gray); text-decoration: none; }
+.footer-links a:hover { color: white; }
+.footer-bottom { border-top: 1px solid var(--color-neutral-charcoal-light); padding-top: var(--spacing-4); text-align: center; color: var(--color-neutral-gray); font-size: 0.875rem; }
+
+@media (max-width: 768px) {
+  .main-nav { display: none; }
+  .mobile-toggle { display: block; }
+  .das-hero-title { font-size: 1.875rem; }
+  .das-hero { padding: var(--spacing-8) 0; }
+  .section-objectif, .section-alt, .section-methodo, .section-clients, .section-cta-final { padding: var(--spacing-8) 0; }
+  .two-col { grid-template-columns: 1fr; }
+  .das-icon-large { display: none; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .tab-btn { font-size: 0.8rem; padding: var(--spacing-3) var(--spacing-2); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="test-homepage.html" aria-label="Accueil CRIGET-CS">
+      <img src="/public/images/logo.png" alt="CRIGET-CS Logo" class="logo-img" />
+    </a>
+    <button class="mobile-toggle" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="test-homepage.html" class="nav-link">Accueil</a></li>
+        <li class="has-dropdown">
+          <button class="nav-link" style="display:flex;align-items:center;gap:4px">Nos expertises <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="dropdown-link" onclick="showDas('das1');return false;">DAS 1 — Ingénierie-Conseil</a></li>
+            <li><a href="#" class="dropdown-link" onclick="showDas('das2');return false;">DAS 2 — Géomatique</a></li>
+            <li><a href="#" class="dropdown-link" onclick="showDas('das3');return false;">DAS 3 — R&D Appliqué</a></li>
+            <li><a href="#" class="dropdown-link" onclick="showDas('das4');return false;">DAS 4 — Formation</a></li>
+          </ul>
+        </li>
+        <li><a href="#" class="nav-link">Réalisations</a></li>
+        <li><a href="#" class="nav-link">Actualités</a></li>
+        <li><a href="#" class="nav-link">À propos</a></li>
+      </ul>
+      <a href="#" class="btn btn-primary">Nous contacter</a>
+    </nav>
+  </div>
+</header>
+
+<!-- TAB NAVIGATION -->
+<nav class="tab-nav" aria-label="Pages DAS">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" id="tab-das1" onclick="showDas('das1')">🌱 DAS 1 — Ingénierie</button>
+    <button class="tab-btn" id="tab-das2" onclick="showDas('das2')">🗺️ DAS 2 — Géomatique</button>
+    <button class="tab-btn" id="tab-das3" onclick="showDas('das3')">📊 DAS 3 — R&D</button>
+    <button class="tab-btn" id="tab-das4" onclick="showDas('das4')">👥 DAS 4 — Formation</button>
+  </div>
+</nav>
+
+<!-- ======= DAS 1 ======= -->
+<main id="das1" class="das-page active">
+  <section class="das-hero">
+    <div class="container">
+      <div class="das-breadcrumb"><a href="#">Accueil</a><span class="sep">›</span><span>Nos expertises</span><span class="sep">›</span><span>Ingénierie-Conseil</span></div>
+      <div class="das-badge">DAS 1</div>
+      <h1 class="das-hero-title">Ingénierie-Conseil en Environnement et Territoire</h1>
+      <p class="das-hero-slogan">Des études qui tiennent la route sur le terrain et devant les bailleurs.</p>
+      <div class="das-hero-cta">
+        <a href="#" class="btn btn-primary">Discuter d'un projet</a>
+        <a href="#" class="btn btn-secondary" style="color:white;border-color:rgba(255,255,255,0.6)">Voir nos réalisations</a>
+      </div>
+    </div>
+  </section>
+  <section class="section-objectif">
+    <div class="container two-col">
+      <div>
+        <h2>Notre mission sur ce domaine</h2>
+        <p class="lead">Convaincre les décideurs publics et les bailleurs de notre rigueur méthodologique et de notre expertise terrain éprouvée depuis 2016.</p>
+        <p>Ce DAS constitue le cœur de métier de CRIGET-CS. Il regroupe toutes nos activités d'études environnementales, de foresterie, de réponse au changement climatique et de planification territoriale. Nos études partagent la même chaîne de valeur : diagnostic terrain rigoureux → rapport d'étude documenté → recommandations applicables.</p>
+      </div>
+      <div class="das-icon-large" aria-hidden="true">🌱</div>
+    </div>
+  </section>
+  <section class="section-alt">
+    <div class="container">
+      <h2>Nos activités</h2>
+      <ul class="activites-list">
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Études d'impact environnemental et social (EIES)</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Foresterie et programmes REDD+</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Évaluations climatiques et plans d'adaptation</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Planification territoriale et aménagement du territoire</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Audits environnementaux et conformité réglementaire</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Suivi-évaluation de projets environnementaux</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section-methodo">
+    <div class="container">
+      <h2>Notre approche méthodologique</h2>
+      <ol class="methodo-steps">
+        <li class="methodo-step"><span class="step-number">1</span><span>Diagnostic de terrain : collecte de données, observations directes et entretiens</span></li>
+        <li class="methodo-step"><span class="step-number">2</span><span>Analyse et traitement des données avec les outils géomatiques et statistiques</span></li>
+        <li class="methodo-step"><span class="step-number">3</span><span>Rédaction du rapport selon les standards des bailleurs (BM, AFD, PNUD...)</span></li>
+        <li class="methodo-step"><span class="step-number">4</span><span>Restitution et validation avec le commanditaire</span></li>
+        <li class="methodo-step"><span class="step-number">5</span><span>Suivi post-mission selon accord contractuel</span></li>
+      </ol>
+    </div>
+  </section>
+  <section class="section-alt">
+    <div class="container">
+      <h2>Réalisations types</h2>
+      <div class="real-grid">
+        <article class="real-card"><h3 class="real-title">[À COMPLÉTER] — Étude d'impact environnemental</h3><p class="real-context">Réalisation d'une EIES complète pour un projet d'infrastructure en milieu rural togolais, conforme aux exigences du bailleur international concerné.</p></article>
+        <article class="real-card"><h3 class="real-title">[À COMPLÉTER] — Plan d'adaptation climatique</h3><p class="real-context">Élaboration d'un plan d'adaptation au changement climatique pour une collectivité de la zone guinéenne du Togo.</p></article>
+        <article class="real-card"><h3 class="real-title">[À COMPLÉTER] — Programme REDD+</h3><p class="real-context">Appui à la mise en œuvre d'un programme de réduction de la déforestation dans le cadre d'un financement international.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="section-clients">
+    <div class="container">
+      <h2>Nous travaillons avec</h2>
+      <div class="clients-grid">
+        <div class="client-tag">États et services techniques</div>
+        <div class="client-tag">Collectivités locales</div>
+        <div class="client-tag">PTF (Banque Mondiale, AFD, BAD...)</div>
+        <div class="client-tag">ONG et associations de développement</div>
+        <div class="client-tag">Entreprises privées</div>
+      </div>
+    </div>
+  </section>
+  <section class="section-cta-final"><div class="container cta-inner"><h2>Prêt à collaborer sur ce domaine ?</h2><p>Décrivez-nous votre projet et notre équipe vous répondra sous 48 h.</p><a href="#" class="btn btn-primary">Discuter d'un projet</a></div></section>
+</main>
+
+<!-- ======= DAS 2 ======= -->
+<main id="das2" class="das-page">
+  <section class="das-hero">
+    <div class="container">
+      <div class="das-breadcrumb"><a href="#">Accueil</a><span class="sep">›</span><span>Nos expertises</span><span class="sep">›</span><span>Géomatique</span></div>
+      <div class="das-badge">DAS 2</div>
+      <h1 class="das-hero-title">Géomatique & Intelligence Territoriale</h1>
+      <p class="das-hero-slogan">La donnée géospatiale au service de vos décisions territoriales.</p>
+      <div class="das-hero-cta">
+        <a href="#" class="btn btn-primary">Discuter de vos besoins géomatiques</a>
+        <a href="#" class="btn btn-secondary" style="color:white;border-color:rgba(255,255,255,0.6)">Voir nos réalisations</a>
+      </div>
+    </div>
+  </section>
+  <section class="section-objectif">
+    <div class="container two-col">
+      <div>
+        <h2>Notre mission sur ce domaine</h2>
+        <p class="lead">Convaincre tout client technique que notre expertise géomatique constitue un avantage décisif et autonome pour ses projets.</p>
+        <p>La Géomatique est le domaine différenciant technologique de CRIGET-CS. Nos compétences sont fondamentalement différentes de celles des bureaux d'études classiques : informatique géospatiale avancée, maîtrise d'ArcGIS, QGIS et des drones. Nous pouvons intervenir en prestation autonome pour tout client ayant besoin d'analyses spatiales.</p>
+      </div>
+      <div class="das-icon-large" aria-hidden="true">🗺️</div>
+    </div>
+  </section>
+  <section class="section-alt">
+    <div class="container">
+      <h2>Nos activités</h2>
+      <ul class="activites-list">
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Cartographie et réalisation de Systèmes d'Information Géographique (SIG)</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Acquisition de données par drone (levés topographiques, orthophotographies, MNT)</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Télédétection et analyse d'images satellites</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Traitement et analyse spatiale sous ArcGIS et QGIS</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Conception de bases de données géospatiales et tableaux de bord</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Formation et transfert de compétences en géomatique</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section-alt">
+    <div class="container">
+      <h2>Réalisations types</h2>
+      <div class="real-grid">
+        <article class="real-card"><h3 class="real-title">[À COMPLÉTER] — Cartographie SIG d'une région</h3><p class="real-context">Réalisation d'un SIG complet pour le suivi de l'occupation des terres, incluant analyse multi-date de l'évolution du couvert forestier.</p></article>
+        <article class="real-card"><h3 class="real-title">[À COMPLÉTER] — Levé drone et orthophotographie</h3><p class="real-context">Campagne de levé par drone sur une zone agricole pour la délimitation des parcelles et l'analyse de la santé des cultures (NDVI).</p></article>
+        <article class="real-card"><h3 class="real-title">[À COMPLÉTER] — Tableau de bord territorial</h3><p class="real-context">Conception d'un tableau de bord géospatial interactif pour une collectivité locale permettant le suivi des indicateurs de développement.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="section-clients">
+    <div class="container">
+      <h2>Nous travaillons avec</h2>
+      <div class="clients-grid">
+        <div class="client-tag">Bureaux d'études partenaires</div>
+        <div class="client-tag">Collectivités territoriales</div>
+        <div class="client-tag">Agences de planification urbaine</div>
+        <div class="client-tag">Projets agricoles</div>
+        <div class="client-tag">Entreprises minières</div>
+        <div class="client-tag">Organisations internationales</div>
+      </div>
+    </div>
+  </section>
+  <section class="section-cta-final"><div class="container cta-inner"><h2>Prêt à collaborer sur ce domaine ?</h2><p>Décrivez-nous votre projet et notre équipe vous répondra sous 48 h.</p><a href="#" class="btn btn-primary">Discuter de vos besoins géomatiques</a></div></section>
+</main>
+
+<!-- ======= DAS 3 ======= -->
+<main id="das3" class="das-page">
+  <section class="das-hero">
+    <div class="container">
+      <div class="das-breadcrumb"><a href="#">Accueil</a><span class="sep">›</span><span>Nos expertises</span><span class="sep">›</span><span>R&D Appliqué</span></div>
+      <div class="das-badge">DAS 3</div>
+      <h1 class="das-hero-title">Recherche & Développement Appliqué</h1>
+      <p class="das-hero-slogan">Une recherche appliquée, publiée, qui nourrit l'action.</p>
+      <div class="das-hero-cta">
+        <a href="#" class="btn btn-primary">Proposer un partenariat</a>
+        <a href="#" class="btn btn-secondary" style="color:white;border-color:rgba(255,255,255,0.6)">Consulter nos publications</a>
+      </div>
+    </div>
+  </section>
+  <section class="section-objectif">
+    <div class="container two-col">
+      <div>
+        <h2>Notre mission sur ce domaine</h2>
+        <p class="lead">Asseoir la crédibilité académique et scientifique de CRIGET-CS auprès des bailleurs spécialisés, fondations et agences de financement de la recherche.</p>
+        <p>Le DAS R&D Appliqué répond à une logique économique entièrement différente de nos autres domaines. Nos clients sont des bailleurs spécialisés. Le financement s'opère par grants et subventions sur des cycles longs de 2 à 5 ans. Nos livrables sont des publications scientifiques et des modèles transférables.</p>
+      </div>
+      <div class="das-icon-large" aria-hidden="true">📊</div>
+    </div>
+  </section>
+  <section class="section-alt">
+    <div class="container">
+      <h2>Nos activités</h2>
+      <ul class="activites-list">
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Recherche appliquée en gestion de l'environnement et des ressources naturelles</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Développement et validation de modèles d'analyse et de prévision climatique</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Publication scientifique dans des revues à comité de lecture</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Partenariats de recherche avec des universités africaines et internationales</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Montage et gestion de projets financés par grants</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Valorisation et transfert des résultats vers les acteurs de terrain</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section-clients">
+    <div class="container">
+      <h2>Nous travaillons avec</h2>
+      <div class="clients-grid">
+        <div class="client-tag">Agences de financement de la recherche</div>
+        <div class="client-tag">Fondations scientifiques internationales</div>
+        <div class="client-tag">Institutions académiques et universités</div>
+        <div class="client-tag">Programmes des Nations Unies (PNUE, PNUD, FAO)</div>
+        <div class="client-tag">Gouvernements (politiques basées sur les données)</div>
+      </div>
+    </div>
+  </section>
+  <section class="section-cta-final"><div class="container cta-inner"><h2>Prêt à collaborer sur ce domaine ?</h2><p>Décrivez-nous votre projet et notre équipe vous répondra sous 48 h.</p><a href="#" class="btn btn-primary">Proposer un partenariat</a></div></section>
+</main>
+
+<!-- ======= DAS 4 ======= -->
+<main id="das4" class="das-page">
+  <section class="das-hero">
+    <div class="container">
+      <div class="das-breadcrumb"><a href="#">Accueil</a><span class="sep">›</span><span>Nos expertises</span><span class="sep">›</span><span>Formation</span></div>
+      <div class="das-badge">DAS 4</div>
+      <h1 class="das-hero-title">Formation & Transfert de Connaissances</h1>
+      <p class="das-hero-slogan">Transférer nos compétences pour multiplier l'impact.</p>
+      <div class="das-hero-cta">
+        <a href="#" class="btn btn-primary">Demander une formation sur mesure</a>
+        <a href="#" class="btn btn-secondary" style="color:white;border-color:rgba(255,255,255,0.6)">Consulter le catalogue</a>
+      </div>
+    </div>
+  </section>
+  <section class="section-objectif">
+    <div class="container two-col">
+      <div>
+        <h2>Notre mission sur ce domaine</h2>
+        <p class="lead">Convertir les ONG, agents de l'État, étudiants et équipes terrain en participants à nos formations certifiantes.</p>
+        <p>Le DAS Formation joue un rôle stratégique transversal : il mobilise les experts de nos trois autres DAS comme formateurs, créant une synergie forte. Contrairement à nos autres domaines, la Formation s'adresse à une clientèle qui achète des compétences. Nous proposons des formations en présentiel et à distance, adaptées aux équipes terrain comme aux cadres.</p>
+      </div>
+      <div class="das-icon-large" aria-hidden="true">👥</div>
+    </div>
+  </section>
+  <section class="section-alt">
+    <div class="container">
+      <h2>Nos activités</h2>
+      <ul class="activites-list">
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Formations en gestion de l'environnement et des ressources naturelles</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Formations certifiantes en SIG et géomatique</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Ateliers de renforcement de capacités pour équipes ONG et agents de l'État</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Formations sur le changement climatique et les financements carbone</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Formations en rédaction de rapports et gestion de projets</li>
+        <li class="activite-item"><span class="activite-bullet" aria-hidden="true">→</span>Programmes de formation sur mesure adaptés à chaque organisation</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section-clients">
+    <div class="container">
+      <h2>Nous travaillons avec</h2>
+      <div class="clients-grid">
+        <div class="client-tag">Agents de l'État et services techniques</div>
+        <div class="client-tag">Collectivités locales</div>
+        <div class="client-tag">ONG et associations de développement</div>
+        <div class="client-tag">Étudiants en fin de cursus</div>
+        <div class="client-tag">Entreprises (équipes environnement)</div>
+        <div class="client-tag">Organisations internationales</div>
+      </div>
+    </div>
+  </section>
+  <section class="section-cta-final"><div class="container cta-inner"><h2>Prêt à collaborer sur ce domaine ?</h2><p>Décrivez-nous votre projet et notre équipe vous répondra sous 48 h.</p><a href="#" class="btn btn-primary">Demander une formation sur mesure</a></div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><img src="/public/images/logo.png" alt="CRIGET-CS Logo" class="footer-logo" /><p class="footer-desc">Votre partenaire fiable pour le développement durable en Afrique.</p></div>
+      <div><h2 class="footer-title">Nous contacter</h2><address style="font-style:normal;color:var(--color-neutral-gray)"><p>Lomé, Togo</p><p><a href="mailto:contact@criget-cs.com" style="color:var(--color-neutral-light)">contact@criget-cs.com</a></p></address></div>
+      <div class="footer-links"><h2 class="footer-title">Informations</h2><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Politique de confidentialité</a></li><li><a href="#">À propos</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 CRIGET-CS. Tous droits réservés.</p></div>
+  </div>
+</footer>
+
+<script>
+function showDas(id) {
+  document.querySelectorAll('.das-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>

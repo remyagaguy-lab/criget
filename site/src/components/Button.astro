@@ -1,0 +1,54 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary';
+  class?: string;
+  type?: 'button' | 'submit';
+}
+
+const { href, variant = 'primary', class: className = '', type = 'button' } = Astro.props;
+
+const baseClass = "btn";
+const variantClass = variant === 'primary' ? 'btn-primary' : 'btn-secondary';
+const classes = `${baseClass} ${variantClass} ${className}`;
+---
+{href ? (
+  <a href={href} class={classes}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={classes}>
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-block;
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    border: none;
+  }
+  .btn-primary {
+    background-color: var(--color-accent-warm);
+    color: var(--color-neutral-white);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-accent-warm-hover);
+  }
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-brand-deep-green);
+    border: 2px solid var(--color-brand-deep-green);
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-brand-deep-green);
+    color: var(--color-neutral-white);
+  }
+</style>

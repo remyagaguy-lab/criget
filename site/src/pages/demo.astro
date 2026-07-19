@@ -1,0 +1,89 @@
+---
+import '../styles/tokens.css';
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Démonstration Charte CRIGET</title>
+    <style>
+      body {
+        padding: var(--spacing-6);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: var(--spacing-4);
+        margin-bottom: var(--spacing-8);
+      }
+      .color-box {
+        height: 100px;
+        border-radius: var(--radius-md);
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      }
+      .color-label {
+        margin-top: var(--spacing-2);
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      .section {
+        margin-bottom: var(--spacing-8);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Charte Graphique CRIGET-CS</h1>
+    <p>Cette page de démonstration permet de visualiser les choix typographiques et colorimétriques définis dans le cahier des charges.</p>
+    
+    <div class="section">
+      <h2>1. Couleurs de la Marque</h2>
+      <div class="color-grid">
+        <div>
+          <div class="color-box" style="background-color: var(--color-brand-deep-green)"></div>
+          <div class="color-label">Vert Profond (#0b5345)</div>
+        </div>
+        <div>
+          <div class="color-box" style="background-color: var(--color-brand-green)"></div>
+          <div class="color-label">Vert Vif (#4cb944)</div>
+        </div>
+        <div>
+          <div class="color-box" style="background-color: var(--color-brand-blue)"></div>
+          <div class="color-label">Bleu (#3454d1)</div>
+        </div>
+        <div>
+          <div class="color-box" style="background-color: var(--color-brand-ochre)"></div>
+          <div class="color-label">Ocre/Terre (#5b3000)</div>
+        </div>
+      </div>
+
+      <h2>2. Couleurs de Support & Boutons</h2>
+      <div class="color-grid">
+        <div>
+          <div class="color-box" style="background-color: var(--color-neutral-charcoal)"></div>
+          <div class="color-label">Anthracite (#1f2937)</div>
+        </div>
+        <div>
+          <div class="color-box" style="background-color: var(--color-accent-warm)"></div>
+          <div class="color-label">Accent Chaud (#f59e0b)</div>
+        </div>
+      </div>
+      
+      <p style="margin-top: var(--spacing-4);">
+        <a href="#" class="button-cta">Exemple de Call-to-Action</a>
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>3. Typographie & Hiérarchie</h2>
+      <h3>Titre de Niveau 3 (H3)</h3>
+      <p>Ceci est un paragraphe de corps de texte utilisant la police Inter. L'espacement des lignes est défini pour être lisible. La hiérarchie est claire grâce aux contrastes de taille et de poids entre les titres (Outfit) et le texte (Inter).</p>
+      <ul>
+        <li>Élément de liste 1</li>
+        <li>Élément de liste 2 : la rigueur et l'expertise en avant</li>
+      </ul>
+    </div>
+  </body>
+</html>

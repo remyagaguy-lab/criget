@@ -1,0 +1,23 @@
+# Dépendances Node
+site/node_modules/
+
+# Fichiers de build Astro
+site/dist/
+site/.astro/
+
+# Environnement local
+site/.env
+site/.env.local
+site/.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Éditeurs
+.vscode/
+.idea/

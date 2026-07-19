@@ -1,0 +1,46 @@
+---
+import DasLayout from '../../../layouts/DasLayout.astro';
+
+const das = {
+  numero: "DAS 3",
+  titre: "Recherche & Développement Appliqué",
+  slogan: "Une recherche appliquée, publiée, qui nourrit l'action.",
+  objectif: "Asseoir la crédibilité académique et scientifique de CRIGET-CS auprès des bailleurs spécialisés, fondations et agences de financement de la recherche.",
+  description: "Le DAS Recherche & Développement Appliqué répond à une logique économique entièrement différente de nos autres domaines. Nos clients sont des bailleurs spécialisés (fondations, agences de financement de la recherche, institutions académiques internationales). Le financement s'opère par grants et subventions sur des cycles longs de 2 à 5 ans. Nos livrables sont des publications scientifiques et des modèles transférables — et non de simples rapports d'études. Notre réputation dans ce DAS repose sur l'excellence académique et les partenariats universitaires que nous cultivons.",
+  activites: [
+    "Recherche appliquée en gestion de l'environnement et des ressources naturelles",
+    "Développement et validation de modèles d'analyse et de prévision climatique",
+    "Publication scientifique dans des revues à comité de lecture",
+    "Partenariats de recherche avec des universités africaines et internationales",
+    "Montage et gestion de projets financés par grants (AFD, UE, fondations...)",
+    "Valorisation et transfert des résultats de recherche vers les acteurs de terrain"
+  ],
+  methodologie: [
+    "Revue de littérature et état de l'art sur la thématique de recherche",
+    "Conception du protocole de recherche et collecte de données primaires",
+    "Traitement et analyse des données avec des méthodes statistiques et spatiales rigoureuses",
+    "Rédaction des livrables scientifiques (articles, rapports de recherche, modèles)",
+    "Soumission aux revues et communication dans les conférences scientifiques pertinentes",
+    "Transfert des résultats vers les acteurs opérationnels et politiques"
+  ],
+  clientsTypes: [
+    "Agences de financement de la recherche (ANR, NSF...)",
+    "Fondations scientifiques internationales",
+    "Institutions académiques et universités",
+    "Programmes des Nations Unies (PNUE, PNUD, FAO...)",
+    "Gouvernements dans le cadre de politiques basées sur les données probantes",
+    "Partenaires techniques et financiers ayant des fenêtres de financement R&D"
+  ],
+  ctaLabel: "Proposer un partenariat",
+  ctaHref: "/fr/contact",
+  secondCta: { label: "Consulter nos publications", href: "/fr/realisations" },
+  couleurAccent: "#5b3000",
+  icone: "📊",
+  realisations: [
+    { titre: "[À COMPLÉTER] — Publication dans une revue scientifique", contexte: "Article publié dans une revue internationale à comité de lecture sur la dynamique des forêts tropicales au Togo, citant des données terrain collectées par notre équipe." },
+    { titre: "[À COMPLÉTER] — Projet de recherche financé", contexte: "Conduite d'un projet de 24 mois financé par un grant international portant sur la modélisation des trajectoires d'adaptation au changement climatique en Afrique de l'Ouest." },
+    { titre: "[À COMPLÉTER] — Partenariat universitaire", contexte: "Collaboration active avec une université togolaise pour l'encadrement de thèses de doctorat et la co-publication de résultats de recherche appliquée." }
+  ]
+};
+---
+<DasLayout das={das} />

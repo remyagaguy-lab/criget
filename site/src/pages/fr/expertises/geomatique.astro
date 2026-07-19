@@ -1,0 +1,45 @@
+---
+import DasLayout from '../../../layouts/DasLayout.astro';
+
+const das = {
+  numero: "DAS 2",
+  titre: "Géomatique & Intelligence Territoriale",
+  slogan: "La donnée géospatiale au service de vos décisions territoriales.",
+  objectif: "Convaincre tout client technique — qu'il soit ou non client de nos autres DAS — que notre expertise géomatique constitue un avantage décisif et autonome pour ses projets.",
+  description: "La Géomatique est le domaine différenciant technologique de CRIGET-CS. Nos compétences sont fondamentalement différentes de celles des bureaux d'études classiques : informatique géospatiale avancée, maîtrise d'ArcGIS, QGIS et des drones. Nous pouvons intervenir en prestation autonome pour tout client ayant besoin d'analyses spatiales, indépendamment d'un volet environnemental. Ce DAS entretient aussi une synergie forte avec le DAS 1, dont il constitue souvent l'outil d'appui méthodologique.",
+  activites: [
+    "Cartographie et réalisation de Systèmes d'Information Géographique (SIG)",
+    "Acquisition de données par drone (levés topographiques, orthophotographies, MNT)",
+    "Télédétection et analyse d'images satellites (Sentinel, Landsat, Pléiades...)",
+    "Traitement et analyse spatiale avancée sous ArcGIS et QGIS",
+    "Conception de bases de données géospatiales et de tableaux de bord territoriaux",
+    "Formation et transfert de compétences en géomatique"
+  ],
+  methodologie: [
+    "Définition du besoin : identification des données sources disponibles et des livrables attendus",
+    "Acquisition de données terrain (drone, GPS différentiel) ou téléchargement d'imagerie satellite",
+    "Traitement géospatial et analyse thématique (occupation des sols, densité, évolution temporelle...)",
+    "Conception cartographique et mise en forme des livrables (cartes, rapports SIG, dashboards)",
+    "Livraison des fichiers dans les formats standardisés (Shapefile, GeoTIFF, GeoPackage, PDF)"
+  ],
+  clientsTypes: [
+    "Bureaux d'études partenaires (appui technique)",
+    "Collectivités territoriales",
+    "Agences de planification urbaine",
+    "Projets agricoles et de gestion des ressources naturelles",
+    "Entreprises minières et extractives",
+    "Organisations internationales et ONG"
+  ],
+  ctaLabel: "Discuter de vos besoins géomatiques",
+  ctaHref: "/fr/contact",
+  secondCta: { label: "Voir nos réalisations cartographiques", href: "/fr/realisations" },
+  couleurAccent: "#3454d1",
+  icone: "🗺️",
+  realisations: [
+    { titre: "[À COMPLÉTER] — Cartographie SIG d'une région", contexte: "Réalisation d'un SIG complet pour le suivi de l'occupation des terres sur un territoire cible, incluant analyse multi-date de l'évolution du couvert forestier." },
+    { titre: "[À COMPLÉTER] — Levé drone et orthophotographie", contexte: "Campagne de levé par drone sur une zone agricole pour la délimitation des parcelles et l'analyse de la santé des cultures (NDVI)." },
+    { titre: "[À COMPLÉTER] — Tableau de bord territorial", contexte: "Conception d'un tableau de bord géospatial interactif pour une collectivité locale, permettant le suivi des indicateurs de développement par secteur." }
+  ]
+};
+---
+<DasLayout das={das} />
