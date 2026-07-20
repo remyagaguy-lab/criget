@@ -4,7 +4,7 @@ import Button from '../components/Button.astro';
 
 interface Props {
   das: {
-    numero: string;
+    numero?: string;
     titre: string;
     slogan: string;
     objectif: string;
@@ -37,7 +37,7 @@ const { das } = Astro.props;
           <span aria-hidden="true">›</span>
           <span>{das.titre}</span>
         </div>
-        <div class="das-badge">{das.numero}</div>
+        {das.numero && <div class="das-badge">{das.numero}</div>}
         <h1 class="das-hero-title">{das.titre}</h1>
         <p class="das-hero-slogan">{das.slogan}</p>
         <div class="das-hero-cta">
