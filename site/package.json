@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^11.0.0",
-    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/sitemap": "^3.2.1",
     "astro": "^4.0.0"
   },
   "devDependencies": {
