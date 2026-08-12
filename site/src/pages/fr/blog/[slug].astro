@@ -19,7 +19,7 @@ const formatter = new Intl.DateTimeFormat('fr-FR', {
 const formattedDate = formatter.format(entry.data.pubDate);
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={entry.data.title} description={entry.data.description || `Article du blog CRIGET : ${entry.data.title}`}>
   <main>
     <article class="blog-post">
       <header class="post-header">
