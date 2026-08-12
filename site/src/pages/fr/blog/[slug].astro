@@ -1,0 +1,169 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect('/404');
+
+const entry = await getEntry('blog', slug);
+if (!entry) return Astro.redirect('/404');
+
+const { Content } = await entry.render();
+
+// Formatage de la date en français
+const formatter = new Intl.DateTimeFormat('fr-FR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+const formattedDate = formatter.format(entry.data.pubDate);
+---
+
+<Layout title={entry.data.title}>
+  <main>
+    <article class="blog-post">
+      <header class="post-header">
+        <div class="container post-container">
+          <div class="breadcrumb">
+            <a href="/fr">Accueil</a> › <a href="/fr/blog">Blog</a> › <span>{entry.data.title}</span>
+          </div>
+          
+          <h1 class="post-title">{entry.data.title}</h1>
+          <div class="post-meta">
+            <span class="post-date">Publié le {formattedDate}</span>
+          </div>
+          
+          {entry.data.image && (
+            <div class="post-image">
+              <img src={entry.data.image} alt={entry.data.title} />
+            </div>
+          )}
+        </div>
+      </header>
+
+      <div class="post-content">
+        <div class="container post-container">
+          <div class="prose">
+            <Content />
+          </div>
+          
+          <div class="post-footer">
+            <a href="/fr/blog" class="button-cta">← Retour aux articles</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-24); }
+  .post-container { max-width: 800px; /* Largeur optimale pour la lecture */ }
+  
+  .post-header {
+    background-color: var(--color-paper-white);
+    padding: var(--spacing-64) 0 var(--spacing-32);
+  }
+  
+  .breadcrumb { font-size: 0.875rem; margin-bottom: var(--spacing-32); }
+  .breadcrumb a { color: var(--color-brand-deep-green); text-decoration: none; font-weight: 500; }
+  .breadcrumb span { color: var(--color-neutral-gray); }
+  
+  .post-title {
+    font-size: var(--text-display);
+    line-height: var(--leading-display);
+    color: var(--color-ink-black);
+    margin-bottom: var(--spacing-24);
+  }
+  
+  .post-meta {
+    margin-bottom: var(--spacing-48);
+    font-size: 0.95rem;
+    color: var(--color-brand-deep-green);
+    font-weight: 500;
+  }
+  
+  .post-image {
+    margin-top: var(--spacing-32);
+    border-radius: var(--radius-largecontainers);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .post-image img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .post-content {
+    background-color: var(--color-paper-white);
+    padding: var(--spacing-48) 0 var(--spacing-96);
+  }
+  
+  /* Styles pour le Markdown (Prose) */
+  .prose {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-ink-black);
+  }
+  
+  .prose :global(h2) {
+    font-size: 2rem;
+    color: var(--color-brand-deep-green);
+    margin-top: var(--spacing-48);
+    margin-bottom: var(--spacing-24);
+  }
+  
+  .prose :global(h3) {
+    font-size: 1.5rem;
+    color: var(--color-ink-black);
+    margin-top: var(--spacing-32);
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .prose :global(p) {
+    margin-bottom: var(--spacing-24);
+  }
+  
+  .prose :global(ul), .prose :global(ol) {
+    margin-bottom: var(--spacing-24);
+    padding-left: var(--spacing-32);
+  }
+  
+  .prose :global(li) {
+    margin-bottom: var(--spacing-8);
+  }
+  
+  .prose :global(strong) {
+    font-weight: 600;
+    color: var(--color-true-black);
+  }
+  
+  .prose :global(a) {
+    color: var(--color-brand-blue);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  .prose :global(blockquote) {
+    border-left: 4px solid var(--color-brand-deep-green);
+    padding-left: var(--spacing-24);
+    margin-left: 0;
+    font-style: italic;
+    color: #555;
+  }
+  
+  .post-footer {
+    margin-top: var(--spacing-64);
+    padding-top: var(--spacing-32);
+    border-top: 1px solid var(--color-mist-gray);
+  }
+  
+  @media (max-width: 768px) {
+    .post-title { font-size: 2.25rem; }
+    .post-header { padding: var(--spacing-32) 0; }
+  }
+</style>

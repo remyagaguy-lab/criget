@@ -18,19 +18,19 @@ const { title, description, icon, href } = Astro.props;
 <style>
   .das-card {
     display: block;
-    background-color: var(--color-neutral-white);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-4);
+    background-color: var(--color-paper-white);
+    border-radius: var(--radius-cards);
+    padding: var(--spacing-24);
     text-decoration: none;
     color: inherit;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    border: 1px solid var(--color-neutral-light);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), outline 0.2s;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-mist-gray);
+    transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 300ms cubic-bezier(0.23, 1, 0.32, 1), outline 200ms;
     height: 100%;
   }
   .das-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-sm-2);
   }
   .das-card:focus-visible {
     outline: 3px solid var(--color-brand-deep-green);
@@ -39,17 +39,17 @@ const { title, description, icon, href } = Astro.props;
   }
   .das-icon {
     font-size: 2rem;
-    margin-bottom: var(--spacing-3);
+    margin-bottom: var(--spacing-16);
     color: var(--color-brand-green);
   }
   .das-title {
     color: var(--color-brand-deep-green);
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(--spacing-8);
     font-size: 1.25rem;
   }
   .das-desc {
-    color: var(--color-neutral-charcoal-light);
-    margin-bottom: var(--spacing-4);
+    color: var(--color-ink-black);
+    margin-bottom: var(--spacing-24);
     font-size: 0.95rem;
   }
   .das-link {

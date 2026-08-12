@@ -4,7 +4,7 @@ import Button from './Button.astro';
 <header class="site-header">
   <div class="container header-inner">
     <a href="/fr" class="logo-link" aria-label="Accueil CRIGET-CS">
-      <img src="/images/logo.png" alt="CRIGET-CS Logo" class="logo-img" />
+      <img src="/images/logo-transparent.png" alt="CRIGET-CS Logo" class="logo-img" />
     </a>
 
     <!-- Mobile Menu Toggle -->
@@ -15,21 +15,10 @@ import Button from './Button.astro';
     <nav id="main-nav" class="main-nav">
       <ul class="nav-list">
         <li><a href="/fr" class="nav-link">Accueil</a></li>
-        <li class="has-dropdown">
-          <button class="nav-link dropdown-toggle" aria-expanded="false">
-            Nos expertises
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 4px"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="/fr/expertises/ingenierie" class="dropdown-link">Ingénierie-Conseil</a></li>
-            <li><a href="/fr/expertises/geomatique" class="dropdown-link">Géomatique</a></li>
-            <li><a href="/fr/expertises/recherche" class="dropdown-link">R&D Appliqué</a></li>
-            <li><a href="/fr/expertises/formation" class="dropdown-link">Formation</a></li>
-          </ul>
-        </li>
-        <li><a href="/fr/realisations" class="nav-link">Réalisations</a></li>
-        <li><a href="/fr/actualites" class="nav-link">Actualités</a></li>
+        <li><a href="/fr/expertises" class="nav-link">Nos expertises</a></li>
         <li><a href="/fr/a-propos" class="nav-link">À propos</a></li>
+        <li><a href="/fr/blog" class="nav-link">Blog</a></li>
+        <li><a href="/fr/contact" class="nav-link">Contact</a></li>
       </ul>
       <div class="header-cta">
         <Button href="/fr/contact" variant="primary">Nous contacter</Button>
@@ -40,8 +29,8 @@ import Button from './Button.astro';
 
 <style>
   .site-header {
-    background-color: var(--color-neutral-white);
-    border-bottom: 1px solid var(--color-neutral-light);
+    background-color: var(--color-paper-white);
+    border-bottom: 1px solid var(--color-mist-gray);
     position: sticky;
     top: 0;
     z-index: 50;
@@ -49,38 +38,41 @@ import Button from './Button.astro';
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-4);
+    padding: 0 var(--spacing-24);
   }
   .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: 64px;
   }
   .logo-img {
-    height: 50px;
+    height: 60px;
     width: auto;
+    transform: scale(1.8);
+    transform-origin: left center;
   }
   .main-nav {
     display: flex;
     align-items: center;
-    gap: var(--spacing-6);
+    flex: 1;
+    justify-content: flex-end;
   }
   .nav-list {
     display: flex;
     list-style: none;
-    gap: var(--spacing-4);
-    margin: 0;
+    gap: var(--spacing-24);
+    margin: 0 auto;
     padding: 0;
     align-items: center;
   }
   .nav-link {
-    color: var(--color-neutral-charcoal);
+    color: var(--color-ink-black);
     text-decoration: none;
     font-weight: 500;
     font-family: var(--font-family-heading);
-    padding: var(--spacing-2);
-    transition: color 0.2s;
+    padding: var(--spacing-8);
+    transition: color 200ms ease-out;
     background: none;
     border: none;
     cursor: pointer;
@@ -99,43 +91,44 @@ import Button from './Button.astro';
     position: absolute;
     top: 100%;
     left: 0;
-    background: var(--color-neutral-white);
-    border: 1px solid var(--color-neutral-light);
-    border-radius: var(--radius-md);
+    background: var(--color-paper-white);
+    border: 1px solid var(--color-mist-gray);
+    border-radius: var(--radius-cards);
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
     list-style: none;
-    padding: var(--spacing-2) 0;
+    padding: var(--spacing-8) 0;
     margin: 0;
     min-width: 250px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.2s;
+    transform: translateY(10px) scale(0.95);
+    transform-origin: top center;
+    transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1), opacity 200ms cubic-bezier(0.23, 1, 0.32, 1), visibility 200ms;
   }
   .has-dropdown:hover .dropdown-menu,
   .dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
   .dropdown-link {
     display: block;
-    padding: var(--spacing-2) var(--spacing-4);
-    color: var(--color-neutral-charcoal);
+    padding: var(--spacing-8) var(--spacing-24);
+    color: var(--color-ink-black);
     text-decoration: none;
     font-size: 0.95rem;
   }
   .dropdown-link:hover, .dropdown-link:focus {
-    background-color: var(--color-neutral-light);
+    background-color: var(--color-mist-gray);
     color: var(--color-brand-deep-green);
   }
   .mobile-toggle {
     display: none;
     background: none;
     border: none;
-    color: var(--color-neutral-charcoal);
+    color: var(--color-ink-black);
     cursor: pointer;
-    padding: var(--spacing-2);
+    padding: var(--spacing-8);
   }
 
   /* Mobile Responsive */
@@ -146,13 +139,13 @@ import Button from './Button.astro';
     .main-nav {
       display: none;
       position: absolute;
-      top: 80px;
+      top: 64px;
       left: 0;
       right: 0;
-      background: var(--color-neutral-white);
+      background: var(--color-paper-white);
       flex-direction: column;
-      padding: var(--spacing-4);
-      border-bottom: 1px solid var(--color-neutral-light);
+      padding: var(--spacing-24);
+      border-bottom: 1px solid var(--color-mist-gray);
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
     }
     .main-nav.is-open {
@@ -174,8 +167,8 @@ import Button from './Button.astro';
       transform: none;
       box-shadow: none;
       border: none;
-      border-left: 2px solid var(--color-neutral-light);
-      margin-left: var(--spacing-2);
+      border-left: 2px solid var(--color-mist-gray);
+      margin-left: var(--spacing-8);
       border-radius: 0;
       display: none;
     }
@@ -183,7 +176,7 @@ import Button from './Button.astro';
       display: block;
     }
     .header-cta {
-      margin-top: var(--spacing-4);
+      margin-top: var(--spacing-24);
       width: 100%;
     }
     .header-cta :global(.btn) {

@@ -25,8 +25,8 @@
 /* Header */
 .site-header { background-color: var(--color-neutral-white); border-bottom: 1px solid var(--color-neutral-light); position: sticky; top: 0; z-index: 50; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-4); }
-.header-inner { display: flex; align-items: center; justify-content: space-between; height: 80px; }
-.logo-img { height: 50px; width: auto; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo-img { height: 40px; width: auto; }
 .main-nav { display: flex; align-items: center; gap: var(--spacing-6); }
 .nav-list { display: flex; list-style: none; gap: var(--spacing-4); margin: 0; padding: 0; align-items: center; }
 .nav-link { color: var(--color-neutral-charcoal); text-decoration: none; font-weight: 500; font-family: var(--font-family-heading); padding: var(--spacing-2); transition: color 0.2s; background: none; border: none; cursor: pointer; font-size: 1rem; display: flex; align-items: center; gap: 4px; }
@@ -39,7 +39,7 @@
 .mobile-toggle { display: none; background: none; border: none; color: var(--color-neutral-charcoal); cursor: pointer; padding: var(--spacing-2); }
 @media (max-width: 768px) {
   .mobile-toggle { display: block; }
-  .main-nav { display: none; position: absolute; top: 80px; left: 0; right: 0; background: var(--color-neutral-white); flex-direction: column; padding: var(--spacing-4); border-bottom: 1px solid var(--color-neutral-light); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+  .main-nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--color-neutral-white); flex-direction: column; padding: var(--spacing-4); border-bottom: 1px solid var(--color-neutral-light); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
   .main-nav.is-open { display: flex; }
   .nav-list { flex-direction: column; width: 100%; align-items: flex-start; gap: 0; }
   .has-dropdown { width: 100%; }
@@ -84,10 +84,10 @@
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 4px"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <ul class="dropdown-menu">
-            <li><a href="/fr/expertises/ingenierie" class="dropdown-link">DAS 1 — Ingénierie-Conseil</a></li>
-            <li><a href="/fr/expertises/geomatique" class="dropdown-link">DAS 2 — Géomatique</a></li>
-            <li><a href="/fr/expertises/recherche" class="dropdown-link">DAS 3 — R&D Appliqué</a></li>
-            <li><a href="/fr/expertises/formation" class="dropdown-link">DAS 4 — Formation</a></li>
+            <li><a href="/fr/expertises/ingenierie" class="dropdown-link">DAS 1 : Ingénierie-Conseil</a></li>
+            <li><a href="/fr/expertises/geomatique" class="dropdown-link">DAS 2 : Géomatique</a></li>
+            <li><a href="/fr/expertises/recherche" class="dropdown-link">DAS 3 : R&D Appliqué</a></li>
+            <li><a href="/fr/expertises/formation" class="dropdown-link">DAS 4 : Formation</a></li>
           </ul>
         </li>
         <li><a href="/fr/realisations" class="nav-link">Réalisations</a></li>
@@ -112,8 +112,8 @@
   
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
     <a href="#" class="das-card" aria-label="Découvrir DAS 1">
-      <div class="das-icon" aria-hidden="true">🌱</div>
-      <h3 class="das-title">DAS 1 — Ingénierie-Conseil</h3>
+      <div class="das-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+      <h3 class="das-title">DAS 1 : Ingénierie-Conseil</h3>
       <p class="das-desc">Des études qui tiennent la route sur le terrain et devant les bailleurs.</p>
       <span class="das-link">En savoir plus</span>
     </a>

@@ -1,9 +1,11 @@
 ---
+import Icon from './Icon.astro';
 const currentYear = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
+      <!-- 1. Brand -->
       <div class="footer-brand">
         <a href="/fr" class="footer-logo-link" aria-label="Accueil CRIGET-CS">
           <img src="/images/logo.png" alt="CRIGET-CS Logo" class="footer-logo" />
@@ -11,50 +13,61 @@ const currentYear = new Date().getFullYear();
         <p class="footer-desc">Votre partenaire fiable pour le développement durable en Afrique.</p>
       </div>
       
-      <div class="footer-contact">
-        <h2 class="footer-title">Nous contacter</h2>
-        <address class="contact-info">
-          <p>Lomé, Togo</p>
-          <p><a href="mailto:contact@criget-cs.com" class="footer-link">contact@criget-cs.com</a></p>
-        </address>
+      <!-- 2. Expertises -->
+      <div class="footer-links-col">
+        <h2 class="footer-title">Expertises</h2>
+        <ul class="footer-links">
+          <li><a href="/fr/expertises#ingenierie" class="footer-link">Ingénierie-Conseil</a></li>
+          <li><a href="/fr/expertises#geomatique" class="footer-link">Géomatique</a></li>
+          <li><a href="/fr/expertises#recherche" class="footer-link">R&D Appliquée</a></li>
+          <li><a href="/fr/expertises#formation" class="footer-link">Formation & Renforcement</a></li>
+        </ul>
       </div>
 
+      <!-- 3. Entreprise -->
       <div class="footer-links-col">
-        <h2 class="footer-title">Informations</h2>
+        <h2 class="footer-title">Entreprise</h2>
+        <ul class="footer-links">
+          <li><a href="/fr/a-propos" class="footer-link">À propos</a></li>
+          <li><a href="/fr/blog" class="footer-link">Blog</a></li>
+          <li><a href="/fr/contact" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- 4. Légal -->
+      <div class="footer-links-col">
+        <h2 class="footer-title">Légal</h2>
         <ul class="footer-links">
           <li><a href="/fr/mentions-legales" class="footer-link">Mentions légales</a></li>
           <li><a href="/fr/politique-confidentialite" class="footer-link">Politique de confidentialité</a></li>
-          <li><a href="/fr/a-propos" class="footer-link">À propos</a></li>
         </ul>
       </div>
     </div>
     
+    <!-- Bottom Section -->
     <div class="footer-bottom">
       <p>&copy; {currentYear} CRIGET-CS. Tous droits réservés.</p>
-      <div class="footer-bottom-links">
-        <a href="/fr/contact" class="footer-link">Nous contacter</a>
-      </div>
     </div>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    background-color: var(--color-neutral-charcoal);
-    color: var(--color-neutral-light);
-    padding: var(--spacing-12) 0 var(--spacing-4) 0;
+    background-color: #1f2937;
+    color: var(--color-mist-gray);
+    padding: var(--spacing-96) 0 var(--spacing-24) 0;
     font-family: var(--font-family-body);
   }
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-4);
+    padding: 0 var(--spacing-24);
   }
   .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--spacing-8);
-    margin-bottom: var(--spacing-12);
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--spacing-64);
+    margin-bottom: var(--spacing-96);
   }
   
   /* Brand */
@@ -62,53 +75,63 @@ const currentYear = new Date().getFullYear();
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--spacing-4);
-    padding-right: var(--spacing-8);
+    gap: var(--spacing-24);
+    padding-right: var(--spacing-64);
   }
   .footer-logo-link {
     display: inline-block;
-    transition: opacity 0.2s;
+    transition: opacity 200ms ease;
   }
   .footer-logo-link:hover {
     opacity: 0.8;
   }
   .footer-logo {
-    height: 48px;
+    height: 90px;
     width: auto;
     object-fit: contain;
-    background-color: var(--color-neutral-white);
-    padding: 6px 12px;
-    border-radius: var(--radius-md);
+    background-color: var(--color-paper-white);
+    padding: 4px 8px;
+    border-radius: var(--radius-tags);
   }
   .footer-desc {
-    color: var(--color-neutral-gray);
-    font-size: 1.05rem;
+    color: var(--color-mist-gray);
+    font-size: 0.95rem;
     line-height: 1.6;
     max-width: 320px;
     margin: 0;
   }
+  .footer-socials {
+    display: flex;
+    gap: var(--spacing-16);
+    margin-top: var(--spacing-8);
+  }
+  .social-link {
+    color: var(--color-mist-gray);
+    transition: color 200ms ease, transform 200ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .social-link:hover {
+    color: var(--color-paper-white);
+    transform: translateY(-2px);
+  }
 
   /* Titles */
   .footer-title {
-    color: var(--color-neutral-white);
+    color: var(--color-paper-white);
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 700;
-    margin-bottom: var(--spacing-5);
+    margin-bottom: var(--spacing-24);
     font-family: var(--font-family-heading);
   }
 
-  /* Contact & Links */
-  .contact-info {
-    font-style: normal;
-    color: var(--color-neutral-gray);
+  /* Links */
+  .footer-links-col {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2);
-  }
-  .contact-info p {
-    margin: 0;
   }
   .footer-links {
     list-style: none;
@@ -116,55 +139,57 @@ const currentYear = new Date().getFullYear();
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-3);
+    gap: var(--spacing-16);
   }
   .footer-link {
-    color: var(--color-neutral-gray);
+    color: var(--color-mist-gray);
     text-decoration: none;
-    transition: color 0.2s, transform 0.2s;
-    display: inline-block;
+    font-size: 0.95rem;
+    transition: color 200ms ease-out;
   }
   .footer-link:hover, .footer-link:focus-visible {
-    color: var(--color-accent-warm);
-    transform: translateX(4px);
+    color: var(--color-paper-white);
   }
 
   /* Bottom */
   .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: var(--spacing-6);
+    padding-top: var(--spacing-32);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--color-neutral-gray);
+    color: var(--color-mist-gray);
     font-size: 0.875rem;
   }
   .footer-bottom p {
     margin: 0;
   }
-  .footer-bottom-links {
-    display: flex;
-    gap: var(--spacing-4);
-  }
 
   /* Responsive */
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-48);
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+      padding-right: 0;
+    }
+  }
+  
+  @media (max-width: 576px) {
     .site-footer {
-      padding: var(--spacing-8) 0 var(--spacing-4) 0;
+      padding: var(--spacing-64) 0 var(--spacing-24) 0;
     }
     .footer-grid {
       grid-template-columns: 1fr;
-      gap: var(--spacing-8);
-      margin-bottom: var(--spacing-8);
-    }
-    .footer-brand {
-      padding-right: 0;
+      gap: var(--spacing-48);
+      margin-bottom: var(--spacing-64);
     }
     .footer-bottom {
       flex-direction: column;
-      gap: var(--spacing-4);
       text-align: center;
-      justify-content: center;
+      gap: var(--spacing-16);
     }
   }
 </style>

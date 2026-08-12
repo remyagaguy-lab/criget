@@ -1,0 +1,303 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/Button.astro';
+
+const services = [
+  {
+    id: "ingenierie",
+    title: "Ingénierie-Conseil",
+    icon: "🌱",
+    objectif: "Accompagner les décideurs avec une rigueur méthodologique et une expertise terrain éprouvée depuis 2016.",
+    description: "Cœur de métier de CRIGET-CS, ce domaine regroupe nos activités d'études environnementales, de foresterie, d'adaptation climatique et de planification.",
+    activites: [
+      "Études d'impact environnemental et social (EIES)",
+      "Foresterie et programmes REDD+",
+      "Plans d'adaptation au changement climatique",
+      "Planification territoriale"
+    ]
+  },
+  {
+    id: "geomatique",
+    title: "Géomatique",
+    icon: "🗺️",
+    objectif: "Transformer la donnée spatiale en outil d'aide à la décision fiable et accessible.",
+    description: "Nous déployons des solutions SIG et de télédétection pour modéliser le territoire et appuyer les projets de développement durable.",
+    activites: [
+      "Systèmes d'Information Géographique (SIG)",
+      "Cartographie thématique et dynamique",
+      "Traitement d'images satellitaires et par drone",
+      "Développement de géoportails"
+    ]
+  },
+  {
+    id: "recherche",
+    title: "R&D Appliquée",
+    icon: "🔬",
+    objectif: "Produire de la connaissance actionnable pour orienter les politiques publiques.",
+    description: "Un pôle dédié aux études socio-économiques et environnementales complexes, pour apporter des réponses scientifiques aux défis de développement.",
+    activites: [
+      "Études socio-économiques",
+      "Recherche agronomique et environnementale",
+      "Modélisation de scénarios climatiques",
+      "Enquêtes statistiques de grande envergure"
+    ]
+  },
+  {
+    id: "formation",
+    title: "Formation & Renforcement",
+    icon: "🎓",
+    objectif: "Transférer nos compétences aux acteurs locaux pour pérenniser les acquis.",
+    description: "Nous formons les cadres de l'administration, les élus locaux et les entreprises à l'utilisation des outils de l'environnement et du numérique.",
+    activites: [
+      "Formations certifiantes en SIG et Télédétection",
+      "Ateliers sur les normes environnementales",
+      "Renforcement de capacités des collectivités",
+      "Coaching technique sur mesure"
+    ]
+  }
+];
+---
+
+<Layout title="Nos expertises - CRIGET-CS">
+  <main class="services-page">
+    <!-- HERO SECTION -->
+    <section class="services-hero">
+      <div class="container hero-inner">
+        <h1 class="hero-title">Nos domaines d'activités stratégiques</h1>
+        <p class="hero-subtitle">Des solutions sur mesure pour le développement durable, alliant ingénierie environnementale, intelligence spatiale et recherche appliquée.</p>
+      </div>
+    </section>
+
+    <!-- SERVICES GRID -->
+    <section class="services-content">
+      <div class="container">
+        <div class="services-grid">
+          {services.map((service) => (
+            <article id={service.id} class="service-card">
+              <div class="service-header">
+                <div class="service-icon" aria-hidden="true">{service.icon}</div>
+                <h2 class="service-title">{service.title}</h2>
+              </div>
+              
+              <div class="service-body">
+                <p class="service-lead">{service.objectif}</p>
+                <p class="service-desc">{service.description}</p>
+                
+                <h3 class="activities-title">Activités principales :</h3>
+                <ul class="activities-list">
+                  {service.activites.map(act => (
+                    <li>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                      {act}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="services-cta">
+      <div class="container cta-inner">
+        <h2>Un projet en perspective ?</h2>
+        <p>Contactez notre équipe pour évaluer vos besoins et définir la meilleure approche.</p>
+        <Button href="/fr/contact" variant="primary">Discuter d'un projet</Button>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Variables Emil Kowalski (Custom Curves & Timings) */
+  :root {
+    --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-24);
+  }
+
+  /* Page Background */
+  .services-page {
+    background-color: var(--color-paper-white);
+    color: var(--color-ink-black);
+  }
+
+  /* Hero */
+  .services-hero {
+    padding: var(--spacing-96) 0 var(--spacing-64);
+    background: linear-gradient(to bottom, var(--color-paper-white), var(--color-mist-gray));
+    border-bottom: 1px solid var(--color-cloud-gray);
+  }
+  .hero-inner {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .hero-title {
+    font-size: 3rem;
+    color: var(--color-brand-deep-green);
+    margin-bottom: var(--spacing-24);
+    letter-spacing: -0.02em;
+  }
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-neutral-gray);
+    line-height: 1.6;
+  }
+
+  /* Grid */
+  .services-content {
+    padding: var(--spacing-96) 0;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-48);
+  }
+
+  /* Cards (Mintlify + Emil Design) */
+  .service-card {
+    background: white;
+    border: 1px solid var(--color-cloud-gray);
+    border-radius: var(--radius-largecontainers);
+    padding: var(--spacing-48);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    /* Interaction styles (Emil Design) */
+    transition: transform 200ms var(--ease-out-strong), 
+                box-shadow 200ms var(--ease-out-strong),
+                border-color 200ms var(--ease-out-strong);
+    transform-origin: center;
+  }
+  
+  /* Hover interactions */
+  @media (hover: hover) and (pointer: fine) {
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.08), 0 4px 8px -4px rgba(0, 0, 0, 0.04);
+      border-color: var(--color-brand-green);
+    }
+  }
+
+  /* Press interactions (Emil Design) */
+  .service-card:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+  }
+
+  /* Card Inner Elements */
+  .service-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-16);
+    margin-bottom: var(--spacing-24);
+    padding-bottom: var(--spacing-24);
+    border-bottom: 1px solid var(--color-mist-gray);
+  }
+  .service-icon {
+    font-size: 2.5rem;
+    background: var(--color-mist-gray);
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-tags);
+  }
+  .service-title {
+    font-size: 1.75rem;
+    color: var(--color-brand-deep-green);
+    margin: 0;
+  }
+
+  .service-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-lead {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-ink-black);
+    margin-bottom: var(--spacing-16);
+  }
+  .service-desc {
+    color: var(--color-neutral-gray);
+    margin-bottom: var(--spacing-32);
+    line-height: 1.6;
+  }
+
+  .activities-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-brand-green);
+    margin-bottom: var(--spacing-16);
+    margin-top: auto; /* Pushes activities to the bottom of the card if heights differ */
+  }
+  .activities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-12);
+  }
+  .activities-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-8);
+    color: var(--color-ink-black);
+    font-size: 0.95rem;
+  }
+  .activities-list svg {
+    color: var(--color-accent-warm);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* CTA Section */
+  .services-cta {
+    padding: var(--spacing-96) 0;
+    background-color: var(--color-mist-gray);
+  }
+  .cta-inner {
+    text-align: center;
+    max-width: 600px;
+    background: white;
+    padding: var(--spacing-64);
+    border-radius: var(--radius-largecontainers);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-cloud-gray);
+  }
+  .cta-inner h2 {
+    color: var(--color-brand-deep-green);
+    margin-bottom: var(--spacing-16);
+  }
+  .cta-inner p {
+    color: var(--color-neutral-gray);
+    margin-bottom: var(--spacing-32);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.25rem;
+    }
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    .service-card {
+      padding: var(--spacing-24);
+    }
+  }
+</style>

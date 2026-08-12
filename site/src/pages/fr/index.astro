@@ -1,11 +1,23 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Button from '../../components/Button.astro';
-import DasCard from '../../components/DasCard.astro';
+
+// Récupérer les 3 derniers articles
+const blogEntries = await getCollection('blog');
+const recentEntries = blogEntries
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const formatter = new Intl.DateTimeFormat('fr-FR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
 ---
 
 <Layout title="Accueil">
-  <main>
+  <div class="content-wrapper">
     <!-- HERO SECTION -->
     <section class="hero-section">
       <div class="container hero-inner">
@@ -18,246 +30,359 @@ import DasCard from '../../components/DasCard.astro';
       </div>
     </section>
 
-    <!-- TRUST BAND (BANDEAU DE CONFIANCE) -->
-    <section class="trust-band">
-      <div class="container trust-grid">
-        <div class="trust-item">
-          <span class="trust-number">2016</span>
-          <span class="trust-label">Année de création</span>
-        </div>
-        <div class="trust-item">
-          <span class="trust-number">[À COMPLÉTER]</span>
-          <span class="trust-label">Zones d'intervention</span>
-        </div>
-        <div class="trust-item">
-          <span class="trust-number">[À COMPLÉTER]</span>
-          <span class="trust-label">Projets réalisés</span>
-        </div>
-        <div class="trust-item">
-          <span class="trust-number">[À COMPLÉTER]</span>
-          <span class="trust-label">Partenaires actifs</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- DAS SECTION -->
-    <section class="das-section">
+    <!-- DAS DETAILS SECTIONS (ZIG-ZAG) -->
+    <div class="das-zigzag-wrapper">
       <div class="container">
-        <h2 class="section-title">Nos Domaines d'Activités Stratégiques</h2>
-        <div class="das-grid">
-          <DasCard 
-            title="Ingénierie-Conseil" 
-            description="Des études qui tiennent la route sur le terrain et devant les bailleurs." 
-            icon="leaf" 
-            href="/fr/expertises/ingenierie" 
-          />
-          <DasCard 
-            title="Géomatique" 
-            description="La donnée géospatiale au service de vos décisions territoriales." 
-            icon="map" 
-            href="/fr/expertises/geomatique" 
-          />
-          <DasCard 
-            title="R&D Appliqué" 
-            description="Une recherche appliquée, publiée, qui nourrit l'action." 
-            icon="bar-chart" 
-            href="/fr/expertises/recherche" 
-          />
-          <DasCard 
-            title="Formation" 
-            description="Transférer nos compétences pour multiplier l'impact." 
-            icon="users" 
-            href="/fr/expertises/formation" 
-          />
-        </div>
+        <h2 class="section-title">Nos domaines d'activités stratégiques</h2>
       </div>
-    </section>
 
-    <!-- ACTUALITES (FAKE) -->
-    <section class="news-section">
+      <!-- DAS 1 -->
+      <section class="das-zigzag-section">
+        <div class="container">
+          <div class="das-grid">
+            <div class="das-content">
+              <h3>Ingénierie pour le développement</h3>
+              <p>Nous concevons des infrastructures résilientes et adaptons les aménagements ruraux et urbains aux défis climatiques actuels. Nos études de faisabilité garantissent la viabilité de vos projets.</p>
+              <ul>
+                <li>Aménagement hydro-agricole</li>
+                <li>Infrastructures de transport rural</li>
+                <li>Gestion des ressources en eau</li>
+              </ul>
+              <Button href="/fr/expertises/ingenierie" variant="outline">En savoir plus</Button>
+            </div>
+            <div class="das-image-wrapper">
+              <img src="/images/das-ingenierie.png" alt="Ingénierie pour le développement" class="das-image" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DAS 2 -->
+      <section class="das-zigzag-section bg-alt">
+        <div class="container">
+          <div class="das-grid reverse">
+            <div class="das-content">
+              <h3>Études environnementales et sociales</h3>
+              <p>Nous accompagnons les décideurs avec des évaluations d'impact rigoureuses et des plans de gestion environnementale conformes aux standards internationaux (Banque Mondiale, SFI).</p>
+              <ul>
+                <li>Études d'impact environnemental (EIES)</li>
+                <li>Audits de conformité</li>
+                <li>Plans de réinstallation des populations</li>
+              </ul>
+              <Button href="/fr/expertises/environnement" variant="outline">En savoir plus</Button>
+            </div>
+            <div class="das-image-wrapper">
+              <img src="/images/das-recherche.png" alt="Études environnementales et sociales" class="das-image" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DAS 3 -->
+      <section class="das-zigzag-section">
+        <div class="container">
+          <div class="das-grid">
+            <div class="das-content">
+              <h3>Géomatique et Aménagement du Territoire</h3>
+              <p>Exploitez la puissance des données spatiales pour optimiser la gestion foncière et planifier le développement local grâce à nos Systèmes d'Information Géographique (SIG).</p>
+              <ul>
+                <li>Cartographie thématique et webmapping</li>
+                <li>Planification urbaine et rurale</li>
+                <li>Télédétection par drone et satellite</li>
+              </ul>
+              <Button href="/fr/expertises/geomatique" variant="outline">En savoir plus</Button>
+            </div>
+            <div class="das-image-wrapper">
+              <img src="/images/das-geomatique.png" alt="Géomatique et Aménagement du Territoire" class="das-image" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DAS 4 -->
+      <section class="das-zigzag-section bg-alt">
+        <div class="container">
+          <div class="das-grid reverse">
+            <div class="das-content">
+              <h3>Renforcement de capacités</h3>
+              <p>Nous formons les cadres, techniciens et communautés locales pour garantir l'appropriation des outils technologiques et assurer la pérennité des projets de développement.</p>
+              <ul>
+                <li>Formations sur mesure en SIG</li>
+                <li>Ateliers de sensibilisation climat</li>
+                <li>Accompagnement technique continu</li>
+              </ul>
+              <Button href="/fr/expertises/formation" variant="outline">En savoir plus</Button>
+            </div>
+            <div class="das-image-wrapper">
+              <img src="/images/das-formation.png" alt="Renforcement de capacités" class="das-image" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BLOG SECTION -->
+    <section class="blog-section">
       <div class="container">
-        <h2 class="section-title">Dernières Actualités</h2>
-        <div class="news-grid">
-          <!-- Carte 1 -->
-          <article class="news-card">
-            <div class="news-date">12 Juillet 2026</div>
-            <h3 class="news-title">Lancement de notre nouveau projet au nord du Togo</h3>
-            <p class="news-excerpt">Une initiative majeure pour la gouvernance environnementale impliquant plusieurs partenaires locaux…</p>
-            <a href="#" class="news-link">Lire la suite</a>
-          </article>
-          <!-- Carte 2 -->
-          <article class="news-card">
-            <div class="news-date">05 Juin 2026</div>
-            <h3 class="news-title">Publication&nbsp;: Modélisation des données spatiales</h3>
-            <p class="news-excerpt">Notre équipe R&D publie ses derniers résultats sur l'utilisation des drones en agriculture urbaine…</p>
-            <a href="#" class="news-link">Lire la suite</a>
-          </article>
-          <!-- Carte 3 -->
-          <article class="news-card">
-            <div class="news-date">22 Mai 2026</div>
-            <h3 class="news-title">Nouvelle formation certifiante en SIG</h3>
-            <p class="news-excerpt">Ouverture des inscriptions pour notre prochaine session de formation dédiée aux systèmes d'information géographique.</p>
-            <a href="#" class="news-link">Lire la suite</a>
-          </article>
+        <div class="blog-header">
+          <h2 class="section-title">Nos dernières publications</h2>
+          <a href="/fr/blog" class="button-cta outline">Voir tout le blog</a>
+        </div>
+        <div class="blog-grid">
+          {recentEntries.map(entry => (
+            <article class="blog-card">
+              {entry.data.image && (
+                <div class="blog-card-image">
+                  <img src={entry.data.image} alt={entry.data.title} />
+                </div>
+              )}
+              <div class="blog-card-content">
+                <span class="blog-date">{formatter.format(entry.data.pubDate)}</span>
+                <h3>{entry.data.title}</h3>
+                <p>{entry.data.description}</p>
+                <a href={`/fr/blog/${entry.slug}`} class="blog-link">Lire la suite →</a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- CONTACT BLOCK -->
-    <section class="bottom-cta">
-      <div class="container cta-inner">
-        <h2>Prêt à discuter de votre projet&nbsp;?</h2>
-        <p>Contactez notre équipe pour évaluer comment nous pouvons vous accompagner de la conception à la réalisation.</p>
-        <Button href="/fr/contact" variant="primary">Nous contacter</Button>
+    <!-- SECTION CTA -->
+    <section class="section-cta">
+      <div class="container section-cta-inner">
+        <h2>Prêt à concrétiser votre projet ?</h2>
+        <p>Contactez nos experts pour une analyse personnalisée de vos besoins.</p>
+        <Button href="/fr/contact" variant="primary">Demander une consultation</Button>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>
   .container {
-    max-width: 1200px;
+    max-width: var(--page-max-width);
     margin: 0 auto;
-    padding: 0 var(--spacing-4);
+    padding: 0 var(--spacing-24);
   }
-  .section-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: var(--spacing-6);
-  }
-  
-  /* Hero Section */
+
+  /* HERO */
   .hero-section {
-    padding: var(--spacing-12) 0;
-    text-align: center;
-    background-color: var(--color-neutral-light);
+    padding: var(--spacing-48) 0 var(--spacing-80);
+    background: linear-gradient(to bottom, var(--color-paper-white), var(--color-mist-gray));
+    border-bottom: 1px solid var(--color-cloud-gray);
   }
   .hero-inner {
     max-width: 800px;
-    margin: 0 auto;
+    text-align: center;
   }
   .hero-title {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-4);
+    font-size: var(--text-display);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-display);
     color: var(--color-brand-deep-green);
+    margin-bottom: var(--spacing-24);
   }
   .hero-mission {
-    font-size: 1.25rem;
-    color: var(--color-neutral-charcoal-light);
-    margin-bottom: var(--spacing-6);
+    font-size: var(--text-subheading);
+    color: var(--color-ink-black);
+    margin-bottom: var(--spacing-48);
   }
   .hero-cta {
     display: flex;
-    gap: var(--spacing-4);
+    gap: var(--spacing-16);
     justify-content: center;
-    flex-wrap: wrap;
   }
 
-  /* Trust Band */
-  .trust-band {
-    background-color: var(--color-brand-deep-green);
-    color: var(--color-neutral-white);
-    padding: var(--spacing-6) 0;
+  /* ZIGZAG SECTIONS */
+  .das-zigzag-wrapper {
+    padding: var(--spacing-48) 0 var(--spacing-96) 0;
   }
-  .trust-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--spacing-4);
+  .section-title {
     text-align: center;
+    font-size: 2.25rem;
+    margin-bottom: var(--spacing-48);
+    color: var(--color-brand-deep-green);
   }
-  .trust-item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-2);
+  .das-zigzag-section {
+    padding: var(--spacing-64) 0;
   }
-  .trust-number {
-    font-size: 2rem;
-    font-weight: 700;
-    font-family: var(--font-family-heading);
-    color: var(--color-accent-warm);
-  }
-  .trust-label {
-    font-size: 0.95rem;
-    color: var(--color-neutral-light);
-  }
-
-  /* DAS Section */
-  .das-section {
-    padding: var(--spacing-12) 0;
+  .bg-alt {
+    background-color: var(--color-mist-gray);
   }
   .das-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-6);
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-64);
+    align-items: center;
+  }
+  .das-grid.reverse .das-content {
+    order: 2;
+  }
+  .das-grid.reverse .das-image-wrapper {
+    order: 1;
+  }
+  .das-content h3 {
+    font-size: 2rem;
+    color: var(--color-brand-deep-green);
+    margin-bottom: var(--spacing-24);
+  }
+  .das-content p {
+    font-size: 1.125rem;
+    color: var(--color-ink-black);
+    margin-bottom: var(--spacing-24);
+    line-height: 1.6;
+  }
+  .das-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--spacing-32) 0;
+  }
+  .das-content ul li {
+    position: relative;
+    padding-left: var(--spacing-24);
+    margin-bottom: var(--spacing-12);
+    font-size: 1.05rem;
+    color: var(--color-ink-black);
+  }
+  .das-content ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--color-brand-deep-green);
+    font-weight: bold;
+  }
+  .das-image-wrapper {
+    border-radius: var(--radius-largecontainers);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .das-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .das-image-wrapper:hover .das-image {
+    transform: scale(1.02);
   }
 
-  /* News Section */
-  .news-section {
-    padding: var(--spacing-12) 0;
-    background-color: var(--color-neutral-light);
+  /* BLOG SECTION */
+  .blog-section {
+    padding: var(--spacing-96) 0;
+    background-color: var(--color-paper-white);
   }
-  .news-grid {
+  .blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-48);
+  }
+  .blog-header .section-title {
+    margin-bottom: 0;
+  }
+  .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-6);
+    gap: var(--spacing-32);
   }
-  .news-card {
-    background: var(--color-neutral-white);
-    padding: var(--spacing-4);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  .blog-card {
+    background: var(--color-paper-white);
+    border: 1px solid var(--color-mist-gray);
+    border-radius: var(--radius-cards);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
   }
-  .news-date {
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+  }
+  .blog-card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  .blog-card-content {
+    padding: var(--spacing-24);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .blog-date {
+    display: block;
     font-size: 0.875rem;
-    color: var(--color-brand-green);
-    margin-bottom: var(--spacing-2);
-    font-weight: 600;
+    color: var(--color-brand-deep-green);
+    margin-bottom: var(--spacing-8);
+    font-weight: 500;
   }
-  .news-title {
+  .blog-card-content h3 {
     font-size: 1.25rem;
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(--spacing-16);
+    line-height: 1.4;
   }
-  .news-excerpt {
-    color: var(--color-neutral-charcoal-light);
-    margin-bottom: var(--spacing-4);
+  .blog-card-content p {
     font-size: 0.95rem;
+    color: var(--color-ink-black);
+    margin-bottom: var(--spacing-24);
+    line-height: 1.5;
+    flex-grow: 1;
   }
-  .news-link {
-    color: var(--color-brand-blue);
+  .blog-link {
+    display: inline-block;
+    color: var(--color-brand-deep-green);
     font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-top: auto;
   }
-
-  /* Contact Block */
-  .contact-block {
-    padding: var(--spacing-12) 0;
+  .blog-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* CTA */
+  .section-cta {
+    padding: var(--spacing-96) 0;
+    background-color: var(--color-brand-deep-green);
+    color: var(--color-paper-white);
     text-align: center;
   }
-  .contact-inner {
-    max-width: 600px;
-    margin: 0 auto;
-    background: var(--color-neutral-white);
-    border: 2px solid var(--color-brand-deep-green);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-8);
+  .section-cta-inner h2 {
+    color: var(--color-paper-white);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-16);
   }
-  .contact-inner h2 {
-    margin-bottom: var(--spacing-4);
-  }
-  .contact-inner p {
-    margin-bottom: var(--spacing-6);
-    color: var(--color-neutral-charcoal-light);
+  .section-cta-inner p {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-32);
+    opacity: 0.9;
   }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2rem;
+  /* MEDIA QUERIES */
+
+
+  /* MEDIA QUERIES */
+  @media (max-width: 900px) {
+    .das-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-32);
     }
-    .hero-section {
-      padding: var(--spacing-8) 0;
+    .das-grid.reverse .das-content {
+      order: 1;
     }
-    .das-section, .news-section, .contact-block {
-      padding: var(--spacing-8) 0;
+    .das-grid.reverse .das-image-wrapper {
+      order: 2;
+    }
+    .hero-title { font-size: 2.5rem; }
+    .hero-section { padding: var(--spacing-32) 0; }
+    .hero-cta { flex-direction: column; }
+    .blog-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-16);
     }
   }
 </style>

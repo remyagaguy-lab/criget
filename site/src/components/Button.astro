@@ -25,18 +25,19 @@ const classes = `${baseClass} ${variantClass} ${className}`;
 <style>
   .btn {
     display: inline-block;
-    padding: var(--spacing-2) var(--spacing-4);
-    border-radius: var(--radius-md);
+    padding: 8px 16px;
+    border-radius: var(--radius-buttons);
     font-family: var(--font-family-heading);
     font-weight: 600;
     text-decoration: none;
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s, transform 0.1s;
+    transition: background-color 200ms ease-out, color 200ms ease-out, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
     border: none;
+    box-shadow: var(--shadow-sm);
   }
   .btn:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
   }
   .btn:disabled {
     opacity: 0.6;
@@ -44,19 +45,20 @@ const classes = `${baseClass} ${variantClass} ${className}`;
     transform: none;
   }
   .btn-primary {
-    background-color: var(--color-accent-warm);
-    color: var(--color-neutral-white);
+    background-color: var(--color-brand-deep-green);
+    color: var(--color-paper-white);
   }
   .btn-primary:hover {
-    background-color: var(--color-accent-warm-hover);
+    background-color: var(--color-brand-green);
   }
   .btn-secondary {
     background-color: transparent;
     color: var(--color-brand-deep-green);
     border: 2px solid var(--color-brand-deep-green);
+    box-shadow: none;
   }
   .btn-secondary:hover {
     background-color: var(--color-brand-deep-green);
-    color: var(--color-neutral-white);
+    color: var(--color-paper-white);
   }
 </style>
