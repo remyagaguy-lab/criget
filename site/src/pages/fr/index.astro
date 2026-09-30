@@ -72,7 +72,7 @@ const formatter = new Intl.DateTimeFormat('fr-FR', {
               <Button href="/fr/expertises#recherche" variant="secondary">En savoir plus</Button>
             </div>
             <div class="das-image-wrapper">
-              <img src="/images/das-recherche.png" alt="Études environnementales et sociales" class="das-image" />
+              <img src="/images/das-recherche.jpeg" alt="Études environnementales et sociales" class="das-image" />
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ const formatter = new Intl.DateTimeFormat('fr-FR', {
               <Button href="/fr/expertises#geomatique" variant="secondary">En savoir plus</Button>
             </div>
             <div class="das-image-wrapper">
-              <img src="/images/das-geomatique.png" alt="Géomatique et Aménagement du Territoire" class="das-image" />
+              <img src="/images/das-geomatique.jpeg" alt="Géomatique et Aménagement du Territoire" class="das-image" />
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ const formatter = new Intl.DateTimeFormat('fr-FR', {
               <Button href="/fr/expertises#formation" variant="secondary">En savoir plus</Button>
             </div>
             <div class="das-image-wrapper">
-              <img src="/images/das-formation.png" alt="Renforcement de capacités" class="das-image" />
+              <img src="/images/das-formation.jpg" alt="Renforcement de capacités" class="das-image" />
             </div>
           </div>
         </div>
@@ -133,12 +133,14 @@ const formatter = new Intl.DateTimeFormat('fr-FR', {
             <article class="blog-card">
               {entry.data.image && (
                 <div class="blog-card-image">
-                  <img src={entry.data.image} alt={entry.data.title} />
+                  <a href={`/fr/blog/${entry.slug}`}>
+                    <img src={entry.data.image} alt={entry.data.title} />
+                  </a>
                 </div>
               )}
               <div class="blog-card-content">
                 <span class="blog-date">{formatter.format(entry.data.pubDate)}</span>
-                <h3>{entry.data.title}</h3>
+                <h3><a href={`/fr/blog/${entry.slug}`} class="blog-title-link">{entry.data.title}</a></h3>
                 <p>{entry.data.description}</p>
                 <a href={`/fr/blog/${entry.slug}`} class="blog-link">Lire la suite →</a>
               </div>
@@ -305,12 +307,24 @@ const formatter = new Intl.DateTimeFormat('fr-FR', {
     height: 200px;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s ease;
+  }
+  .blog-card-image a:hover img {
+    transform: scale(1.05);
   }
   .blog-card-content {
     padding: var(--spacing-24);
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+  }
+  .blog-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .blog-title-link:hover {
+    color: var(--color-brand-green);
   }
   .blog-date {
     display: block;

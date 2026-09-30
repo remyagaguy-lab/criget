@@ -6,7 +6,7 @@ const services = [
   {
     id: "ingenierie",
     title: "Ingénierie-Conseil",
-    icon: "🌱",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-deep-green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`,
     objectif: "Accompagner les décideurs avec une rigueur méthodologique et une expertise terrain éprouvée depuis 2016.",
     description: "Cœur de métier de CRIGET-CS, ce domaine regroupe nos activités d'études environnementales, de foresterie, d'adaptation climatique et de planification.",
     activites: [
@@ -19,7 +19,7 @@ const services = [
   {
     id: "geomatique",
     title: "Géomatique",
-    icon: "🗺️",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-deep-green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>`,
     objectif: "Transformer la donnée spatiale en outil d'aide à la décision fiable et accessible.",
     description: "Nous déployons des solutions SIG et de télédétection pour modéliser le territoire et appuyer les projets de développement durable.",
     activites: [
@@ -32,7 +32,7 @@ const services = [
   {
     id: "recherche",
     title: "R&D Appliquée",
-    icon: "🔬",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-deep-green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v5.48a2 2 0 0 1-.59 1.41L4.62 14.68A2 2 0 0 0 6 18h12a2 2 0 0 0 1.38-3.32l-4.79-4.79a2 2 0 0 1-.59-1.41V3"/></svg>`,
     objectif: "Produire de la connaissance actionnable pour orienter les politiques publiques.",
     description: "Un pôle dédié aux études socio-économiques et environnementales complexes, pour apporter des réponses scientifiques aux défis de développement.",
     activites: [
@@ -45,7 +45,7 @@ const services = [
   {
     id: "formation",
     title: "Formation & Renforcement",
-    icon: "🎓",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-deep-green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`,
     objectif: "Transférer nos compétences aux acteurs locaux pour pérenniser les acquis.",
     description: "Nous formons les cadres de l'administration, les élus locaux et les entreprises à l'utilisation des outils de l'environnement et du numérique.",
     activites: [
@@ -75,7 +75,7 @@ const services = [
           {services.map((service) => (
             <article id={service.id} class="service-card">
               <div class="service-header">
-                <div class="service-icon" aria-hidden="true">{service.icon}</div>
+                <div class="service-icon" aria-hidden="true" set:html={service.icon}></div>
                 <h2 class="service-title">{service.title}</h2>
               </div>
               
@@ -101,10 +101,16 @@ const services = [
 
     <!-- FINAL CTA -->
     <section class="services-cta">
-      <div class="container cta-inner">
-        <h2>Un projet en perspective ?</h2>
-        <p>Contactez notre équipe pour évaluer vos besoins et définir la meilleure approche.</p>
-        <Button href="/fr/contact" variant="primary">Discuter d'un projet</Button>
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-content">
+            <h2>Un projet en perspective ?</h2>
+            <p>Contactez notre équipe d'experts pour évaluer vos besoins, étudier la faisabilité et définir ensemble la meilleure approche stratégique et technique.</p>
+          </div>
+          <div class="cta-action">
+            <Button href="/fr/contact" variant="primary">Discuter d'un projet</Button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -131,7 +137,7 @@ const services = [
 
   /* Hero */
   .services-hero {
-    padding: var(--spacing-96) 0 var(--spacing-64);
+    padding: var(--spacing-64) 0 var(--spacing-48);
     background: linear-gradient(to bottom, var(--color-paper-white), var(--color-mist-gray));
     border-bottom: 1px solid var(--color-cloud-gray);
   }
@@ -267,28 +273,58 @@ const services = [
 
   /* CTA Section */
   .services-cta {
-    padding: var(--spacing-96) 0;
-    background-color: var(--color-mist-gray);
+    padding: var(--spacing-64) 0 var(--spacing-96);
+    background-color: var(--color-paper-white);
   }
-  .cta-inner {
-    text-align: center;
-    max-width: 600px;
-    background: white;
-    padding: var(--spacing-64);
+  .cta-banner {
+    background-color: var(--color-brand-deep-green);
     border-radius: var(--radius-largecontainers);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--color-cloud-gray);
+    padding: var(--spacing-64);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-48);
+    box-shadow: 0 20px 40px -10px rgba(11, 83, 69, 0.2);
+    position: relative;
+    overflow: hidden;
   }
-  .cta-inner h2 {
-    color: var(--color-brand-deep-green);
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+  }
+  .cta-content {
+    flex: 1;
+    max-width: 700px;
+    z-index: 1;
+  }
+  .cta-content h2 {
+    color: var(--color-paper-white);
+    font-size: 2.5rem;
     margin-bottom: var(--spacing-16);
   }
-  .cta-inner p {
-    color: var(--color-neutral-gray);
-    margin-bottom: var(--spacing-32);
+  .cta-content p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .cta-action {
+    flex-shrink: 0;
+    z-index: 1;
   }
 
   /* Responsive */
+  @media (max-width: 992px) {
+    .cta-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: var(--spacing-48) var(--spacing-32);
+    }
+  }
+
   @media (max-width: 768px) {
     .hero-title {
       font-size: 2.25rem;
@@ -298,6 +334,9 @@ const services = [
     }
     .service-card {
       padding: var(--spacing-24);
+    }
+    .cta-content h2 {
+      font-size: 2rem;
     }
   }
 </style>

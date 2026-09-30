@@ -12,7 +12,7 @@ interface Props {
 const { 
   title, 
   description = "CRIGET - Centre de Recherche en Ingénierie, Gestion et Études Technologiques",
-  image = "/logo.png" 
+  image = "/images/logo-cropped.png" 
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -23,6 +23,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title} | CRIGET-CS</title>
+    <link rel="icon" type="image/x-icon" sizes="32x32 64x64 128x128" href="/favicon.ico?v=6" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 

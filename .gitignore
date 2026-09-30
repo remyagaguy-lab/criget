@@ -1,11 +1,11 @@
-# Dépendances Node
+# Dependances Node
 site/node_modules/
 
 # Fichiers de build Astro
 site/dist/
 site/.astro/
 
-# Environnement local — JAMAIS committer ces fichiers
+# Environnement local
 site/.env
 site/.env.local
 site/.env.*.local
@@ -19,6 +19,14 @@ Thumbs.db
 *.log
 npm-debug.log*
 
-# Éditeurs
+# Editeurs
 .vscode/
 .idea/
+
+# Cloudflare
+.wrangler/
+
+# Private Folders
+Cloud/
+Identité Visuel/
+Projets/

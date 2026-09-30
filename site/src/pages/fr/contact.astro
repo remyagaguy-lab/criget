@@ -86,7 +86,7 @@ import Icon from '../../components/Icon.astro';
             <div class="field-group">
               <label for="das" class="field-label">Domaine d'activité concerné</label>
               <select id="das" name="das" class="field-input field-select" aria-describedby="das-hint">
-                <option value="">— Sélectionnez un domaine (optionnel) —</option>
+                <option value="">Sélectionnez un domaine (optionnel)</option>
                 <option value="das1">Ingénierie-Conseil en Environnement et Territoire</option>
                 <option value="das2">Géomatique & Intelligence Territoriale</option>
                 <option value="das3">Recherche & Développement Appliqué</option>
@@ -164,21 +164,21 @@ import Icon from '../../components/Icon.astro';
               <span class="coord-icon" aria-hidden="true"><Icon name="map-pin" /></span>
               <div>
                 <strong>Adresse</strong>
-                <p>Lomé, Togo<br />[À COMPLÉTER - adresse exacte]</p>
+                <p>Agoè-Nyivé<br />Lomé, Togo</p>
               </div>
             </div>
             <div class="coord-item">
               <span class="coord-icon" aria-hidden="true"><Icon name="mail" /></span>
               <div>
                 <strong>E-mail</strong>
-                <p><a href="mailto:contact@criget-cs.com">contact@criget-cs.com</a></p>
+                <p><a href="mailto:criget.cs@gmail.com">criget.cs@gmail.com</a></p>
               </div>
             </div>
             <div class="coord-item">
               <span class="coord-icon" aria-hidden="true"><Icon name="phone" /></span>
               <div>
                 <strong>Téléphone</strong>
-                <p>[À COMPLÉTER]</p>
+                <p>+228 79 19 85 30</p>
               </div>
             </div>
           </address>
@@ -187,7 +187,8 @@ import Icon from '../../components/Icon.astro';
             <h3>Informations légales</h3>
             <p><strong>Dénomination&nbsp;:</strong> CRIGET-CS</p>
             <p><strong>Forme juridique&nbsp;:</strong> SARL de droit privé togolaise</p>
-            <p><strong>N° RCCM&nbsp;:</strong> [À COMPLÉTER]</p>
+            <p><strong>N° RCCM&nbsp;:</strong> RC N°TG-LOME 2016 B1617</p>
+            <p><strong>NIF&nbsp;:</strong> 1000911186</p>
             <p><strong>Siège social&nbsp;:</strong> Lomé, Togo</p>
             <p><a href="/fr/mentions-legales"><Icon name="arrow-right" class="icon-inline" /> Mentions légales complètes</a></p>
           </div>
@@ -214,12 +215,13 @@ import Icon from '../../components/Icon.astro';
   h2 { color: var(--color-brand-deep-green); font-size: 1.75rem; margin-bottom: var(--spacing-48); }
   h3 { color: var(--color-brand-deep-green); font-size: 1.1rem; margin-bottom: var(--spacing-16); }
 
-  .page-hero { background-color: var(--color-mist-gray); color: var(--color-ink-black); padding: var(--spacing-96) 0 var(--spacing-64); }
+  .page-hero { background-color: var(--color-mist-gray); color: var(--color-ink-black); padding: var(--spacing-64) 0; }
+  .page-hero .container { text-align: center; display: flex; flex-direction: column; align-items: center; }
   .breadcrumb { font-size: 0.875rem; margin-bottom: var(--spacing-24); }
   .breadcrumb a { color: var(--color-brand-deep-green); text-decoration: none; font-weight: 500; }
   .breadcrumb span { color: var(--color-neutral-gray); }
-  .page-hero h1 { color: var(--color-brand-deep-green); font-size: 2.75rem; margin-bottom: var(--spacing-24); }
-  .lead { font-size: 1.15rem; color: var(--color-ink-black); max-width: 600px; }
+  .page-hero h1 { color: var(--color-brand-deep-green); font-size: 2.75rem; margin-bottom: var(--spacing-16); }
+  .lead { font-size: 1.15rem; color: var(--color-ink-black); max-width: 600px; margin: 0 auto; }
 
   .section-contact { padding: var(--spacing-96) 0; }
   .contact-grid { display: grid; grid-template-columns: 1fr 380px; gap: var(--spacing-64); align-items: start; }
@@ -299,7 +301,7 @@ import Icon from '../../components/Icon.astro';
     .contact-grid { grid-template-columns: 1fr; }
     .info-side { position: static; }
     .page-hero h1 { font-size: 1.875rem; }
-    .page-hero { padding: var(--spacing-64) 0; }
+    .page-hero { padding: var(--spacing-48) 0; }
     .section-contact { padding: var(--spacing-64) 0; }
   }
 </style>
