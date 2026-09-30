@@ -15,7 +15,8 @@ const {
   image = "/images/logo-cropped.png" 
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.url.origin);
+const fullImageUrl = new URL(image, Astro.url.origin);
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -33,14 +34,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={`${title} | CRIGET-CS`} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image" content={fullImageUrl} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={`${title} | CRIGET-CS`} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+    <meta property="twitter:image" content={fullImageUrl} />
   </head>
   <body>
     <a href="#main-content" class="skip-link">Passer au contenu principal</a>
