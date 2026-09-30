@@ -25,7 +25,7 @@ La maîtrise des langues locales est une compétence non négociable. Un entreti
 
 Même le questionnaire le mieux conçu en laboratoire révèle des failles une fois confronté à la réalité du terrain. Le pré-test n'est donc pas une option, c'est une étape de calibration obligatoire. 
 
-Lors d'un [test en conditions réelles](/fr/blog/4-enjeu-donnee-economie-verte) mené récemment sur l'évaluation de filières locales, nous avons pu constater que certaines unités de mesure prévues dans le formulaire ne correspondaient pas aux pratiques des acteurs. Tester l'outil sur un échantillon réduit permet de vérifier la fluidité des sauts logiques du questionnaire numérique, de chronométrer l'entretien et d'ajuster le vocabulaire. Nous en tirons d'ailleurs un principe absolu : aucune collecte à grande échelle ne doit être lancée sans une validation collégiale post-test.
+Lors d'un test en conditions réelles mené récemment sur l'évaluation de filières locales, nous avons pu constater que certaines unités de mesure prévues dans le formulaire ne correspondaient pas aux pratiques des acteurs. Tester l'outil sur un échantillon réduit permet de vérifier la fluidité des sauts logiques du questionnaire numérique, de chronométrer l'entretien et d'ajuster le vocabulaire. Nous en tirons d'ailleurs un principe absolu : aucune collecte à grande échelle ne doit être lancée sans une validation collégiale post-test.
 
 ## Éthique et consentement : lever la méfiance
 

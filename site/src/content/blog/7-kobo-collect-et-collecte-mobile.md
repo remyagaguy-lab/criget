@@ -28,7 +28,7 @@ Au-delà du fonctionnement hors ligne, l'outil embarque des fonctionnalités ava
 
 Cependant, la technologie apporte son propre lot de vulnérabilités. Le premier défi est matériel : l'autonomie des batteries de smartphones, la surchauffe des appareils en plein soleil et la difficulté de lire sur un écran très lumineux fatiguent rapidement les équipes.
 
-Sur le plan technique, un [formulaire numérique](/fr/blog/4-enjeu-donnee-economie-verte) mal programmé peut devenir un cauchemar. Une erreur dans la logique conditionnelle peut bloquer complètement un entretien en empêchant l'enquêteur de passer à la section suivante. Des incidents de synchronisation peuvent également survenir si les versions du formulaire ne sont pas strictement gérées entre les différents appareils de la flotte. Enfin, si les unités de mesure locales ne sont pas pré-standardisées dans l'outil, le gain de temps promis par le numérique s'effondre lors de la phase de nettoyage des données.
+Sur le plan technique, un formulaire numérique mal programmé peut devenir un cauchemar. Une erreur dans la logique conditionnelle peut bloquer complètement un entretien en empêchant l'enquêteur de passer à la section suivante. Des incidents de synchronisation peuvent également survenir si les versions du formulaire ne sont pas strictement gérées entre les différents appareils de la flotte. Enfin, si les unités de mesure locales ne sont pas pré-standardisées dans l'outil, le gain de temps promis par le numérique s'effondre lors de la phase de nettoyage des données.
 
 ## Bonnes pratiques de conception d'un formulaire
 

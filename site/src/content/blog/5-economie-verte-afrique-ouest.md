@@ -27,7 +27,7 @@ Toutefois, ces acteurs échappent aux nomenclatures statistiques classiques. Une
 
 Mesurer l'économie verte d'un territoire suppose de plonger dans cette informalité. Cela exige des [enquêtes de terrain en milieu rural](/fr/blog/6-reussir-enquete-terrain-milieu-rural) rigoureuses, capables de capter la diversité et la pluriactivité des profils.
 
-Sur une étude menée récemment pour cartographier [l'économie verte autour des aires protégées](/fr/blog/4-enjeu-donnee-economie-verte), nous avons observé qu'un apiculteur saisonnier ou un comité villageois de gestion n'ont ni les mêmes besoins, ni les mêmes unités de mesure. Pour transformer cette réalité complexe en données lisibles par un banquier ou un investisseur, la digitalisation de la collecte est incontournable. L'utilisation de [formulaires mobiles comme Kobo Collect](/fr/blog/7-kobo-collect-et-collecte-mobile) permet de s'appuyer sur des arborescences flexibles et de standardiser l'informel.
+Sur une étude menée récemment pour cartographier l'économie verte autour des aires protégées, nous avons observé qu'un apiculteur saisonnier ou un comité villageois de gestion n'ont ni les mêmes besoins, ni les mêmes unités de mesure. Pour transformer cette réalité complexe en données lisibles par un banquier ou un investisseur, la digitalisation de la collecte est incontournable. L'utilisation de [formulaires mobiles comme Kobo Collect](/fr/blog/7-kobo-collect-et-collecte-mobile) permet de s'appuyer sur des arborescences flexibles et de standardiser l'informel.
 
 ## De la donnée au déblocage des fonds
 
