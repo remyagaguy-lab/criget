@@ -1,0 +1,163 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout 
+  title="Politique de confidentialité" 
+  description="Politique de protection des données à caractère personnel du cabinet CRIGET-CS."
+>
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Confidentialité</h1>
+        <p class="hero-subtitle">Notre engagement pour la protection de vos données personnelles.</p>
+      </div>
+    </section>
+
+    <section class="legal-content section-padding">
+      <div class="container legal-container">
+        <div class="prose">
+          <h2>1. Notre engagement (Zero Trust & Minimisation)</h2>
+          <p>
+            Au cabinet <strong>CRIGET-CS</strong>, nous accordons une importance primordiale à la protection de vos données à caractère personnel, en conformité avec les réglementations nationales et internationales (dont le RGPD). 
+            Conformément aux principes de sécurité modernes, notre architecture est conçue pour collecter le strict minimum nécessaire et ne stocker aucune donnée sensible.
+          </p>
+
+          <h2>2. Données collectées</h2>
+          <p>
+            Nous collectons uniquement les informations que vous nous transmettez volontairement via notre <strong>formulaire de contact</strong> :
+          </p>
+          <ul>
+            <li>Nom complet</li>
+            <li>Organisation / Entreprise</li>
+            <li>Adresse e-mail</li>
+            <li>Le contenu de votre message</li>
+          </ul>
+          <p>
+            Une case à cocher obligatoire garantit votre consentement explicite avant toute transmission de données.
+          </p>
+
+          <h2>3. Utilisation des données (Finalité)</h2>
+          <p>
+            Les données récoltées via le formulaire de contact ont pour seule finalité de :
+          </p>
+          <ul>
+            <li>Vous répondre avec précision et professionnalisme.</li>
+            <li>Traiter vos demandes de partenariat, d'études ou de formation.</li>
+          </ul>
+          <p>
+            <strong>CRIGET-CS ne vendra, ne louera et ne partagera jamais</strong> vos données personnelles à des tiers à des fins commerciales ou publicitaires.
+          </p>
+
+          <h2>4. Sécurité technique et protection</h2>
+          <p>
+            La sécurité de vos données est assurée par une architecture robuste (<em>Defense in Depth</em>) :
+          </p>
+          <ul>
+            <li><strong>Chiffrement en transit :</strong> Toutes les communications entre votre navigateur et nos serveurs sont chiffrées de bout en bout (Protocole HTTPS / HSTS forcé).</li>
+            <li><strong>Aucune base de données exposée :</strong> Notre site est entièrement statique. Les messages de contact sont traités par un service serverless éphémère (Cloudflare Pages) et directement transmis à notre boîte mail sécurisée. Aucun message n'est stocké sur un serveur web vulnérable.</li>
+            <li><strong>Protection Anti-Spam :</strong> Nous utilisons Cloudflare Turnstile (une alternative respectueuse de la vie privée à reCAPTCHA) pour bloquer les robots, ce qui ne nécessite pas la collecte de vos cookies personnels.</li>
+            <li><strong>En-têtes de sécurité (CSP) :</strong> Le site applique une Politique de Sécurité de Contenu stricte empêchant l'exécution de scripts malveillants.</li>
+          </ul>
+
+          <h2>5. Cookies et Traçage</h2>
+          <p>
+            Ce site ne dépose <strong>aucun cookie publicitaire</strong> ni de cookie de traçage intrusif sur votre appareil. Les seuls éléments techniques utilisés servent à la protection contre les cyberattaques (Cloudflare).
+          </p>
+
+          <h2>6. Vos droits</h2>
+          <p>
+            Vous disposez d'un droit d'accès, de rectification, de portabilité et d'effacement de vos données personnelles. Vous pouvez exercer ce droit à tout moment en nous contactant directement :
+          </p>
+          <p>
+            <strong>Par e-mail :</strong> <a href="mailto:criget.cs@gmail.com">criget.cs@gmail.com</a><br/>
+            <strong>Par téléphone :</strong> +228 79 19 85 30
+          </p>
+          <p>
+            Nous nous engageons à traiter votre demande dans les plus brefs délais.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-24); }
+  .legal-container { max-width: 800px; }
+  
+  .page-hero {
+    background-color: var(--color-mist-gray);
+    color: var(--color-ink-black);
+    padding: var(--spacing-64) 0;
+    text-align: center;
+  }
+  
+  .page-hero h1 {
+    font-size: 2.5rem;
+    color: var(--color-brand-deep-green);
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-neutral-gray);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .legal-content {
+    background-color: var(--color-paper-white);
+    padding: var(--spacing-96) 0;
+  }
+  
+  .prose {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-ink-black);
+  }
+  
+  .prose h2 {
+    font-size: 1.75rem;
+    color: var(--color-brand-deep-green);
+    margin-top: var(--spacing-48);
+    margin-bottom: var(--spacing-24);
+    padding-bottom: var(--spacing-8);
+    border-bottom: 1px solid var(--color-mist-gray);
+  }
+  
+  .prose h2:first-child {
+    margin-top: 0;
+  }
+  
+  .prose p {
+    margin-bottom: var(--spacing-24);
+    text-align: justify;
+  }
+  
+  .prose ul {
+    margin-bottom: var(--spacing-32);
+    padding-left: var(--spacing-32);
+  }
+  
+  .prose li {
+    margin-bottom: var(--spacing-8);
+  }
+  
+  .prose a {
+    color: var(--color-brand-blue);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  .prose a:hover {
+    color: var(--color-brand-deep-green);
+  }
+  
+  .prose strong {
+    font-weight: 600;
+    color: var(--color-true-black);
+  }
+</style>

@@ -1,0 +1,146 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout 
+  title="Mentions légales" 
+  description="Mentions légales et informations juridiques du cabinet CRIGET-CS."
+>
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Mentions légales</h1>
+        <p class="hero-subtitle">Informations juridiques et conditions générales d'utilisation du site CRIGET-CS.</p>
+      </div>
+    </section>
+
+    <section class="legal-content section-padding">
+      <div class="container legal-container">
+        <div class="prose">
+          <h2>1. Éditeur du site</h2>
+          <p>
+            Le présent site internet (<strong>www.criget.com</strong>) est la propriété exclusive du cabinet <strong>CRIGET-CS</strong> (Centre de Recherche en Ingénierie, Gestion et Études Technologiques).
+          </p>
+          <ul>
+            <li><strong>Siège social :</strong> Agoè-Nyivé, Lomé, Togo</li>
+            <li><strong>Gérant Associé :</strong> Prof. WALA Kperkouma</li>
+            <li><strong>Directeur Technique :</strong> Dr. KOUMANTIGA Dabitora</li>
+            <li><strong>Téléphone :</strong> +228 79 19 85 30</li>
+            <li><strong>E-mail :</strong> <a href="mailto:criget.cs@gmail.com">criget.cs@gmail.com</a></li>
+          </ul>
+
+          <h2>2. Hébergement</h2>
+          <p>
+            Ce site est hébergé par <strong>Cloudflare, Inc.</strong><br/>
+            101 Townsend St, San Francisco, CA 94107, États-Unis.<br/>
+            Infrastructure mondiale (CDN) et services serverless sécurisés (Cloudflare Pages).
+          </p>
+
+          <h2>3. Conception et Réalisation</h2>
+          <p>
+            Le site internet a été conçu et développé par <strong>Remyaga Guy</strong>.<br/>
+            Contact développeur : <a href="https://remyaga.com/portfolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
+          </p>
+
+          <h2>4. Propriété intellectuelle</h2>
+          <p>
+            L'ensemble de ce site relève de la législation togolaise et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables, les représentations iconographiques et photographiques.
+          </p>
+          <p>
+            La reproduction de tout ou partie de ce site sur un support électronique ou papier quel qu'il soit est formellement interdite sauf autorisation expresse du cabinet CRIGET-CS.
+          </p>
+
+          <h2>5. Responsabilité</h2>
+          <p>
+            CRIGET-CS s'efforce d'assurer au mieux de ses possibilités, l'exactitude et la mise à jour des informations diffusées sur ce site, dont il se réserve le droit de corriger, à tout moment et sans préavis, le contenu. Toutefois, le cabinet ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition sur ce site.
+          </p>
+          
+          <h2>6. Liens hypertextes</h2>
+          <p>
+            Le site peut contenir des liens hypertextes vers d'autres sites. CRIGET-CS n'exerce aucun contrôle sur le contenu de ces sites et décline toute responsabilité quant aux informations qui y sont présentées.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-24); }
+  .legal-container { max-width: 800px; }
+  
+  .page-hero {
+    background-color: var(--color-mist-gray);
+    color: var(--color-ink-black);
+    padding: var(--spacing-64) 0;
+    text-align: center;
+  }
+  
+  .page-hero h1 {
+    font-size: 2.5rem;
+    color: var(--color-brand-deep-green);
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-neutral-gray);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .legal-content {
+    background-color: var(--color-paper-white);
+    padding: var(--spacing-96) 0;
+  }
+  
+  .prose {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-ink-black);
+  }
+  
+  .prose h2 {
+    font-size: 1.75rem;
+    color: var(--color-brand-deep-green);
+    margin-top: var(--spacing-48);
+    margin-bottom: var(--spacing-24);
+    padding-bottom: var(--spacing-8);
+    border-bottom: 1px solid var(--color-mist-gray);
+  }
+  
+  .prose h2:first-child {
+    margin-top: 0;
+  }
+  
+  .prose p {
+    margin-bottom: var(--spacing-24);
+    text-align: justify;
+  }
+  
+  .prose ul {
+    margin-bottom: var(--spacing-32);
+    padding-left: var(--spacing-32);
+  }
+  
+  .prose li {
+    margin-bottom: var(--spacing-8);
+  }
+  
+  .prose a {
+    color: var(--color-brand-blue);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  .prose a:hover {
+    color: var(--color-brand-deep-green);
+  }
+  
+  .prose strong {
+    font-weight: 600;
+    color: var(--color-true-black);
+  }
+</style>
