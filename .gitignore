@@ -30,3 +30,7 @@ npm-debug.log*
 Cloud/
 Identité Visuel/
 Projets/
+
+# Fichiers ignores localement (Article PALCC)
+site/src/content/blog/4-enjeu-donnee-economie-verte.md
+site/public/images/featured-palcc.jpeg
